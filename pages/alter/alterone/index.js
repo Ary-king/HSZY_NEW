@@ -1,65 +1,64 @@
 const sdk = getApp().sdk;
-const CGI = require('../../constant/cgi');
+const CGI = require('../../../constant/cgi');
 const {
   getPrevPageData
 } = sdk.utils.pageData;
-const usedata = require('../../constant/usedata.js');
+const usedata = require('../../../constant/usedata.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    title:'',
-
-
-
-
-    zwms: '',
-    zwsxnr: '',
-    zwsxyq: '',
+    dataAll:{},
+    title: '', //职位名称
+    zwms: '', //职位描述
+    industryIndex: [0, 0], //所属行业
+    zwsxnr: '', //职位体验内容
+    zwsxyq: '', //职位体验要求
+    salary_min: '', //最低薪酬
+    salary_max: '', //最高薪酬
+    multiIndex: [0, 0],
+    id: '',
+    industry: '',
     mjoname1: '',
     mjoname2: '',
-    multiIndex: [0, 0],
-    industryIndex: [0, 0],
     industryname1: '',
     industryname2: '',
     majorData: [],
-    industryData: [{
-        name: '教师',
-        value: 1
-      },
-      {
-        name: '教师',
-        value: 1
-      },
-      {
-        name: '教师',
-        value: 1
-      }
-    ]
+    industryData: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    wx.removeStorageSync('zwms');
-    wx.removeStorageSync('zwsxnr');
-    wx.removeStorageSync('zwsxyq');
-    wx.removeStorageSync('bqsm');
+    const pageData = getPrevPageData()
+    console.log('上一个页面带过来的--------------', pageData)
+    const dataAll = pageData.dataList.job
+    this.setData({
+      dataAll: pageData.dataList.job,
+      title: dataAll.title,
+      zwms: dataAll.desc,
+      zwsxnr: dataAll.job_desc,
+      zwsxyq: dataAll.job_ask,
+      salary_min: dataAll.salary_min,
+      salary_max: dataAll.salary_max,
+      industry: dataAll.industry,
+      id: dataAll.id,
+    })
     this.getmajor();
     this.getindustry()
   },
   onShow() {
-    let zwms = wx.getStorageSync('zwms')
-    let zwsxnr = wx.getStorageSync('zwsxnr')
-    let zwsxyq = wx.getStorageSync('zwsxyq')
-    this.setData({
-      zwms: zwms || '',
-      zwsxnr: zwsxnr || '',
-      zwsxyq: zwsxyq || ''
-    })
+    // let zwms = wx.getStorageSync('zwms')
+    // let zwsxnr = wx.getStorageSync('zwsxnr')
+    // let zwsxyq = wx.getStorageSync('zwsxyq')
+    // this.setData({
+    //   zwms: zwms || '',
+    //   zwsxnr: zwsxnr || '',
+    //   zwsxyq: zwsxyq || ''
+    // })
   },
   formSubmit(e) {
     console.log(e);
@@ -74,6 +73,7 @@ Page({
       return
     }
     const goDetail = {
+      id: this.data.id,
       title: dataList.title,
       desc: this.data.zwms,
       job_desc: this.data.zwsxnr,
@@ -84,7 +84,16 @@ Page({
       major: this.data.mjoname1 + this.data.mjoname2,
     }
     console.log("提交的数据----------", goDetail)
-    this.getjob_create(goDetail)
+    this.setData({
+      params: {
+        id: this.data.id,
+        dataAll:this.data.dataAll
+      }
+    })
+    wx.navigateTo({
+      url: '/pages/alter/altertwo/index',
+    })
+    // this.getjob_create(goDetail)
 
   },
 
@@ -103,7 +112,8 @@ Page({
       if (res.msg == '操作成功') {
         this.setData({
           params: {
-            id: res.data
+            id: res.data,
+            dataAll:this.data.dataAll
           }
         })
         wx.navigateTo({

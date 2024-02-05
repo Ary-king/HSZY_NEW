@@ -1,0 +1,129 @@
+<view class="payset">
+  <form bindsubmit="formSubmit">
+    <view class="payset_box">
+      <view class="payset_title">开放群体</view>
+      <checkbox-group bindchange="radioChange">
+        <view class="payset_section">
+          <view class="payset_select" wx:for="{{groupData}}" wx:key="index">
+            <label class="payset_radio">
+              <checkbox class="interestthreecheckbox" value="{{item.id}}" color="#FF0505" checked="{{item.checked}}" style="transform: scale(0.7)" />{{item.title}}
+            </label>
+          </view>
+        </view>
+      </checkbox-group>
+    </view>
+    <view class="payset_box">
+      <view class="payset_title">体验费用</view>
+      <view class="payset_input">
+        <view class="payset_inputLeft">
+          <input id="salary_day" type="number" name="salary_day" value="{{salary_day}}" bind:change="handleChange" placeholder-class="form_allInput_class inputClass" placeholder="请填写" />
+        </view>
+        <view class="payset_inputRight">元/天</view>
+      </view>
+    </view>
+    <view class="payset_box">
+      <view class="payset_title">开放日期设置</view>
+      <view  class="payset_all">
+        <view class="payset_title_txt">旧的可预订日期：</view>
+        <view class="payset_title_time" wx:for="{{open_date}}">{{item}}</view>
+      </view>
+      <calendar weektitle-style='weektitle-style' colored='colored' datatitle-style='datatitle-style' header-style='header-style' remark_style='headline' bindrecordClickedDate='bindrecordClickedDate' active-coloro='active-coloro' active-colort='active-colort' ifRecordClickedDate='true' bindselectDate='selectDate' bindnextMonth='nextMonth' bindprevMonth='prevMonth' />
+    </view>
+    <view class="payset_box">
+      <view class="payset_title">上班时间设置</view>
+      <view class="payset_data">
+        <view class="payset_dataMax">
+          <picker mode="time" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindTimeChangeStart">
+            <view class="picker" wx:if="{{!timeMin}}">
+              请选择
+            </view>
+            <view class="pickers" wx:if="{{timeMin}}">
+              {{timeMin}}
+            </view>
+          </picker>
+        </view>
+        <view>—</view>
+        <view class="payset_dataMin">
+          <picker mode="time" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindTimeChangeEnd">
+            <view class="picker" wx:if="{{!timeMax}}">
+              请选择
+            </view>
+            <view class="pickers" wx:if="{{timeMax}}">
+              {{timeMax}}
+            </view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="payset_box">
+      <view class="payset_title">体验天数设置</view>
+      <view class="payset_data">
+        <view class="payset_dataMaxInput">
+          最低
+          <input type="number" id="day_min" name="day_min" style="width: 50%;" value="{{day_min}}" bind:change="handleChange" placeholder-class="form_allInput_class inputClass" placeholder="请填写" />
+          天
+        </view>
+        <view style="padding:0.5px 12px;padding:0rpx 30rpx;">—</view>
+        <view class="payset_dataMaxInput">
+          最高
+          <input type="number" id="day_max" name="day_max" style="width: 50%;" value="{{day_max}}" bind:change="handleChange" placeholder-class="form_allInput_class inputClass" placeholder="请填写" />
+          天
+        </view>
+      </view>
+    </view>
+    <view class="payset_box">
+      <view class="payset_title">同一天最多体验人数</view>
+      <view class="payset_data">
+        <view class="payset_dataIput">
+          <input type="number" id="day_num" name="day_num" style="width: 100%;" value="{{day_num}}" bind:change="handleChange" placeholder-class="form_allInput_class inputClass" placeholder="请填写" />
+        </view>
+        <view>人</view>
+      </view>
+    </view>
+    <view class="payset_box">
+      <view class="payset_title">审核设置</view>
+      <radio-group bindchange="radioChangeEav">
+        <view class="payset_sectionall">
+          <view class="payset_selectAll" wx:for="{{eavData}}" wx:key="index">
+            <label class="payset_radio">
+              <radio class="interestthreecheckbox" value="{{item.id}}" color="#FF0505" checked="{{item.checked}}" style="transform: scale(0.7)" />
+              <text>{{item.title}}</text>
+            </label>
+          </view>
+        </view>
+      </radio-group>
+    </view>
+    <view class="payset_box">
+      <view class="payset_title">职位类型</view>
+      <checkbox-group bindchange="radioChangeType">
+        <view class="payset_sectionall">
+          <view class="payset_selectAll" wx:for="{{typeData}}" wx:key="index">
+            <label style="display:flex;align-items: center;" class="payset_radio">
+              <checkbox disabled="{{item.type == 1 ? true : false}}" class="interestthreecheckbox" value="{{item.id}}" color="#FF0505" checked="{{item.checked}}" style="transform: scale(0.7)" />
+              <text>{{item.title}}</text>
+              <view wx:if="{{item.title != '体验'}}" catchtap="goRemark" data-item="{{item.desc}}">
+                <image class="check_icon" src="https://heshiwork.com/storage/202401/653ce52278a8fe4606d7ce9d26b9159f.png" mode="" />
+              </view>
+            </label>
+          </view>
+        </view>
+      </checkbox-group>
+    </view>
+    <view wx:if="{{restock_Show}}">
+      <view class="txtBlack">补全要求和说明</view>
+      <view class="txtInput" bindtap="goCont" data-newName="bqsm">
+        <view class="bot_class" wx:if="{{bqsm == ''}}">请填写具体要求和优惠政策</view>
+        <rich-text style="color: black;" nodes="{{bqsm}}"></rich-text>
+      </view>
+    </view>
+    <view class="butBox">
+      <view class="butBox_one">
+        <button form-type="submit" data-com="3" style="width:85px;height:40px;font-size:15px;font-weight:200;padding:20rpx;border-radius: 28rpx;border: 1px solid rgba(187,187,187,1);" class="mini-btn">保存</button>
+      </view>
+      <view class="butBox_two">
+        <button form-type="submit" data-com="0" style="width:85px;height:40px;font-size:15px;font-weight:200;padding:20rpx;border-radius: 28rpx;background-color: rgba(255,5,5,1);color: #ffffff;border: 1px solid rgba(255,5,5,1)" class="mini-btn">发布申请</button>
+      </view>
+    </view>
+  </form>
+  <!-- <view style="height: 800rpx;"></view> -->
+</view>

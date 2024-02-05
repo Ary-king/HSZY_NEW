@@ -77,6 +77,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/alter/alterone/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

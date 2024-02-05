@@ -113,7 +113,7 @@ Page({
           }
         });
         wx.navigateTo({
-          url: '/pages/postjob/index',
+          url: '/pages/alter/alterone/index',
         })
       }
     }).catch(err => {
