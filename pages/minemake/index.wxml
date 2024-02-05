@@ -1,0 +1,65 @@
+<view class="make">
+	<view class="make_top">
+		<view class="prefecture-title-txt {{isContainer === '4' ? 'selected' : ''}}" data-container="4" bindtap="containerMs">全部</view>
+		<view class="prefecture-title-txt {{isContainer === '3' ? 'selected' : ''}}" data-container="3" bindtap="containerMs">待审核</view>
+		<view class="prefecture-title-txt {{isContainer === '1' ? 'selected' : ''}}" data-container="1" bindtap="containerMs">已通过</view>
+		<view class="prefecture-title-txt {{isContainer === '2' ? 'selected' : ''}}" data-container="2" bindtap="containerMs">已拒绝</view>
+	</view>
+	<view class="make_xian"></view>
+	<view style="margin-top: 20rpx;" bindtap="gotoDetail" data-item="{{item}}" wx:if="{{dataList.length > 0}}" wx:for="{{dataList}}" wx:key="index">
+		<view>
+			<!-- 待审核state1  已通过state2  已结束 state3  -->
+			<view class="msg_box_state	{{item.jobstatus == 3 ? 'state1' : item.jobstatus == 1 ? 'state2' : 'state3'}}">
+				{{item.jobstatus == 3 ? '待审核' : item.jobstatus == 1 ? '审核通过' : '已拒绝'}}
+			</view>
+			<view class="msg_box_cont">
+				<view class="indexHot_cont">
+					<view class="indexHot_cont_all">
+						<view class="indexHot_cont_title">
+							<view class="indexHot_cont_titleFont">{{item.title}}</view>
+						</view>
+						<view class="indexHot_cont_titlePrice">¥{{item.salary_day}}元/天</view>
+					</view>
+					<view class="msg_box_new">
+						<view class="indexHot_cont_time">
+							<text class="indexHot_cont_timeText" wx:for="{{item.open_groups}}" wx:key="index" wx:for-item="iteMin">{{iteMin}}</text>
+							<text class="indexHot_cont_timeText">{{item.work_hours_start}}-{{item.work_hours_end}}</text>
+							<text class="indexHot_cont_timeText">{{item.day_min}}天起订</text>
+						</view>
+						<view class="msg_box_newRig">{{item.range || ''}}</view>
+					</view>
+					<view class="indexHot_cont_Int">
+				<rich-text class="indexHot_cont_Int" nodes="<div style='overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1; -webkit-box-orient: vertical;word-break: break-all; '></font>{{item.desc}}</div>"></rich-text>
+			</view>
+					<view class="indexHot_cont_foot">
+						<view class="indexHot_cont_footBox">
+							<view class="indexHot_cont_footBoxText">开放公司：{{item.company_title}}</view>
+							<view class="indexHot_cont_footBoxMini">
+								<text class="indexHot_cont_footBoxMiniTe">{{item.addr}}</text>
+								<text class="indexHot_cont_footBoxMiniTe">{{item.number}}</text>
+								<text class="indexHot_cont_footBoxMiniTe">成立{{item.time}}</text>
+								<text class="indexHot_cont_footBoxMiniTe">{{item.industry}}</text>
+							</view>
+						</view>
+						<view class="indexHot_cont_reserve">
+							<image class="indexHot_cont_reserveImg" src="https://static.gjzwfw.gov.cn/card-list/toright.png" mode="" />
+						</view>
+					</view>
+				</view>
+				<view class="msg_box_foot">
+					<view class="msg_box_foot_time">订单时间：{{item.create_time}}</view>
+					<view class="msg_box_foot_right">预订{{item.day}}天, 总计￥{{item.all_price}}</view>
+				</view>
+
+			</view>
+			<!--   已通过descr1   -->
+			<view class="msg_box_descr descr1" wx:if="{{item.jobstatus == 1}}">恭喜订单已通过！到岗当日请联系：{{item.contacts}} {{item.mobile}}</view>
+		<view class="msg_box_descr descr2" wx:if="{{item.jobstatus == 2}}">拒绝原因：{{item.orderdesc}} </view>
+
+		</view>
+	</view>
+	<view class="noAll" wx:if="{{dataList.length <= 0}}">
+		<view class="noAllFont">你还没有预约任何职位，现在去预约</view>
+		<image class="noAllFontImg" src="https://heshiwork.com/storage/202401/6e326520f2cdaabe7c79d8841c51eb12.png" mode="" />
+	</view>
+</view>

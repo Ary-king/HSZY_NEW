@@ -1,0 +1,290 @@
+<view class="persdata">
+  <view class="prefecture-title-wrapper">
+    <view class="prefecture-title-txt {{isContainer === '2' ? 'selected' : ''}}" data-container="2" bindtap="containerMs">没工作过</view>
+    <view class="prefecture-title-txt {{isContainer === '1' ? 'selected' : ''}}" data-container="1" bindtap="containerMs">已工作过</view>
+  </view>
+  <view class="prefecture-container prefecture-container-1" hidden="{{isContainer !== '2'}}">
+    <form bindsubmit="formSubmit">
+      <view class="persdata_form">
+        <view class="persdata_formOne">
+          <view class="persdata_formOneName">
+            <view class="persdata_formOneName_txt">姓名</view>
+            <view class="persdata_formOneName_inpt">
+              <input id="name" name="name" bind:change="handleChange" placeholder-class="form_allInput_class" placeholder="与证件保持一致" />
+            </view>
+          </view>
+          <view class="persdata_formTwo">
+            <view class="persdata_formOneName_txt">性别</view>
+            <view class="persdata_formOneAge_select">
+              <picker style="font-size:32rpx;" id="sex" name="sex" mode="selector" bindchange="bindPickerChangeAge" range-key="name" range="{{range}}" value="{{ageindex}}" custom-item="{{customItem}}">
+                <view class="picker">
+                  {{range[ageindex].name}}
+                </view>
+              </picker>
+            </view>
+            <!-- <view class="persdata_formTwo_img">
+              <image class="persdata_formTwo_imgIcon" src="https://static.gjzwfw.gov.cn/card-list/toright.png" mode="" />
+            </view> -->
+          </view>
+        </view>
+        <view class="persdata_formOne">
+          <view class="persdata_formOneName_txt">证件类型</view>
+          <view class="persdata_formOneAge_select identity">
+            <picker style="font-size:32rpx;" id="number_type" name="number_type" mode="selector" bindchange="bindPickerChangeIdentity" range-key="name" range="{{certificateType}}" value="{{certificateTypeindex}}" custom-item="{{customItem}}">
+              <view class="picker">
+                {{certificateType[certificateTypeindex].name}}
+              </view>
+            </picker>
+          </view>
+          <!-- <view class="persdata_formTwo_img">
+            <image class="persdata_formTwo_imgIcon" src="https://static.gjzwfw.gov.cn/card-list/toright.png" mode="" />
+          </view> -->
+        </view>
+        <view class="persdata_formOne">
+          <view class="persdata_formOneName_txt inputClass">证件号码</view>
+          <view class="persdata_formOneName_inpt ">
+            <input type="idcard" id="number" name="number" bind:change="handleChange" placeholder-class="form_allInput_class" placeholder="与证件保持一致" />
+          </view>
+        </view>
+        <view class="persdata_formOne">
+          <view class="persdata_formOneName_txt inputClass">手机(+86)</view>
+          <view class="persdata_formOneName_inpt ">
+            <input type="number" id="mobile" name="mobile" bind:change="handleChange" placeholder-class="form_allInput_class" placeholder="请输入手机号码" />
+          </view>
+        </view>
+        <view class="persdata_formOne">
+          <view class="persdata_formOneName_txt">你的学历</view>
+          <view class="persdata_formOneAge_select identity">
+            <picker style="font-size:32rpx;" id="education" name="education" mode="selector" bindchange="bindPickerChangEducation" range-key="name" range="{{educationdata}}" value="{{educationindex}}" custom-item="{{customItem}}">
+              <view class="picker">
+                {{educationdata[educationindex].name}}
+              </view>
+            </picker>
+          </view>
+          <!-- <view class="persdata_formTwo_img">
+            <image class="persdata_formTwo_imgIcon" src="https://static.gjzwfw.gov.cn/card-list/toright.png" mode="" />
+          </view> -->
+        </view>
+        <view class="persdata_formOne">
+          <view class="persdata_formOneName_txt inputClass">所在学校</view>
+          <view class="persdata_formOneName_inpt ">
+            <input id="school" name="school" bind:change="handleChange" placeholder-class="form_allInput_class" placeholder="请输入学校名称" />
+          </view>
+        </view>
+        <view class="persdata_formOne" style="border: none;">
+          <view class="persdata_formOneName_txt">年级</view>
+          <view class="persdata_formOneAge_select identity">
+            <picker style="font-size:32rpx;" id="grade" name="grade" mode="selector" bindchange="bindPickerChanGrade" range-key="name" range="{{gradedata}}" value="{{gradeindex}}" custom-item="{{customItem}}">
+              <view class="picker">
+                {{gradedata[gradeindex].name}}
+              </view>
+            </picker>
+          </view>
+        </view>
+      </view>
+      <view class="formSubmit_title">请上传身份证正、反面以及学生证 </view>
+      <view class="formSubmit_title_red">必须上传身份证正反面和学生证已证明你的身份，身份证必须清晰可见，必须在有效期以内。本人必须和身份证信息一致否则费用扣除。</view>
+      <view class="formSubmit_title_black">学生证拍摄含个人完整信息以及带学校钢印页面，并且与身份证信息保持一致。</view>
+      <view class="formSubmit_atlas">
+        <view class="formSubmit_atlasAdd">图片上传</view>
+        <!-- <view class="formSubmit_atlasNum">{{imgsfile.length}}/3</view> -->
+      </view>
+      <!-- 从相册选择图片 -->
+      <view>
+        <view class="noImg">
+          <view class="noImgTxt" bindtap="pushimgOne" data-imgId="iDone">
+            <view class="noImgTxt_Box" wx:if="{{iDone == ''}}">
+              <image class="noImgTxtImg" src="https://heshiwork.com/storage/202402/6e2e08336694bf7f8333af5691b68b5e.png" mode="" />
+            </view>
+            <view class="noImgTxt_BoxAll" wx:if="{{iDone != ''}}">
+              <image style="width: 100%;height: 100%;" src="{{iDone}}" mode="" />
+            </view>
+            <view class="noImgTxt_Cot" wx:if="{{iDone == ''}}">身份证正面</view>
+            <view class="del" wx:if="{{iDone != ''}}" catchtap="deleteAllOne" data-index="iDone">
+              <image class="delImg" src="https://heshiwork.com/storage/202401/9d26f9333e76462127b9e6ca3951af13.png" mode="" />
+            </view>
+          </view>
+          <view class="noImgTxt" bindtap="pushimgOne" data-imgId="iDtwo">
+            <view class="noImgTxt_Box" wx:if="{{iDtwo == ''}}">
+              <image class="noImgTxtImg" src="https://heshiwork.com/storage/202402/6e2e08336694bf7f8333af5691b68b5e.png" mode="" />
+            </view>
+            <view class="noImgTxt_BoxAll" wx:if="{{iDtwo != ''}}">
+              <image style="width: 100%;height: 100%;" src="{{iDtwo}}" mode="" />
+            </view>
+            <view class="noImgTxt_Cot" wx:if="{{iDtwo == ''}}">身份证反面</view>
+            <view class="del" wx:if="{{iDtwo != ''}}" catchtap="deleteAllOne" data-index="iDtwo">
+              <image class="delImg" src="https://heshiwork.com/storage/202401/9d26f9333e76462127b9e6ca3951af13.png" mode="" />
+            </view>
+          </view>
+          <view class="noImgTxt" bindtap="pushimgOne" data-imgId="iDthre">
+            <view class="noImgTxt_Box" wx:if="{{iDthre == ''}}">
+              <image class="noImgTxtImg" src="https://heshiwork.com/storage/202402/6e2e08336694bf7f8333af5691b68b5e.png" mode="" />
+            </view>
+            <view class="noImgTxt_BoxAll" wx:if="{{iDthre != ''}}">
+              <image style="width: 100%;height: 100%;" src="{{iDthre}}" mode="" />
+            </view>
+            <view class="noImgTxt_Cot" wx:if="{{iDthre == ''}}">学生证正面</view>
+            <view class="del" wx:if="{{iDthre != ''}}" catchtap="deleteAllOne" data-index="iDthre">
+              <image class="delImg" src="https://heshiwork.com/storage/202401/9d26f9333e76462127b9e6ca3951af13.png" mode="" />
+            </view>
+          </view>
+        </view>
+        <view class="noImgTxt" wx:if="{{imgsfile.length > 0}}" wx:for="{{imgsfile}}" wx:key="index">
+          <view class="noImgTxt_BoxAll">
+            <image style="width: 100%;height: 100%;" src="{{item}}" mode="" />
+          </view>
+          <view class="del" wx:if="{{iDthre != ''}}" catchtap="deleteAllOne" data-index="iDthre">
+            <image class="delImg" src="https://heshiwork.com/storage/202401/9d26f9333e76462127b9e6ca3951af13.png" mode="" />
+          </view>
+        </view>
+        <view class="images-add" wx:if="{{imgsfile.length <20}}" bindtap="pushimg">
+          <image class="image_size" src="https://heshiwork.com/storage/202401/0e1c3eae0a38afb6f858922fd3e7bfbf.png"></image>
+        </view>
+        <view class="zyTxt">注意：请认真检查，一旦保存无法更改</view>
+      </view>
+
+      <button form-type="submit" class="mini-btn">保存</button>
+    </form>
+  </view>
+  <view class="prefecture-container prefecture-container-1" hidden="{{isContainer !== '1'}}">
+    <view class="firm_top">1、请完成实名认证</view>
+    <form bindsubmit="formSubmitqy">
+      <view class="persdata_form">
+        <view class="persdata_formOne">
+          <view class="persdata_formOneName">
+            <view class="persdata_formOneName_txt">姓名</view>
+            <view class="persdata_formOneName_inpt">
+              <input id="qyname" name="qyname" bind:change="handleChange" placeholder-class="form_allInput_class" placeholder="与证件保持一致" />
+            </view>
+          </view>
+          <view class="persdata_formTwo">
+            <view class="persdata_formOneName_txt">性别</view>
+            <view class="persdata_formOneAge_select">
+              <picker style="font-size:32rpx;" id="qysex" name="qysex" mode="selector" bindchange="bindPickerChangeAge" range-key="name" range="{{range}}" value="{{ageindex}}" custom-item="{{customItem}}">
+                <view class="picker">
+                  {{range[ageindex].name}}
+                </view>
+              </picker>
+            </view>
+            <!-- <view class="persdata_formTwo_img">
+              <image class="persdata_formTwo_imgIcon" src="https://static.gjzwfw.gov.cn/card-list/toright.png" mode="" />
+            </view> -->
+          </view>
+        </view>
+        <view class="persdata_formOne">
+          <view class="persdata_formOneName_txt">证件类型</view>
+          <view class="persdata_formOneAge_select identity">
+            <picker style="font-size:32rpx;" id="qyidentity" name="qyidentity" mode="selector" bindchange="bindPickerChangeIdentity" range-key="name" range="{{certificateType}}" value="{{certificateTypeindex}}" custom-item="{{customItem}}">
+              <view class="picker">
+                {{certificateType[certificateTypeindex].name}}
+              </view>
+            </picker>
+          </view>
+          <!-- <view class="persdata_formTwo_img">
+            <image class="persdata_formTwo_imgIcon" src="https://static.gjzwfw.gov.cn/card-list/toright.png" mode="" />
+          </view> -->
+        </view>
+        <view class="persdata_formOne">
+          <view class="persdata_formOneName_txt inputClass">证件号码</view>
+          <view class="persdata_formOneName_inpt ">
+            <input type="idcard" id="qyidnumber" name="qyidnumber" bind:change="handleChange" placeholder-class="form_allInput_class" placeholder="与证件保持一致" />
+          </view>
+        </view>
+        <view class="persdata_formOne">
+          <view class="persdata_formOneName_txt inputClass">手机(+86)</view>
+          <view class="persdata_formOneName_inpt ">
+            <input type="number" id="qymobile" name="qymobile" bind:change="handleChange" placeholder-class="form_allInput_class" placeholder="请输入手机号码" />
+          </view>
+        </view>
+        <view class="persdata_formOne" style="border: none;">
+          <view class="persdata_formOneName_txt">年龄</view>
+          <view class="persdata_formOneAge_select identity">
+            <input type="number" id="qyage" name="qyage" bind:change="handleChange" placeholder-class="form_allInput_class" placeholder="请输入年龄" />
+          </view>
+        </view>
+      </view>
+      <view class="firm_top">2、请上传身份证正、反面</view>
+      <view class="formSubmit_title_red">必须上传身份证正反面和学生证已证明你的身份，身份证必须清晰可见，必须在有效期以内。本人必须和身份证信息一致否则费用扣除。</view>
+      <view class="formSubmit_atlas">
+        <view class="formSubmit_atlasAdd">图片上传</view>
+        <!-- <view class="formSubmit_atlasNum">{{qyimgsfile.length}}/2</view> -->
+      </view>
+      <!-- 从相册选择图片 -->
+      <view class="noImg">
+        <view class="noImgTxt" bindtap="pushimgOne" data-imgId="iDone">
+          <view class="noImgTxt_Box" wx:if="{{iDone == ''}}">
+            <image class="noImgTxtImg" src="https://heshiwork.com/storage/202402/6e2e08336694bf7f8333af5691b68b5e.png" mode="" />
+          </view>
+          <view class="noImgTxt_BoxAll" wx:if="{{iDone != ''}}">
+            <image style="width: 100%;height: 100%;" src="{{iDone}}" mode="" />
+          </view>
+          <view class="noImgTxt_Cot" wx:if="{{iDone == ''}}">身份证正面</view>
+          <view class="del" wx:if="{{iDone != ''}}" catchtap="deleteAllOne" data-index="iDone">
+            <image class="delImg" src="https://heshiwork.com/storage/202401/9d26f9333e76462127b9e6ca3951af13.png" mode="" />
+          </view>
+        </view>
+        <view class="noImgTxt" bindtap="pushimgOne" data-imgId="iDtwo">
+          <view class="noImgTxt_Box" wx:if="{{iDtwo == ''}}">
+            <image class="noImgTxtImg" src="https://heshiwork.com/storage/202402/6e2e08336694bf7f8333af5691b68b5e.png" mode="" />
+          </view>
+          <view class="noImgTxt_BoxAll" wx:if="{{iDtwo != ''}}">
+            <image style="width: 100%;height: 100%;" src="{{iDtwo}}" mode="" />
+          </view>
+          <view class="noImgTxt_Cot" wx:if="{{iDtwo == ''}}">身份证反面</view>
+          <view class="del" wx:if="{{iDtwo != ''}}" catchtap="deleteAllOne" data-index="iDtwo">
+            <image class="delImg" src="https://heshiwork.com/storage/202401/9d26f9333e76462127b9e6ca3951af13.png" mode="" />
+          </view>
+        </view>
+      </view>
+      <view class="firm_top">3、请上传最近一次社保缴纳公司记录 <text class="firm_topExp">（</text><text class="firm_topExpText">查看样例</text><text class="firm_topExp">）</text></view>
+      <view class="formSubmit_title_red">提供当前所在公司即当前为你缴纳社保的公司信息，经企业审核通过后再进行体验。</view>
+      <view class="formSubmit_atlas">
+        <view class="formSubmit_atlasAdd">图片上传</view>
+        <view class="formSubmit_atlasNum">{{socialImgs.length}}/2</view>
+      </view>
+      <!-- 从相册选择图片 -->
+      <view class="noImgTxt" bindtap="socialImgPush" wx:if="{{socialImgs.length <= 0}}">
+        <view class="noImgTxt_Box">
+          <image class="noImgTxtImg" src="https://heshiwork.com/storage/202402/6e2e08336694bf7f8333af5691b68b5e.png" mode="" />
+        </view>
+        <view class="noImgTxt_Cot">社保缴纳记录</view>
+      </view>
+      <view style="justify-content: start;flex-wrap: wrap;margin-top: 20rpx;">
+        <!-- <view wx:if="{{socialImgs.length > 0}}" wx:for="{{socialImgs}}" wx:key="index" class="img">
+          <image class="img_look" src="{{item}}" mode="widthFix" />
+          <view class="del" bindtap="deleteSocial" data-index="{{index}}">
+            <image class="delImg" src="https://heshiwork.com/storage/202401/9d26f9333e76462127b9e6ca3951af13.png" mode="" />
+          </view>
+        </view> -->
+        <view class="noImgTxt" wx:if="{{socialImgs.length > 0}}" wx:for="{{socialImgs}}" wx:key="index">
+          <view class="noImgTxt_BoxAll">
+            <image style="width: 100%;height: 100%;" src="{{item}}" mode="" />
+          </view>
+          <view class="del" bindtap="deleteSocial" data-index="{{index}}">
+            <image class="delImg" src="https://heshiwork.com/storage/202401/9d26f9333e76462127b9e6ca3951af13.png" mode="" />
+          </view>
+        </view>
+        <view class="images-add">
+          <image class="image_size" src="https://heshiwork.com/storage/202401/0e1c3eae0a38afb6f858922fd3e7bfbf.png" bindtap="socialImgPush"></image>
+        </view>
+      </view>
+      <button form-type="submit" class="mini-btn">保存</button>
+    </form>
+
+  </view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</view>

@@ -1,0 +1,128 @@
+.indexBanner {
+  background-color: #FF9E3E;
+  height: 372rpx;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: left bottom;
+}
+
+.indexBanner_swp {
+  /* overflow: hidden; */
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+  margin-top: -272rpx;
+}
+
+.indexBanner_swpMoney {
+  color: rgba(255, 255, 255, 1);
+  font-size: 28rpx;
+}
+
+.indexBanner_swpNum {
+  color: rgba(255, 255, 255, 1);
+  font-size: 80rpx;
+  padding: 40rpx 0rpx;
+}
+
+.indexBanner_swpTxt {
+  color: rgba(255, 255, 255, 1);
+  font-size: 40rpx;
+}
+
+.indexBanner_swpBox {
+  background: #FFFFFF;
+  box-shadow: 0px 2px 6px 0px rgb(248, 236, 211);
+  border-radius: 20rpx;
+  padding: 40rpx 20rpx;
+  box-sizing: border-box;
+
+}
+
+.indexBanner_swpBox_top {
+  color: rgba(64, 64, 64, 1);
+  font-size: 16px;
+}
+
+.indexBanner_swpBox_contAll {
+  color: rgba(255, 158, 62, 1);
+  font-size: 28rpx;
+}
+
+.indexBanner_swpBox_AllCont {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(245, 245, 245, 1);
+}
+
+.indexBanner_swpBox_contFh {
+  color: rgba(64, 64, 64, 1);
+  font-size: 84rpx
+}
+
+.indexBanner_swpBox_top {
+  color: rgba(64, 64, 64, 1);
+  font-size: 32rpx;
+  padding-bottom: 40rpx;
+}
+
+.indexBanner_swpBox_cont {
+  display: flex;
+  align-items: center;
+  width: 80%;
+}
+
+.form_allInput_class {
+  font-size: 32rpx;
+}
+
+.indexBanner_swpBox_contInput {
+  text-align: center;
+  font-size: 80rpx;
+}
+
+.indexBanner_commit {
+  border-radius: 100rpx;
+  background-color: rgba(255, 158, 62, 1);
+  color: rgba(255, 255, 255, 1);
+  font-size: 32rpx;
+  font-weight: 600;
+  text-align: center;
+  padding: 26rpx 0rpx;
+  margin-top: 100rpx;
+}
+
+.model_wrapper {
+  position: fixed;
+  top: -4%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 999999;
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+}
+
+.model_wrapperBox {
+  background-color: rgba(255, 255, 255, 1);
+  color: rgba(16, 16, 16, 1);
+  font-size: 28rpx;
+  text-align: center;
+  border: 1px solid rgba(187, 187, 187, 1);
+}
+
+.model_wrapper_box {
+  padding: 40rpx;
+  margin: 460rpx 120rpx;
+  background-color: rgba(255, 255, 255, 1);
+  color: rgba(16, 16, 16, 1);
+  text-align: center;
+  border: 1px solid rgba(187, 187, 187, 1);
+}
+
+.model_wrapper_boxTxt {
+  font-size: 28rpx;
+  padding: 10rpx 0rpx;
+}

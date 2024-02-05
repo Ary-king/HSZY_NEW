@@ -1,0 +1,150 @@
+<view class="firmattestation" wx:if="{{inputShow}}">
+  <form bindsubmit="formSubmit">
+    <view class="firm">公司全称</view>
+    <view class="firm_name">
+      <input id="title" name="title" value="{{title}}" bind:change="handleChange" placeholder-class="form_allInput_class" placeholder="请输入与营业执照一致的企业名称" />
+    </view>
+    <view class="firm_ry">
+      <view class="firm_ryName">人员规模</view>
+      <view class="firm_ryPicker">
+        <picker style="font-size:32rpx;" id="firscale" name="firscale" mode="selector" bindchange="bindPickerChangeAge" range-key="name" range="{{scaleComData}}" value="{{ageindex}}">
+          <view class="pickers" wx:if="{{!number}}">
+            请选择
+          </view>
+          <view class="picker" wx:if="{{number}}">
+            {{number}}
+          </view>
+        </picker>
+      </view>
+      <view class="firm_ry_img">
+        <image class="firm_ry_imgIcon" src="https://static.gjzwfw.gov.cn/card-list/toright.png" mode="" />
+      </view>
+    </view>
+    <view class="firm_ry">
+      <view class="firm_ryName">成立时间</view>
+      <view class="firm_ryPicker">
+        <picker style="font-size:32rpx;" id="time" name="time" mode="selector" bindchange="bindDateChangeStart" range-key="name" range="{{setupTimeData}}" value="{{ageindex}}">
+          <view class="pickers" wx:if="{{!time}}">
+            请选择
+          </view>
+          <view class="picker" wx:if="{{time}}">
+            {{time}}
+          </view>
+        </picker>
+      </view>
+      <view class="firm_ry_img">
+        <image class="firm_ry_imgIcon" src="https://static.gjzwfw.gov.cn/card-list/toright.png" mode="" />
+      </view>
+    </view>
+    <view class="firm_ry">
+      <view class="firm_ryName">公司地址</view>
+      <view class="firm_ryInput">
+        <input id="address" name="address" style="width: 100%;" value="{{address}}" bind:change="handleChange" placeholder-class="firm_ryInput_class" placeholder="请填写公司具体办公地址" />
+      </view>
+    </view>
+    <view class="firm_select" >
+      <view class="firm_selectTitle">所属行业</view>
+      <view class="pickDis">
+        <view class="postJobForm_pickwit">
+          <picker style="font-size:36rpx;color: rgba(186,185,185,1);" id="major" name="major" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" range="{{indusData}}" value="{{industryIndex}}">
+            <view class="picker">
+              {{indusData[1][industryIndex[1]]}}
+            </view>
+          </picker>
+        </view>
+        <view>
+          <image class="postJobForm_botImg" src="https://static.gjzwfw.gov.cn/card-list/toright.png" mode="" />
+        </view>
+      </view>
+      <!-- <view class="firm_select_ri" bindtap="showUnfold" wx:if="{{showUnfold}}">
+        <view class="firm_select_ritxt">展开</view>
+        <view class="firm_select_riImg">
+          <image class="firm_ry_imgIcon" src="https://heshiwork.com/storage/202401/44de0667a56b8257838af4c2aee1bfa9.png" mode="" />
+        </view>
+      </view> -->
+    </view>
+    <view class="firm_select_list">
+      <view wx:for="{{industryDatad}}" wx:key="index" data-item="{{item}}" class="policy_cancelSub {{item.classname}}" bindtap="handleList">{{item.name}}</view>
+    </view>
+    <view class="introduce">
+      <view class="firm_ryName">公司介绍</view>
+      <view class="introduce_txt">
+        <textarea id="desc" maxlength="{{maxLength}}" style="width:100%;height: 100%;" name="desc" placeholder="300字以内" value="{{desc}}" bindinput="handleChange" placeholder-style="font-size:32rpx;color:#6F6F6F;text-align: center;" />
+      </view>
+    </view>
+    <view class="introduce">
+      <view class="firm_ryNames">上传营业执照</view>
+      <view class="upload_txt">请上传清晰完整的营业执照副本全页</view>
+      <!-- <view class="upload_add" bindtap="pushimg">
+        <image wx:if="{{!imgsfile}}" class="upload_addImg" src="https://heshiwork.com/storage/202401/7057f000f610b789f651468774becbcb.png" mode="" />
+        <image wx:if="{{imgsfile}}" class="upload_addImg" src="{{imgsfile}}" mode="" />
+      </view> -->
+
+      <view class="noImgTxt" wx:if="{{imgsfile}}" wx:key="index">
+        <view class="noImgTxt_BoxAll">
+          <image style="width: 100%;height: 100%;" src="{{imgsfile}}" mode="" />
+        </view>
+        <view class="del" wx:if="{{iDthre != ''}}" catchtap="deleteAllOne" data-index="iDthre">
+          <image class="delImg" src="https://heshiwork.com/storage/202401/9d26f9333e76462127b9e6ca3951af13.png" mode="" />
+        </view>
+      </view>
+      <view class="images-add" wx:if="{{!imgsfile}}" bindtap="pushimg">
+        <image class="image_size" src="https://heshiwork.com/storage/202402/6e2e08336694bf7f8333af5691b68b5e.png"></image>
+      </view>
+    </view>
+    <view class="upload_but">
+      <button form-type="submit" class="mini-btn" style="width:100%;background-color:rgba(255,5,5,1);height:54px;text-align:center;justify-content:center;align-items:center;display: flex;">提交认证</button>
+    </view>
+  </form>
+</view>
+<view class="firmattestation" wx:if="{{!inputShow}}">
+  <view class="inputShows">
+    <view class="inputShowstitle">公司全称</view>
+    <view class="inputShowsname">{{allData.title}}</view>
+  </view>
+  <view class="inputShows">
+    <view class="inputShowstitle">人员规模</view>
+    <view class="inputShowsname">{{allData.number}}</view>
+  </view>
+  <view class="inputShows">
+    <view class="inputShowstitle">所属行业</view>
+    <view class="inputShowsname">{{allData.industry}}</view>
+  </view>
+  <view class="inputShows">
+    <view class="inputShowstitle">成立时间</view>
+    <view class="inputShowsname">{{allData.time}}</view>
+  </view>
+  <view class="inputShowTop">
+    <view class="inputShowstitle">公司地址</view>
+    <view class="inputShowsAddress">{{allData.address}}</view>
+  </view>
+  <view class="inputShowTop">
+    <view class="inputShowstitle">公司介绍</view>
+    <view class="inputShowsBox">{{allData.desc}}</view>
+  </view>
+  <view class="inputShowTop">
+    <view class="inputShowstitle">上传营业执照</view>
+    <view class="inputShowsAdd">请上传清晰可见完整的营业执照全页</view>
+    <view class="inputShowPhoto">
+      <image class="inputShowPhotoImg" src="{{allData.img}}" mode="" />
+    </view>
+  </view>
+  <view class="footBox">
+    <view class="footBox_left">
+      <view class="footBox_leftImg">
+        <image class="footBox_leftImgIcon" src="https://heshiwork.com/storage/202401/e89b2ed31b49fe46a5d7723dd71871f2.png" mode="" />
+      </view>
+      <view class="footBox_leftFont">{{allData.status == "0" ? '审核中' : allData.status == "1" ? '审核通过' : '审核失败'}}</view>
+    </view>
+    <view class="footRepeal" bindtap="goRepeal" wx:if="{{allData.is_del == 1 ? true : false}}">
+      <view class="footRepeal_top">
+        <view class="footBox_leftImg">
+          <image class="footBox_leftImgIcon" src="https://heshiwork.com/storage/202401/24ab262b305795a6cdb6b6485f0da4fe.png" mode="" />
+        </view>
+        <view class="footRepeal_txt">撤销上传</view>
+      </view>
+      <view class="footRepeal_bot">仅可撤销24小时内上传的证件</view>
+    </view>
+
+  </view>
+</view>

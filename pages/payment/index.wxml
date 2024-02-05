@@ -1,0 +1,10 @@
+  <view class="payment">
+    <view class="payment_box">
+      <image class="payment_imgIcon" src="https://heshiwork.com/storage/202401/1dc91ffaf797d1d7a9968db132718004.png" mode="" />
+      <view class="payment_boxSucss">支付成功</view>
+      <view class="payment_boxText">恭喜你离梦想又进了一步，去首页查看更多职位内容，在行动中找寻梦想的自己</view>
+    </view>
+    <button style="width: 100%;" class="payment_back" bindtap="gotoBack">继续预订该岗位</button>
+    <button style="width: 100%;" class="payment_over" bindtap="gotoIndex">完成</button>
+  </view>
+

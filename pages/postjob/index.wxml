@@ -1,0 +1,81 @@
+<view class="postJob">
+  <view class="postJob_txt">职位详细介绍</view>
+  <form bindsubmit="formSubmit">
+    <view class="postJobForm">
+      <view class="postJobForm_top">职位名称</view>
+      <view class="postJobForm_bot">
+        <input id="title" name="title" value="{{title}}" maxlength='20' bind:change="handleChange" placeholder-class="form_allInput_class" placeholder="请填写职位名称(字数在20个以内)" />
+      </view>
+    </view>
+    <view class="postJobForm">
+      <view class="postJobForm_top">所属行业</view>
+      <view class="pickDis">
+        <view class="postJobForm_pickwit">
+          <picker style="font-size:36rpx;color: rgba(186,185,185,1);" id="major" name="major" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" range="{{indusData}}" value="{{industryIndex}}">
+            <view class="picker">
+              <!-- {{majorData[multiIndex[0]].name}} -->
+              {{indusData[0][industryIndex[0]]}}，{{indusData[1][industryIndex[1]]}}
+            </view>
+          </picker>
+        </view>
+        <view>
+          <image class="postJobForm_botImg" src="https://heshiwork.com/storage/202401/1994409330111e65016028665d66ee2b.png" mode="" />
+        </view>
+      </view>
+    </view>
+    <view class="postJobForm">
+      <view class="postJobForm_top">职位描述</view>
+      <view class="postJobForm_bot bot_class" bindtap="goCont" data-newName="zwms">
+        <view class="bot_class" wx:if="{{zwms == ''}}">请描述职位主要职责和任职要求，不得填写联系方式</view>
+        <rich-text style="color: black;" nodes="{{zwms}}"></rich-text>
+      </view>
+    </view>
+    <view class="postJobForm">
+      <view class="postJobForm_top">职位体验内容</view>
+      <view class="postJobForm_bot bot_class" bindtap="goCont" data-newName="zwsxnr">
+        <view class="bot_class" wx:if="{{zwsxnr == ''}}">请描述工作内容或流程，不得填写联系方式</view>
+        <rich-text  style="color: black;" nodes="{{zwsxnr}}"></rich-text>
+      </view>
+    </view>
+    <view class="postJobForm">
+      <view class="postJobForm_top">职位体验要求</view>
+      <view class="postJobForm_bot bot_class" bindtap="goCont" data-newName="zwsxyq">
+        <view class="bot_class" wx:if="{{zwsxyq == ''}}">请描述注意事项，不得填写联系方式</view>
+        <rich-text style="color: black;" nodes="{{zwsxyq}}"></rich-text>
+      </view>
+    </view>
+    <view class="postJobForm">
+      <view class="postJobForm_top">参考薪酬</view>
+      <view class="postJob_pickMony">
+        <view class="postJob_pickMony-min">
+          <input type="number" id="salary_min" name="salary_min" value="{{salary_min}}" bind:change="handleChange" placeholder-class="form_allInput_class inputClass" placeholder="最低月薪酬" />
+          K
+        </view>
+        <view class="pick_xian">—</view>
+        <view class="postJob_pickMony-min">
+          <input type="number" id="salary_max" name="salary_max" value="{{salary_max}}" bind:change="handleChange" placeholder-class="form_allInput_class inputClass" placeholder="最高月薪酬" />
+          K
+        </view>
+      </view>
+    </view>
+    <view class="postJobForm">
+      <view class="postJobForm_top">对口专业</view>
+      <view class="pickDis">
+        <view class="postJobForm_pickwit">
+          <picker style="font-size:36rpx;color: rgba(186,185,185,1);" id="major" name="major" mode="multiSelector" bindchange="bindMultiPickerChangemajor" bindcolumnchange="bindMultiPickerColumnChangemajor" range="{{allData}}" value="{{majorindex}}">
+            <view class="picker">
+              <!-- {{majorData[multiIndex[0]].name}} -->
+              {{allData[0][multiIndex[0]]}}，{{allData[1][multiIndex[1]]}}
+            </view>
+          </picker>
+        </view>
+        <view>
+          <image class="postJobForm_botImg" src="https://heshiwork.com/storage/202401/1994409330111e65016028665d66ee2b.png" mode="" />
+        </view>
+      </view>
+    </view>
+    <view class="post_but">
+      <button form-type="submit" class="mini-btn" style="width: 70%;background-color:rgba(255,5,5,1);height:35px;text-align:center;justify-content:center;align-items:center;display:flex;color:#ffffff;font-size:36rpx;">设置付费体验条件</button>
+    </view>
+  </form>
+</view>

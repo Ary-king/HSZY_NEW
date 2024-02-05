@@ -1,0 +1,125 @@
+<!--顶部banner-->
+<view class="indexAll">
+	<view class="indexBanner_swp">
+		<swiper autoplay='true' duration='500' interval='2000' indicator-dots='true' style="height: 425rpx;">
+			<swiper-item wx:for="{{swiperBanner}}" wx:key="index">
+				<view class="indexBanner_img">
+					<image src="https://heshiwork.com{{item.imgUrl}}" style="width: 100%;height: 425rpx;"/>
+				</view>
+			</swiper-item>
+		</swiper>
+	</view>
+	<!-- 跑马灯公告栏 -->
+	<view class="indexAffiche">
+		<view class="indexAffiche_box">
+			<view class="indexAffiche_img">
+				<image class="indexAffiche_img_png" src="https://heshiwork.com/storage/202401/21734c1c8de00bd8dd46028fe954ced4.png" mode="widthFix" />
+			</view>
+			<view class="indexAffiche_text">公告</view>
+			<view class="example">
+				<view class="marquee_box">
+					<view class="marquee_text" style="{{orientation}}:{{marqueeDistance2}}px ">
+						<text>{{scrollbar[0].name}}大撒大撒大撒大撒大撒大撒大撒大撒大撒大撒大撒大撒</text>
+						<text wx:if="{{marquee2copy_status}}" style="margin-left:{{marquee2_margin}}px;">{{scrollbar[0].name}}大撒大撒大撒大撒大撒大撒大撒大撒</text>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="indexHot">
+		<!-- 筛选栏 -->
+		<view class="indexHot_box">
+			<view class="indexHot_select">
+				<view class="indexHot_select_img">
+					<image class="indexAffiche_img_png" src="https://heshiwork.com/storage/202401/684f75e1c7d480ca102f32a273c9c11e.png" mode="widthFix" />
+				</view>
+				<view class="indexHot_select_text">热门职位</view>
+			</view>
+			<view class="indexHot_select_right">
+				<view class="indexHot_select_rightBox" bindtap="goCity">
+					<view class="indexHot_select_rightBoxTxt">{{cityName}}</view>
+					<view class="indexHot_select_rightBoxImg">
+						<image class="indexHot_select_rightBoxImgIcon" src="https://heshiwork.com/storage/202401/0b57f6af6ce56ca2fbeaad1840f67183.png" mode="" />
+					</view>
+				</view>
+				<view class="indexHot_select_rightBox" bindtap="goSelect">
+					<view class="indexHot_select_rightBoxTxt">筛选</view>
+					<view class="indexHot_select_rightBoxImg">
+						<image class="indexHot_select_rightBoxImgIcon" src="https://heshiwork.com/storage/202401/0b57f6af6ce56ca2fbeaad1840f67183.png" mode="" />
+					</view>
+				</view>
+				<view class="indexHot_select_rightBox" bindtap="goSearch">
+					<view class="indexHot_select_rightBoxImg">
+						<image class="indexHot_select_rightBoxImgSou" src="https://heshiwork.com/storage/202401/af92cf85e5ed80dd0cdcc49be764c890.png" mode="" />
+					</view>
+					<view class="indexHot_select_rightBoxTxt">职位</view>
+				</view>
+			</view>
+		</view>
+		<!-- 热门展示 -->
+		<view class="indexHot_cont" bindtap="gotoDetail" data-item="{{item}}" wx:for="{{listData}}" wx:key="index">
+			<view class="indexHot_cont_all">
+				<view class="indexHot_cont_title">
+					<view class="indexHot_cont_titleFont">{{item.title}}</view>
+					<view class="indexHot_cont_titleClassfiy">
+						<view class="indexHot_cont_titleClassText" wx:for="{{item.type}}" wx:key="index" wx:for-item="items">{{items.title}}</view>
+					</view>
+				</view>
+				<view class="indexHot_cont_titlePrice">¥{{item.salary_day}}元/天</view>
+			</view>
+			<view class="indexHot_cont_time">
+				<text class="indexHot_cont_timeText">{{item.open_groups}}</text>
+				<text class="indexHot_cont_timeText">{{item.work_hours_start}}-{{item.work_hours_end}}</text>
+				<text class="indexHot_cont_timeText">{{item.day_min}}天起订</text>
+			</view>
+			<view class="indexHot_cont_Int">
+				<rich-text class="indexHot_cont_Int" nodes="<div style='overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1; -webkit-box-orient: vertical;word-break: break-all; '></font>{{item.desc}}</div>"></rich-text>
+			</view>
+			<view class="indexHot_cont_foot">
+				<view class="indexHot_cont_footBox">
+					<view class="indexHot_cont_footBoxText">开放公司：{{item.company_title}}</view>
+					<view style="display: flex;align-items: center;">
+						<view class="cont_place_img">
+							<image class="cont_place_imgCon" src="https://heshiwork.com/storage/202401/2a021fe4e511a72147f0d91cf710c3b1.png" mode="" />
+						</view>
+						<view class="indexHot_cont_footBoxMini">
+							<text class="indexHot_cont_footBoxMiniTe">{{item.addr}}</text>
+							<text class="indexHot_cont_footBoxMiniTe">{{item.number}}</text>
+							<text class="indexHot_cont_footBoxMiniTe">{{item.time}}</text>
+							<text class="indexHot_cont_footBoxMiniTe">{{item.industry}}</text>
+						</view>
+					</view>
+				</view>
+				<view class="indexHot_cont_reserve">预定</view>
+			</view>
+		</view>
+	</view>
+	<view style="height: 500rpx;"></view>
+	<!-- 底部注册登录 -->
+	<view class='indexFooter' wx:if="{{!logSucces}}" bindtap="goLogin">
+		<view style="display: flex;">
+			<view class="indexFooter_content">
+			<image class="indexFooter_img" src="https://heshiwork.com/storage/202401/4e02628bc65f16a43adf386fad37e890.png" mode="widthFix" />
+		</view>
+		<view class="indexFooter_text">登录查看更多最新职位</view>
+		</view>
+		<view class="indexFooter_loing">
+			<view class="indexFooter_loingTxt">注册/登录</view>
+		</view>
+	</view>
+</view>
+<view class="model_wrapper" wx:if="{{modelShow}}">
+	<view class="model_wrapper_box">
+		<image class="model_wrapper_boxImg" src="https://heshiwork.com/storage/202402/81d0c340bb8efeb105c531a57e1f8739.png" mode="" />
+		<view class="model_wrapper_boxTxt">登录荷适</view>
+		<view class="model_wrapper_boxCont">
+			<button style="font-size:14px;background-color:red;border:3px solid rgba(255, 255, 255, 1);border:3px solid rgba(255, 255, 255, 1);border-radius: 24px;color:#ffffff;padding:8px;width:211px;height:42px;font-weight:100;" open-type="getPhoneNumber" class="component-class" bindtap="bindtap" bindgetphonenumber="bindgetphonenumber">手机号一键登录 </button>
+		</view>
+		<view class="model_box">
+			<label  bindtap="gopitch">
+				<radio value="r1" checked="{{pitch}}" />
+			</label>
+			<view class="model_boxTxt">我已阅读并同意<text class="model_boxTxt_but" bindtap="goAgreement">《荷适用户服务协议》《个人信息保护政策》和《荷适职业小程序隐私保护指引》</text></view>
+		</view>
+	</view>
+</view>

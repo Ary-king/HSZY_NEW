@@ -1,0 +1,104 @@
+<view class="mine-all">
+	<view class="mineLog">
+		<button size="mini" wx:if="{{headimgurl == ''}}" style="padding:0rpx;margin:0rpx;" class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+			<image class="mineLog_iconNo" src="https://heshiwork.com/storage/202402/01c0c5fac6614c8a4a8fd73e889da62e.png" />
+		</button>
+		<button size="mini"  style="padding:0rpx;margin:0rpx;" class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+			<image class="mineLog_icon" src="{{headimgurl}}" />
+		</button>
+		<view class="mineTxt">
+			<view wx:if="{{!noLogin}}">未登录</view>
+			<view class="mineTxt_num" wx:if="{{noLogin}}">{{userPhone}}</view>
+			<view class="mineTxt_type" wx:if="{{noLogin}}">
+				<view class="mineTxt_typeIcon">
+					<image class="mineTxt_typeImg" src="https://heshiwork.com/storage/202401/465d97d81ed560db122ba62a0064a310.png" />
+				</view>
+				<view class="mineTxt_typeTxt">个人</view>
+				<view class="mineTxt_typeTxt" wx:if="{{userinfoData.company == 1}}">企业</view>
+			</view>
+		</view>
+	</view>
+	<view class="mine_ad">
+		<image class="mine_ad_img" src="https://heshiwork.com{{advertiData.imgUrl}}" mode="" />
+	</view>
+	<view class="mine_module">
+		<view class="mine_module_text">个人中心</view>
+		<view class="pspgbg-ul">
+			<view class="pspgbg-li" wx:for="{{persCenter}}" wx:key="index" wx:key="index" data-item="{{item}}" bindtap="{{item.bindMethod}}">
+				<image src="{{item.iconUrl}}" class="pspgbg-li-icon"></image>
+				<view class="pspgbg-li-txt">
+					<view class="pspgbg-li-txt-d">{{item.title}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="mine_module">
+		<view class="mine_module_text">企业中心</view>
+		<view class="pspgbg-ul">
+			<view class="pspgbg-li-four" wx:for="{{corpCcenter}}" wx:key="index" wx:key="index" data-item="{{item}}" bindtap="{{item.bindMethod}}">
+				<image src="{{item.iconUrl}}" class="pspgbg-li-icon"></image>
+				<view class="pspgbg-li-txt">
+					<view class="pspgbg-li-txt-d">{{item.title}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="mine_module">
+		<view class="mine_module_text">服务规范</view>
+		<view class="pspgbg-ul">
+			<view class="pspgbg-li" wx:key="index" bindtap="gotoClause">
+				<image src="https://heshiwork.com/storage/202401/643f0144199af1b971a1f87ce6b3c6b4.png" class="pspgbg-li-iconMin"></image>
+				<view class="pspgbg-li-txt">
+					<view class="pspgbg-li-txt-d">服务条款</view>
+				</view>
+			</view>
+			<view class="pspgbg-li" wx:key="index" bindtap="gotoModel">
+				<image src="https://heshiwork.com/storage/202401/7b45d0a93e03202ff37c9770e0ffe4f2.png" class="pspgbg-li-iconMin"></image>
+				<view class="pspgbg-li-txt">
+					<view class="pspgbg-li-txt-d">联系客服</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+<view class='indexFooter' wx:if="{{!logSucces}}" bindtap="goLogin">
+	<view style="display: flex;">
+		<view class="indexFooter_content">
+			<image class="indexFooter_img" src="https://heshiwork.com/storage/202401/4e02628bc65f16a43adf386fad37e890.png" mode="widthFix" />
+		</view>
+		<view class="indexFooter_text">登录查看更多最新职位</view>
+	</view>
+	<view class="indexFooter_loing">
+		<view class="indexFooter_loingTxt">注册/登录</view>
+	</view>
+</view>
+<view class="model_Show" wx:if="{{loginShow}}">
+	<view class="model_Show_box">
+		<image class="model_Show_boxImg" src="https://heshiwork.com/storage/202402/81d0c340bb8efeb105c531a57e1f8739.png" mode="" />
+		<view class="model_Show_boxTxt">登录荷适</view>
+		<view class="model_Show_boxCont">
+			<button style="font-size:14px;background-color:red;border:3px solid rgba(255, 255, 255, 1);border:3px solid rgba(255, 255, 255, 1);border-radius: 24px;color:#ffffff;padding:8px;width:211px;height:42px;font-weight:100;" open-type="getPhoneNumber" class="component-class" bindtap="bindtap" bindgetphonenumber="bindgetphonenumber">手机号一键登录 </button>
+		</view>
+		<view class="model_box">
+			<label  bindtap="gopitch">
+				<radio value="r1" checked="{{pitch}}" />
+			</label>
+			<view class="model_boxTxt">我已阅读并同意<text class="model_boxTxt_but" bindtap="goAgreement">《荷适用户服务协议》《个人信息保护政策》和《荷适职业小程序隐私保护指引》</text></view>
+		</view>
+	</view>
+</view>
+
+<view class="model_wrapper" wx:if="{{modelShow}}" bindtap="gono">
+	<view class="model_wrapper_box">
+		<image class="model_wrapper_boxImg" src="https://heshiwork.com/storage/202402/81d0c340bb8efeb105c531a57e1f8739.png" mode="" />
+		<view class="model_wrapper_boxTxt">联系荷适</view>
+		<view class="model_wrapper_boxCont">
+			<image class="model_wrapper_boxContImg" src="https://heshiwork.com/storage/202402/f900fd3ff61ce3f7b32d2c548faf2173.png" mode="" />
+			<view class="model_wrapper_boxFont">微信：q957551939</view>
+		</view>
+		<view class="model_wrapper_boxCont">
+			<image class="model_wrapper_boxContImg" src="https://heshiwork.com/storage/202402/749c378b0319d79a363955e2d1b83094.png" mode="" />
+			<view class="model_wrapper_boxFont">电话：18518727069</view>
+		</view>
+	</view>
+</view>

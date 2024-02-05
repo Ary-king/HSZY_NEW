@@ -1,0 +1,79 @@
+<view wx:if="{{logSucces}}">
+	<view class="msg_all" wx:if="{{dataSixe}}" wx:for="{{dataList}}" wx:key="index">
+		<view class="msg_box" wx:if="{{item.is_read == 1}}">
+			<view class="msg_box_yuan"></view>
+			<view class="msg_box_text">您有1个新消息</view>
+		</view>
+		<view class="msg_box_state	{{item.jobstatus == 3 ? 'state1' : item.jobstatus == 1 ? 'state2' : 'state3'}}">
+			{{item.jobstatus == 3 ? '待审核' : item.jobstatus == 1 ? '审核通过' : '已拒绝'}}
+		</view>
+		<view class="msg_box_cont" bindtap="goderDetial" data-item="{{item}}">
+			<view class="indexHot_cont">
+				<view class="indexHot_cont_all">
+					<view class="indexHot_cont_title">
+						<view class="indexHot_cont_titleFont">{{item.title}}</view>
+					</view>
+					<view class="indexHot_cont_titlePrice">¥{{item.salary_day}}元/天</view>
+				</view>
+				<view class="msg_box_new">
+					<view class="indexHot_cont_time">
+						<text class="indexHot_cont_timeText" wx:for="{{item.open_groups}}" wx:for-item="iteMine" wx:key="index">{{iteMine}}</text>
+						<text class="indexHot_cont_timeText">{{item.work_hours_start}}-{{item.work_hours_end}}</text>
+						<text class="indexHot_cont_timeText">{{item.day_min}}天起订</text>
+					</view>
+					<view class="msg_box_newRig">{{item.range || ''}}</view>
+				</view>
+				<view class="indexHot_cont_Int">
+					<rich-text class="indexHot_cont_Int" nodes="<div style='overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1; -webkit-box-orient: vertical;word-break: break-all; '></font>{{item.desc}}</div>"></rich-text>
+
+				 </view>
+				
+				<view class="indexHot_cont_foot">
+					<view class="indexHot_cont_footBox">
+						<view class="indexHot_cont_footBoxText">开放公司：{{item.company_title}} </view>
+						<view style="display: flex;">
+							<view class="cont_place_img">
+								<image class="cont_place_imgCon" src="https://heshiwork.com/storage/202401/2a021fe4e511a72147f0d91cf710c3b1.png" mode="" />
+							</view>
+							<view class="indexHot_cont_footBoxMini">
+								<text class="indexHot_cont_footBoxMiniTe">{{item.addr}}</text>
+								<text class="indexHot_cont_footBoxMiniTe">{{item.number}}</text>
+								<text class="indexHot_cont_footBoxMiniTe">成立{{item.time}}</text>
+								<text class="indexHot_cont_footBoxMiniTe">{{item.industry}}</text>
+							</view>
+						</view>
+					</view>
+					<view class="indexHot_cont_reserve">
+						<image class="indexHot_cont_reserveImg" src="https://static.gjzwfw.gov.cn/card-list/toright.png" mode="" />
+					</view>
+				</view>
+			</view>
+			<view class="msg_box_foot">
+				<view class="msg_box_foot_time">订单时间：{{item.create_time}}</view>
+				<view class="msg_box_foot_right">预订{{item.day}}天, 总计￥{{item.all_price}}</view>
+			</view>
+		</view>
+		<!--   已通过descr1   -->
+		<view class="msg_box_descr descr1" wx:if="{{item.jobstatus == 1}}">恭喜订单已通过！到岗当日请联系：{{item.contacts}} {{item.mobile}}</view>
+		<view class="msg_box_descr descr2" wx:if="{{item.jobstatus == 2}}">拒绝原因：{{item.orderdesc}} </view>
+
+	</view>
+	<view class="allNo" wx:if="{{!dataSixe}}">
+		暂未查询到您有新消息
+	</view>
+</view>
+<view class="model_wrapper" wx:if="{{!logSucces}}">
+	<view class="model_wrapper_box">
+		<image class="model_wrapper_boxImg" src="https://heshiwork.com/storage/202402/81d0c340bb8efeb105c531a57e1f8739.png" mode="" />
+		<view class="model_wrapper_boxTxt">登录荷适</view>
+		<view class="model_wrapper_boxCont">
+			<button style="font-size:14px;background-color:red;border:3px solid rgba(255, 255, 255, 1);border:3px solid rgba(255, 255, 255, 1);border-radius: 24px;color:#ffffff;padding:8px;width:211px;height:42px;font-weight:100;" open-type="getPhoneNumber" class="component-class" bindtap="bindtap" bindgetphonenumber="bindgetphonenumber">手机号一键登录 </button>
+		</view>
+		<view class="model_box">
+			<label bindtap="gopitch">
+				<radio value="r1" checked="{{pitch}}" />
+			</label>
+			<view class="model_boxTxt">我已阅读并同意<text class="model_boxTxt_but" bindtap="goAgreement">《荷适用户服务协议》《个人信息保护政策》和《荷适职业小程序隐私保护指引》</text></view>
+		</view>
+	</view>
+</view>

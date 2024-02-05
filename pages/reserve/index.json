@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "预定职位",
+  "usingComponents": {
+    "calendar": "plugin://calendar/calendar"
+  }
+}

@@ -1,0 +1,149 @@
+<view class="orderdetail">
+  <!-- 待审核state1  已通过state2  已结束 state3  -->
+  <view class="msg_box_state	{{order.jobstatus == 3 ? 'state1' : order.jobstatus == 1 ? 'state2' : 'state3'}}">
+    {{order.jobstatus == 3 ? '待审核' : order.jobstatus == 1 ? '审核通过' : '已拒绝已退款'}}
+  </view>
+  <view class="msg_box_cont" bindtap="gotoDetail" data-id="{{job.id}}">
+    <view class="indexHot_cont">
+      <view class="indexHot_cont_all">
+        <view class="indexHot_cont_title">
+          <view class="indexHot_cont_titleFont">{{job.title}}</view>
+        </view>
+        <view class="indexHot_cont_titlePrice">¥{{job.salary_day}}元/天</view>
+      </view>
+      <view class="msg_box_new">
+        <view class="indexHot_cont_time">
+          <text class="indexHot_cont_timeText" wx:for="{{job.open_groups}}" wx:key="index" wx:for-item="iteMine">{{iteMine}}</text>
+          <text class="indexHot_cont_timeText">{{job.work_hours_start}}-{{job.work_hours_end}}</text>
+          <text class="indexHot_cont_timeText">{{job.day_min}}天起订</text>
+        </view>
+        <view class="msg_box_newRig">{{job.range || ''}}</view>
+      </view>
+      <view class="indexHot_cont_Int">
+        <rich-text class="indexHot_cont_Int" nodes="<div style='overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1; -webkit-box-orient: vertical;word-break: break-all; '></font> {{job.desc}}</div>"></rich-text>
+      </view>
+      <view class="indexHot_cont_foot">
+        <view class="indexHot_cont_footBox">
+          <view class="indexHot_cont_footBoxText">开放公司： {{company.title}}</view>
+          <view class="indexHot_cont_footBoxMini">
+            <text class="indexHot_cont_footBoxMiniTe"> {{company.addr}}</text>
+            <text class="indexHot_cont_footBoxMiniTe"> {{company.number}}</text>
+            <text class="indexHot_cont_footBoxMiniTe">成立{{company.time}}</text>
+            <text class="indexHot_cont_footBoxMiniTe"> {{company.industry}}</text>
+          </view>
+        </view>
+        <view class="indexHot_cont_reserve">
+          <image class="indexHot_cont_reserveImg" src="https://static.gjzwfw.gov.cn/card-list/toright.png" mode="" />
+        </view>
+      </view>
+    </view>
+    <view class="msg_box_foot">
+      <view class="msg_box_foot_time">订单时间：{{order.create_time}}</view>
+      <view class="msg_box_foot_right">预订{{order.day}}天, 总计￥{{order.pay_price}}</view>
+    </view>
+
+  </view>
+  <view class="orderdetail_boxTitle">预订人信息</view>
+  <view class="orderdetail_box">
+    <view class="orderdetail_boxCon">
+      <view class="orderdetail_boxConPer">
+        <text class="orderdetail_boxConPer-left">姓名</text> <text class="orderdetail_boxConPer-right names">{{user.name || '--'}}</text>
+        <text class="orderdetail_boxConPer-left">性别</text> <text class="orderdetail_boxConPer-right">{{user.sex == 1 ? '男' : '女'|| '--'}}</text>
+      </view>
+      <view class="orderdetail_boxConList">
+        <text class="orderdetail_boxConList-left">证件类型</text> <text class="orderdetail_boxConList-right">身份证</text>
+      </view>
+      <view class="orderdetail_boxConList">
+        <text class="orderdetail_boxConList-left">证件号码</text> <text class="orderdetail_boxConList-right">{{user.number || '--'}}</text>
+      </view>
+      <view class="orderdetail_boxConList">
+        <text class="orderdetail_boxConList-left">手机(+86)</text> <text class="orderdetail_boxConList-right">{{user.mobile || '--'}}</text>
+      </view>
+      <view class="orderdetail_boxConList">
+        <text class="orderdetail_boxConList-left">所在学校</text> <text class="orderdetail_boxConList-right text-box">{{user.school || '--'}}</text><text class="orderdetail_boxConList-right">{{user.grade || '--'}}</text>
+      </view>
+      <view class="orderdetail_boxConList listNone">
+        <view class="orderdetail_boxConList-left listNoneBox">预订日期</view>
+        <view class="">
+          <text class="orderdetail_boxConList-right  text-font" wx:for="{{order.time}}" wx:key="index" wx:for-item="iteMin">{{iteMin}}</text>
+        </view>
+      </view>
+    </view>
+
+  </view>
+  <view class="orderdetail_boximgs">身份证、学生证</view>
+  <image class="imgsAll" src="{{user.img1}}" mode="" />
+  <image class="imgsAll" src="{{user.img2}}" mode="" />
+  <image class="imgsAll" src="{{user.img3}}" mode="" />
+  <view class="orderdetail_Imgs" wx:if="{{user.imgs.length > 0}}">
+    <view wx:for="{{user.imgs}}" wx:key="index">
+      <image class="imgsAll" src="{{item}}" mode="" />
+    </view>
+  </view>
+  <view class="orderdetail_Imgs" wx:if="{{user.images.length > 0}}">
+    <view wx:for="{{user.images}}" wx:key="index">
+      <image class="imgsAll" src="{{item}}" mode="" />
+    </view>
+  </view>
+  <view class="orderdetail_oper" wx:if="{{jobstatus}}">
+    <view class="orderdetail_operPass" bindtap="goPass">通过</view>
+    <view class=" orderdetail_operPass turn" bindtap="goRefuse">拒绝</view>
+  </view>
+  <view>
+    <view class="model_wrapper" wx:if="{{modelShow}}">
+      <view class="model_wrapper_box">
+        <view class="model_wrapper_boxTitle">通过审核。填写到岗当日联系人</view>
+        <form bindsubmit="formSubmit">
+          <view>
+            <view class="form_all">
+              <view class="form_allName">姓名：</view>
+              <view class="form_allInput">
+                <input id="name" name="name" value="{{formData.name}}" bind:change="handleChange" placeholder-class="form_allInput_class" placeholder="请填写" type="text" />
+              </view>
+            </view>
+            <view class="form_all">
+              <view class="form_allName">联系电话：</view>
+              <view class="form_allInput">
+                <input id="phone" name="phone" value="{{formData.phone}}" bind:change="handleChange" placeholder-class="form_allInput_class" placeholder="请填写" type="text" />
+              </view>
+            </view>
+          </view>
+          <view class="form_but">
+            <view bindtap="goBack">
+              <button size="mini" class="mini-btn-back" style="font-size:11px;padding:0.5px 17px;padding:0rpx 40rpx;">
+                返回
+              </button>
+            </view>
+            <view>
+              <button form-type="submit" size="mini" class="mini-btn" style="font-size:11px;padding:0.5px 17px;padding:0rpx 40rpx;">
+                提交
+              </button>
+            </view>
+          </view>
+        </form>
+      </view>
+    </view>
+    <view class="model_wrapper" wx:if="{{judge}}">
+      <view class="model_wrapper_box">
+        <view class="model_wrapper_boxNo">请输入拒绝原因</view>
+        <form bindsubmit="formSubmiturn">
+          <view class="model_textarea">
+            <textarea id="causetxt" name="causetxt" placeholder="请填写拒绝原因" value="{{formData.causetxt}}" bindinput="handleChange" style="height: 80px;width: 100%;" placeholder-style="font-size:28rpx" />
+          </view>
+          <view class="form_but">
+            <view bindtap="goBack">
+              <button size="mini" class="mini-btn-back" style="font-size:11px;padding:0.5px 17px;padding:0rpx 40rpx;">
+                返回
+              </button>
+            </view>
+            <view>
+              <button form-type="submit" size="mini" class="mini-btn" style="font-size:11px;padding:0.5px 17px;padding:0rpx 40rpx;">
+                提交
+              </button>
+            </view>
+          </view>
+        </form>
+      </view>
+    </view>
+  </view>
+</view>

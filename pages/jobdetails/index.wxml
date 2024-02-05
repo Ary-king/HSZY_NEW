@@ -1,0 +1,80 @@
+<view class="cont">
+	<view class="cont_title">{{job.title}}</view>
+	<view class="cont_place">
+		<view class="cont_place_img">
+			<image class="cont_place_imgCon" src="https://heshiwork.com/storage/202401/2a021fe4e511a72147f0d91cf710c3b1.png" mode="" />
+		</view>
+		<view class="cont_place_loc">{{company.addr}}</view>
+		<view class="cont_place_moy">¥{{job.salary_day}}元/天</view>
+	</view>
+	<view class="cont_place">
+		<view class="cont_place_img">
+			<image class="cont_place_imgCons" src="https://heshiwork.com/storage/202401/731ac56afc6c2ee5414d879ff85d44e5.png" mode="" />
+		</view>
+		<view class="cont_place_sty">开放群体:
+			<text class="cont_place_sty_text" wx:for="{{job.open_groups}}" wx:key="index">{{item}}</text>
+		</view>
+		<view class="cont_place_sec">参考薪酬：{{job.salary_min}}k-{{job.salary_max}}k</view>
+	</view>
+	<view class="cont_xian"></view>
+	<view style="display:flex;align-items: center;">
+		<view class="cont_jobTiltle">职位介绍</view>
+		<view class="typeClass">
+			<view class="typeClassTxt"  bindtap="goJiaobiao" data-bz="{{item.desc}}" wx:for="{{job.type}}" wx:key="index" >{{item.title}}</view>
+		</view>
+	</view>
+	<view class="cont_jobDuty">
+		<rich-text class="cont_details" nodes="{{job.desc}}"></rich-text>
+		<view class="cont_jobDuty_top">对口专业</view>
+		<view class="cont_jobDuty_list">
+			<view class="cont_jobDuty_listText">{{job.major}}</view>
+		</view>
+	</view>
+	<view class="cont_xian"></view>
+	<view class="cont_jobTiltle">岗位体验说明</view>
+	<view class="cont_explain">
+		<view class="cont_explain_img">
+			<image style="width:20px;height: 20px;" src="https://heshiwork.com/storage/202401/5236db33d734f352c57d571fc31b1927.png" mode="" />
+		</view>
+		<view class="cont_explain_text">该岗位最少体验{{job.day_min}}天最长体验{{job.day_max}}天</view>
+	</view>
+	<view>
+		<view class="cont_details">职位体验内容：</view>
+		<rich-text class="cont_details" nodes="{{job.job_desc}}"></rich-text>
+		<view class="cont_details">职位体验要求：</view>
+		<rich-text class="cont_details" nodes="{{job.job_ask}}"></rich-text>
+
+
+	</view>
+	<view class="cont_jobTiltle">补充说明</view>
+	<rich-text class="cont_details" nodes="{{job.restock_desc}}"></rich-text>
+	<view class="cont_xian"></view>
+	<view class="cont_address">
+		<view class="cont_address_box">
+			<image class="cont_address_boxImg" src="https://heshiwork.com/storage/202401/1f0fe830f5e5b1b9a4afd5a66516799c.png" mode="" />
+		</view>
+		<view class="cont_address_firm">
+			<view class="cont_address_firmName">{{company.title}}</view>
+			<view class="cont_address_firmNum">{{company.industry}}·{{company.number}}</view>
+			<view class="cont_address_firmAD">
+				<view class="{{ companyShow ? 'cont_address_firmADTextAll' : 'cont_address_firmADText'}}">{{company.desc}}</view>
+				<view class="cont_address_firmADShow" bindtap="showAll" wx:if="{{!companyShow}}">
+					<view class="cont_address_firmADShowOn">展开</view>
+					<view class="cont_address_firmADShowImg">
+						<image src="https://heshiwork.com/storage/202401/44de0667a56b8257838af4c2aee1bfa9.png" mode="" />
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="cont_map">
+		<map style="width: 100%;" id="mymap" title="{{markers[0].title}}" longitude="{{markers[0].longitude}}" latitude="{{markers[0].latitude}}" markers="{{markers}}"></map>
+	</view>
+</view>
+<view class='indexFooter'>
+	<view class="indexFooter_box">
+		<view class="indexFooter_let"> 预定{{order.day}}天</view>
+		<view class="indexFooter_rit">总计¥{{order.pay_price}}</view>
+	</view>
+	<view class="indexFooter_font {{order.jobstatus == 1 ? 'font1' : order.jobstatus == 2 ? 'font2' :'font3' }}">{{order.jobstatus == 1 ? '已通过' : order.jobstatus == 2 ? '已拒绝' :'已结束' }}</view>
+</view>

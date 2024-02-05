@@ -1,0 +1,103 @@
+<view class="cont">
+	<view class="cont_title">{{job.title}}</view>
+	<view class="cont_place">
+		<view style="display:flex;align-items: center;">
+			<view class="cont_place_img">
+				<image class="cont_place_imgCon" src="https://heshiwork.com/storage/202401/2a021fe4e511a72147f0d91cf710c3b1.png" mode="" />
+			</view>
+			<view class="cont_place_loc">{{company.addr}}</view>
+		</view>
+		<view class="cont_place_moy">¥{{job.salary_day}}元/天</view>
+	</view>
+	<view class="cont_place">
+		<view style="display: flex;">
+			<view class="cont_place_img">
+				<image class="cont_place_imgCons" src="https://heshiwork.com/storage/202401/731ac56afc6c2ee5414d879ff85d44e5.png" mode="" />
+			</view>
+			<view class="cont_place_sty">开放群体:
+				<text class="cont_place_sty_text" wx:for="{{job.open_groups}}" wx:key="index">{{item}}</text>
+			</view>
+		</view>
+		<view class="cont_place_sec">参考薪酬：{{job.salary_min}}K-{{job.salary_max}}K</view>
+	</view>
+	<view class="cont_xian"></view>
+	<view class="cont_jobTiltleClass">
+		<view class="cont_jobTiltle">职位介绍</view>
+		<view class="typeClass">
+			<view class="typeClassTxt"  bindtap="goJiaobiao" data-bz="{{item.desc}}" wx:for="{{job.type}}" wx:key="index" >{{item.title}}</view>
+		</view>
+	</view>
+	<view class="cont_jobDuty">
+		<rich-text class="cont_jobDuty_view" nodes="{{job.desc}}"></rich-text>
+		<view class="cont_jobDuty_top">对口专业</view>
+		<view class="cont_jobDuty_list">
+			<view class="cont_jobDuty_listText">{{job.major}}</view>
+		</view>
+	</view>
+	<view class="cont_xian"></view>
+	<view class="cont_jobTiltle">岗位体验说明</view>
+	<view class="cont_explain">
+		<view class="cont_explain_img">
+			<image style="width:20px;height: 20px;" src="https://heshiwork.com/storage/202401/5236db33d734f352c57d571fc31b1927.png" mode="" />
+		</view>
+		<view class="cont_explain_text">该岗位最少体验{{job.day_min}}天最长体验{{job.day_max}}天</view>
+	</view>
+	<view>
+		<view class="cont_details">职位体验内容：</view>
+		<rich-text class="cont_details" nodes="{{job.job_desc}}"></rich-text>
+		<view class="cont_details">职位体验要求：</view>
+		<rich-text class="cont_details" nodes="{{job.job_ask}}"></rich-text>
+
+
+	</view>
+	<view class="cont_jobTiltle">补充说明</view>
+	<rich-text class="cont_details" nodes="{{job.restock_desc}}"></rich-text>
+
+	<view class="cont_xian"></view>
+	<view class="cont_address">
+		<view class="cont_address_box">
+			<image class="cont_address_boxImg" src="https://heshiwork.com/storage/202401/1f0fe830f5e5b1b9a4afd5a66516799c.png" mode="" />
+		</view>
+		<view class="cont_address_firm">
+			<view class="cont_address_firmName">{{company.title}}</view>
+			<view class="cont_address_firmNum">{{company.industry}}·{{company.number}}</view>
+			<view class="cont_address_firmAD">
+				<view class="{{ companyShow ? 'cont_address_firmADTextAll' : 'cont_address_firmADText'}}">{{company.desc}}</view>
+				<view class="cont_address_firmADShow" bindtap="showAll">
+					<view class="cont_address_firmADShowOn">{{companyShow ? '收起' : '展开'}}</view>
+					<view class="cont_address_firmADShowImg">
+						<image src="{{companyShow ? 'https://heshiwork.com/storage/202402/8405d99e66c302320a731c47d7b33db4.png':'https://heshiwork.com/storage/202401/44de0667a56b8257838af4c2aee1bfa9.png'}}" mode="" />
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="cont_map">
+		<map id="myMap" style="width: 100%; height: 200px;" title="jskadsakjd" latitude="{{latitude}}" longitude="{{longitude}}" bindmarkertap="markertap" bindcallouttap="callouttap" bindlabeltap="labeltap" markers="{{markers}}" scale="16">
+			<cover-view slot="callout">
+				<cover-view marker-id="1"></cover-view>
+			</cover-view>
+		</map>
+	</view>
+</view>
+<view class='indexFooter' wx:if="{{reserve == '1'}}">
+	<view class="indexFooter_all">
+		<view class="indexFooter_box" bindtap="goCollect">
+			<view class="indexFooter_box_img">
+				<image class="indexFooter_img" src="{{collectImg}}" mode="" />
+			</view>
+			<view class="indexFooter_font" style="padding: 10rpx 0rpx;">{{collectTxt}}</view>
+		</view>
+		<view class="indexFooter_box" bindtap="goShare">
+			<view class="indexFooter_box_img">
+				<image class="indexFooter_img" src="https://heshiwork.com/storage/202402/64bc1e92542a2dc6a94bae7e38342616.png" mode="" />
+			</view>
+			<view class="indexFooter_font">
+				<button size="mini" hover-class="none" open-type="share" style="width:100%;height:100%;color:rgba(16, 16, 16, 1);font-size:28rpx;padding:0px;font-weight:400;text-align:center;align-items:center;background-color: #ffffff;"> 分享</button>
+			</view>
+		</view>
+	</view>
+	<view class="indexFooter_res" bindtap="gotoReserve">
+		立即预订
+	</view>
+</view>

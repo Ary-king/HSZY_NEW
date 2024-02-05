@@ -1,0 +1,69 @@
+<view class="position">
+  <view class="make_top">
+    <view class="prefecture-title-txt {{isContainer === '-1' ? 'selected' : ''}}" data-container="-1" bindtap="containerMs">全部</view>
+    <view class="prefecture-title-txt {{isContainer === '1' ? 'selected' : ''}}" data-container="1" bindtap="containerMs">已发布</view>
+    <view class="prefecture-title-txt {{isContainer === '0' ? 'selected' : ''}}" data-container="0" bindtap="containerMs">审核中</view>
+    <view class="prefecture-title-txt {{isContainer === '3' ? 'selected' : ''}}" data-container="3" bindtap="containerMs">已保存</view>
+    <view class="prefecture-title-txt {{isContainer === '2' ? 'selected' : ''}}" data-container="2" bindtap="containerMs">发布失败</view>
+  </view>
+  <!-- <view hidden="{{isContainer !== '-1'}}"> -->
+  <view class="noData" wx:if="{{dataList.length <= 0}}">
+    <view class="noData_txt">你还没有发布职位，现在去发布</view>
+    <view>
+      <image style="width:80rpx;height:80rpx;" src="https://heshiwork.com/storage/202401/6e326520f2cdaabe7c79d8841c51eb12.png" mode="" />
+    </view>
+    <view class="noData_add" bindtap="getPostJob">
+      <view style="width: 21px;height: 21px;">
+        <image class="noData_img" src="https://heshiwork.com/storage/202401/c66b0c2cc3f4d8f687f4606245a259be.png" mode="" />
+      </view>
+      <view class="noData_font">发布职位</view>
+    </view>
+  </view>
+  <view wx:if="{{dataList.length > 0}}" bindtap="gotoDetail" data-item="{{item}}" wx:for="{{dataList}}" wx:key="index">
+    <view class="indexHot_cont">
+      <view class="indexHot_cont_all">
+        <view class="indexHot_cont_title">
+          <view class="indexHot_cont_titleFont">{{item.title}}</view>
+          <view class="indexHot_cont_titleClassfiy">
+            <view class="indexHot_cont_titleClassText">体验</view>
+            <view class="indexHot_cont_titleClassText">运营</view>
+          </view>
+        </view>
+        <view class="indexHot_cont_titlePrice">¥{{item.salary_day}}元/月</view>
+      </view>
+      <view class="indexHot_cont_time">
+        <text class="indexHot_cont_timeText" wx:for="{{item.open_groups}}" wx:for-item="iteMine" wx:key="index">{{iteMine}}</text>
+        <text class="indexHot_cont_timeText">{{item.work_hours_start}}-{{item.work_hours_end}}</text>
+        <text class="indexHot_cont_timeText">1月起订</text>
+      </view>
+      <rich-text  class="indexHot_cont_Int"  nodes="<div style='overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1; -webkit-box-orient: vertical;word-break: break-all; '></font>{{item.desc}}</div>"></rich-text> 
+      <view class="indexHot_cont_foot">
+        <view class="indexHot_cont_footBox">
+          <view class="indexHot_cont_footBoxText">开放公司：北京锦鲤科技有限公司</view>
+          <view style="display:flex;align-items: center;">
+            <view class="cont_place_img">
+              <image class="cont_place_imgCon" src="https://heshiwork.com/storage/202401/2a021fe4e511a72147f0d91cf710c3b1.png" mode="" />
+            </view>
+            <view class="indexHot_cont_footBoxMini">
+              <text class="indexHot_cont_footBoxMiniTe">海淀区·健翔桥</text>
+              <text class="indexHot_cont_footBoxMiniTe">100-499人</text>
+              <text class="indexHot_cont_footBoxMiniTe">成立2年</text>
+              <text class="indexHot_cont_footBoxMiniTe">电子商务</text>
+            </view>
+          </view>
+        </view>
+        <view class=" indexHot_cont_reserve {{item.status == 0 ? 'shzClass' : item.status == 3 ? 'ybcClass' : item.status == 2 ? 'sbClass' : item.status == 1 ? 'fbClass' : ''}}">{{item.status == 0 ? '审核中' : item.status == 3 ? '已保存' : item.status == 2 ? '发布失败' : item.status == 1 ? '已发布' : ''}}</view>
+      </view>
+    </view>
+    <view class="msg_box_descr  descr2" wx:if="{{item.status == 2}}">失败通常原因：不符合发布要求，调整后可重新发布</view>
+  </view>
+  <view class="footAdd">
+    <view class="footAdd_add" bindtap="getPostJob">
+      <view>
+        <image class="noData_img" src="https://heshiwork.com/storage/202401/225b7ea7cf6ca41aefc9e63f2d10f949.png" mode="" />
+      </view>
+      <view class="footAdd_font">发布新职位</view>
+    </view>
+  </view>
+  <!-- </view> -->
+</view>

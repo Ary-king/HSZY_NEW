@@ -1,0 +1,94 @@
+.money_top {
+  background-color: #FF9E3E;
+  text-align: center;
+}
+
+.money_topTxt {
+  color: rgba(255, 255, 255, 1);
+  font-size: 32rpx;
+  padding-top: 40rpx;
+  font-weight: bold;
+}
+
+.money_topMony {
+  color: rgba(255, 255, 255, 1);
+  font-size: 80rpx;
+  margin-top: 20rpx;
+  font-weight: bold;
+}
+
+.money_topBut {
+  margin: auto;
+  width: 80%;
+  border-radius: 100rpx;
+  background-color: rgba(255, 255, 255, 1);
+  color: rgba(255, 158, 62, 1);
+  font-size: 36rpx;
+  margin-top: 60rpx;
+  padding: 20rpx 0rpx;
+  font-weight: bold;
+}
+
+.money_topTime {
+  color: rgba(67, 67, 67, 1);
+  font-size: 28rpx;
+  padding: 20rpx 0rpx;
+}
+
+.list {
+  padding: 0rpx 40rpx;
+}
+
+.list_title {
+  color: rgba(64, 64, 64, 1);
+  font-size: 32rpx;
+  text-align: center;
+  padding: 40rpx 0rpx;
+}
+
+.list_detailImg_imgs {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.list_detail {
+  display: flex;
+  padding: 20rpx 0rpx;
+  border-bottom: 1rpx rgba(224, 224, 224, 1) solid;
+  align-items: center;
+}
+
+.list_detailTxt_top {
+  color: rgba(16, 16, 16, 1);
+  font-size: 32rpx
+}
+
+.list_detailTxt_bot {
+  color: rgba(100, 100, 100, 1);
+  font-size: 28rpx;
+  padding-top: 10rpx;
+}
+
+.list_detailTxt {
+  width: 56%;
+}
+
+.list_detailEnd_mony {
+  color: rgba(255, 5, 5, 1);
+  font-size: 32rpx;
+}
+
+.list_detailEnd_type {
+  color: rgba(100, 100, 100, 1);
+  font-size: 28rpx;
+  padding-top: 10rpx;
+}
+.list_detailEnd{
+  width: 36%;
+  text-align: right;
+}
+.listNo{
+  text-align: center;
+  align-items: center;
+  margin-top: 60rpx;
+}

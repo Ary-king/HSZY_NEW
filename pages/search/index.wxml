@@ -1,0 +1,20 @@
+<view class="search">
+  <view class="search_box">
+    <view class="search_boxImg">
+      <image class="search_boxImgIcon" src="https://heshiwork.com/storage/202401/5c22e09a4cbd00e87a97bcfc708fa8fa.png" mode="" />
+    </view>
+    <view class="search_boxInput">
+      <input id="title" name="title" value="{{searchName}}" bind:change="handleChange" placeholder-class="form_allInput_class" placeholder="请输入搜索内容" />
+    </view>
+  </view>
+  <view wx:if="{{posNameData.length > 0}}">
+    <view class="selecTxt">职位名称</view>
+    <view class="selectbox">
+      <view class="selectboxMin {{item.checked ? 'selectRed' : ''}}" wx:for="{{posNameData}}" wx:key="index" data-item="{{item}}" bindtap="clickZwmc"> {{item.name}}</view>
+    </view>
+  </view>
+  <view class="indexBut">
+    <view class="indexBut_left" bindtap="goToEmpty">重置</view>
+    <view class="indexBut_right" bindtap="goSubmit">确定</view>
+  </view>
+</view>

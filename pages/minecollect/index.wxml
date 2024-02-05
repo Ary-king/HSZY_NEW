@@ -1,0 +1,39 @@
+<view class="collect">
+	<view class="indexHot_cont" bindtap="gotoDetail" wx:if="{{dataAll.length > 0}}" wx:for="{{dataAll}}" wx:key="index" data-item="{{item}}">
+		<view class="indexHot_cont_all">
+			<view class="indexHot_cont_title">
+				<view class="indexHot_cont_titleFont">{{item.title}}</view>
+			</view>
+			<view class="indexHot_cont_titlePrice">¥{{item.salary_day}}元/天</view>
+		</view>
+		<view class="indexHot_cont_time">
+			<text class="indexHot_cont_timeText">{{item.open_groups}}</text>
+			<text class="indexHot_cont_timeText">{{item.work_hours_start}}-{{item.work_hours_end}}</text>
+			<text class="indexHot_cont_timeText">{{item.day_min}}天起订</text>
+		</view>
+		<view class="indexHot_cont_Int">
+				<rich-text class="indexHot_cont_Int" nodes="<div style='overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1; -webkit-box-orient: vertical;word-break: break-all; '></font>{{item.desc}}</div>"></rich-text>
+			</view>
+		<view class="indexHot_cont_foot">
+			<view class="indexHot_cont_footBox">
+				<view class="indexHot_cont_footBoxText">开放公司：{{item.company_title}}</view>
+				<view style="display:flex;align-items: center;">
+					<view class="cont_place_img">
+						<image class="cont_place_imgCon" src="https://heshiwork.com/storage/202401/2a021fe4e511a72147f0d91cf710c3b1.png" mode="" />
+					</view>
+					<view class="indexHot_cont_footBoxMini">
+						<text class="indexHot_cont_footBoxMiniTe">{{item.addr}}</text>
+						<text class="indexHot_cont_footBoxMiniTe">{{item.number}}</text>
+						<text class="indexHot_cont_footBoxMiniTe">成立{{item.time}}</text>
+						<text class="indexHot_cont_footBoxMiniTe">{{item.industry}}</text>
+					</view>
+				</view>
+			</view>
+			<view class="indexHot_cont_reserve">预定</view>
+		</view>
+	</view>
+	<view class="noAll" wx:if="{{dataAll.length <= 0}}">
+		<view class="noAllFont">你还没有收藏任何职位，现在去收藏</view>
+		<image class="noAllFontImg" src="https://heshiwork.com/storage/202401/6e326520f2cdaabe7c79d8841c51eb12.png" mode="" />
+	</view>
+</view>

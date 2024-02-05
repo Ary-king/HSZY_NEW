@@ -1,0 +1,113 @@
+<view class="perList">
+  <view class="perList_title">人员信息</view>
+  <view class="perList_box" wx:for="{{info_list}}" wx:key="index">
+    <view class="perList_box_li">
+      <view class="perList_boxName boxRight">
+        <view class="perList_boxName-r">姓名</view>
+        <text class="perList_boxName-l">{{item.name}}</text>
+      </view>
+      <view class="perList_boxName">
+        <view class="perList_boxName-r">性别</view>
+        <text class="perList_boxName-l">{{item.sex == 1 ? '男':'女'}}</text>
+      </view>
+    </view>
+    <view class="perList_box_li">
+      <view class="perList_boxName boxRight">
+        <view class="perList_boxName-r">身份类型</view>
+        <text class="perList_boxName-l">{{item.type == 2? '未工作过' : '已工作过'}}</text>
+      </view>
+      <view class="perList_boxName" wx:if="{{item.type == 2}}">
+        <view class="perList_boxName-r">年级</view>
+        <text class="perList_boxName-l">{{item.education}}</text>
+      </view>
+    </view>
+    <view  wx:if="{{item.showIs}}">
+    <view class="perList_box_li">
+      <view class="perList_boxName ">
+        <view class="perList_boxName-r">证件类型</view>
+        <text class="perList_boxName-l">{{item.number_type}}</text>
+      </view>
+    </view>
+    <view class="perList_box_li">
+      <view class="perList_boxName ">
+        <view class="perList_boxName-r">证件号码</view>
+        <text class="perList_boxName-l">{{item.number}}</text>
+      </view>
+    </view>
+    <view class="perList_box_li" wx:if="{{item.type == 2}}">
+      <view class="perList_boxName boxRight" wx:if="{{item.type == 2}}">
+        <view class="perList_boxName-r">学历</view>
+        <text class="perList_boxName-l">{{item.grade}}</text>
+      </view>
+      <view class="perList_boxName" wx:if="{{item.type == 2}}">
+        <view class="perList_boxName-r">学校</view>
+        <text class="perList_boxName-l">{{item.school}}</text>
+      </view>
+    </view>
+    <view class="perList_box_li">
+      <view class="perList_boxName ">
+        <view class="perList_boxName-r">手机号</view>
+        <text class="perList_boxName-l">{{item.mobile}}</text>
+      </view>
+    </view>
+    <view class="perList_box_li">
+      <view class="perList_boxNameimg ">
+        <view class="perList_boxNameimg-r">身份证正面</view>
+        <view class="perList_boxNameimg-top">
+          <image class="perList_boxNameimg-Img" src="{{item.img1}}" mode="" />
+        </view>
+      </view>
+    </view>
+    <view class="perList_box_li" wx:if="{{item.img2}}">
+      <view class="perList_boxNameimg ">
+        <view class="perList_boxNameimg-r">身份证反面</view>
+        <view class="perList_boxNameimg-top">
+          <image class="perList_boxNameimg-Img" src="{{item.img2}}" mode="" />
+        </view>
+      </view>
+    </view>
+    <view class="perList_box_li" wx:if="{{item.img3}}">
+      <view class="perList_boxNameimg ">
+        <view class="perList_boxNameimg-r">学生证正面</view>
+        <view class="perList_boxNameimg-top">
+          <image class="perList_boxNameimg-Img" src="{{item.img3}}" mode="" />
+        </view>
+      </view>
+    </view>
+    <view class="perList_box_li" wx:if="{{item.imgs.length > 0}}">
+      <view class="perList_boxNameimg ">
+        <view class="perList_boxNameimg-r">其他补充图</view>
+        <view class="perList_boxNameimg-top" wx:for="{{item.imgs}}">
+          <image class="perList_boxNameimg-Img" src="{{item}}" mode="" />
+        </view>
+      </view>
+    </view>
+    <view class="perList_box_li" wx:if="{{item.images.length > 0}}">
+      <view class="perList_boxNameimg ">
+        <view class="perList_boxNameimg-r">社保缴纳激励</view>
+        <view class="perList_boxNameimg-top" wx:for="{{item.images}}">
+          <image class="perList_boxNameimg-Img" src="{{item}}" mode="" />
+        </view>
+      </view>
+    </view>
+  </view>
+    <view class="spread" bindtap="unfoldShow" data-indexId="{{index}}">
+      <view class="spread_img">
+        <image class="spread_imgIcon" src="{{item.showIs ? 'https://heshiwork.com/storage/202401/1bce5c04de1f3a2c219f6c104efafc38.png' : 'https://heshiwork.com/storage/202401/44de0667a56b8257838af4c2aee1bfa9.png'}}" mode="" />
+      </view>
+      <view class="spread_text">{{item.showIs ? '收起' : '详情展开'}}</view>
+    </view>
+  </view>
+  <view wx:if="{{info_list.length <= 0}}" class="noUserList">
+    <view class="noUserList_txt">
+      你还没有添加任何人员信息，现在去添加
+    </view>
+    <image style="width:34px;height:34px;margin-top: 72px;" src="https://heshiwork.com/storage/202401/6e326520f2cdaabe7c79d8841c51eb12.png" mode="" />
+  </view>
+  <view class="add">
+    <view class="add_img" bindtap="goAdd">
+      <image class="add_imgIcon" src="https://heshiwork.com/storage/202401/dd8b84a9d4b817c3d50be0cc0cd4538d.png" mode="" />
+    </view>
+    <view class="add_text" bindtap="goAdd">继续添加</view>
+  </view>
+</view>

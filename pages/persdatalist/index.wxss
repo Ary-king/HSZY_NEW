@@ -1,0 +1,124 @@
+.perList {
+  padding: 20rpx 40rpx;
+}
+
+.perList_title {
+  font-weight: bolder;
+}
+
+.perList_box {
+  margin-top: 40rpx;
+  border: 1rpx solid rgba(187, 187, 187, 1);
+  padding: 20rpx 20rpx;
+  border-radius: 28rpx;
+}
+
+.perList_box_li {
+  display: flex;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid rgba(187, 187, 187, 0.85);
+  padding-top: 20rpx;
+}
+
+.perList_boxName {
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+.perList_boxNameimg{
+  width: 100%;
+}
+.perList_boxNameimg-r{
+  color: rgba(255, 124, 0, 1);
+  font-size: 36rpx;
+  padding-right: 40rpx;
+}
+.perList_boxNameimg-top{
+  width: 100%;
+}
+.perList_boxNameimg-Img{
+  width: 100%;
+}
+.perList_boxName-r {
+  color: rgba(255, 124, 0, 1);
+  font-size: 36rpx;
+  padding-right: 40rpx;
+}
+
+.perList_boxName-l {
+  text-align: center;
+  color: rgba(16, 16, 16, 1);
+  font-size: 32rpx;
+
+}
+
+.boxRight {
+  width: 60%;
+}
+
+.spread {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40rpx;
+}
+
+.spread_imgIcon {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+
+.spread_text {
+  color: rgba(255, 124, 0, 1);
+  font-size: 36rpx;
+}
+
+.spread_img {
+  padding-right: 40rpx;
+}
+
+.add {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60rpx;
+}
+
+.add_img {
+  padding-right: 40rpx;
+}
+
+.add_imgIcon {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.add_text {
+  color: rgba(16, 16, 16, 1);
+  font-size: 36rpx;
+  font-weight: 600;
+}
+
+.spread_img {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.add_img {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.noUserList {
+  text-align: center;
+}
+
+.noUserList_txt {
+  color: rgba(16, 16, 16, 1);
+  font-size: 28rpx;
+  margin-top: 72px;
+}

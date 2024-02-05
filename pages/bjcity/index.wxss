@@ -1,0 +1,86 @@
+.content {
+  display: flex;
+  flex-direction: row;
+  font-family: "Microsoft YaHei"
+}
+
+.left {
+  width: 30%;
+  font-size: 10px;
+  /* height: 500px; */
+  background-color: #F4F4F4;
+}
+
+.left view {
+  text-align: center;
+  height: 45px;
+  line-height: 45px;
+}
+
+.select {
+  background-color: #ffffff;
+  border-left: 2px solid #36AE66;
+  font-weight: bold;
+  color: #36AE66;
+}
+
+.normal {
+  background-color: #F4F4F4;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.right {
+  width: 70%;
+  margin: 0px;
+  padding-top: 20rpx;
+}
+
+.city_box {
+  padding: 20rpx 40rpx;
+}
+
+.city_img {
+  width: 20px;
+  height: 20px;
+}
+
+.city_box_ad {
+  display: flex;
+  align-items: center;
+  color: rgba(16, 16, 16, 1);
+  font-size: 14px;
+  padding-bottom: 20rpx;
+}
+
+.city_box_adTxt {
+  padding: 0rpx 20rpx;
+}
+
+.city_box_adLeft {
+  display: flex;
+  align-items: center;
+  width: 30%;
+  text-align: center;
+}
+
+.city_boxTitle {
+  color: rgb(16, 16, 16);
+  font-size: 14px;
+  font-weight: bold;
+  padding-bottom: 20rpx;
+}
+
+.cateGory {
+  padding-bottom: 45rpx;
+  padding-left: 40rpx;
+}
+
+.bacClor {
+  color: rgba(0, 136, 253, 1);
+}
+
+.city_boxTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

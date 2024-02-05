@@ -1,0 +1,73 @@
+<view class="reserve">
+	<view class="reserve_title">{{dataList.title}}</view>
+	<view class="reserve_cont">
+		<view class="cont_place">
+			<view class="cont_place_img">
+				<image style="width:20px;height: 20px;" src="https://heshiwork.com/storage/202401/5236db33d734f352c57d571fc31b1927.png" mode="" />
+			</view>
+			<view class="cont_place_sty">该岗位最少体验{{dataList.day_min}}最长体验{{dataList.day_max}}天</view>
+		</view>
+		<view class="cont_place">
+			<view class="cont_place_img">
+				<image style="width: 32rpx;height: 32rpx;" src="https://heshiwork.com/storage/202401/731ac56afc6c2ee5414d879ff85d44e5.png" mode="" />
+			</view>
+			<view class="cont_place_sty">开放群体:
+				<text class="cont_place_sty_text" wx:for="{{dataList.open_groups}}" wx:key="index">{{item}}</text>
+			</view>
+		</view>
+	</view>
+	<view class="reserve_pers">
+		<view class="reserve_persTitle">选择人员</view>
+		<radio-group bindchange="radioChange">
+			<label class="weui-cell weui-check__label">
+				<view class="reserve_pers_select" wx:if="{{info_list.length > 0}}" wx:for="{{info_list}}" wx:key="index">
+					<view class="reserve_pers_selectIcon">{{item.type == 2 ? '未工作过' : '已工作过' }}</view>
+					<view class="reserve_pers_selectBox">
+						<view class="reserve_pers_selectBoxPer">
+							<text class="reserve_pers_selectName">{{item.name}}</text> <text class="reserve_pers_selectAge">{{item.sex == 1 ? '男' : '女'}}</text> <text class="reserve_pers_selectAge">{{item.grade}}</text>
+						</view>
+						<view class="reserve_pers_selectBoxPhone">手机号：{{item.mobile}}</view>
+					</view>
+					<view class="weui-cell__hd">
+						<radio value="{{item.id}}" checked="{{item.showIs}}" />
+					</view>
+				</view>
+			</label>
+		</radio-group>
+		<view class="reserve_pers_add" bindtap="goAdd">
+			<view style="display:flex;align-items: center;">
+				<image class="reserve_pers_addImg" src="https://heshiwork.com/storage/202401/5988ea219fafe18eb1b85bb9386d7153.png" mode="" />
+			</view>
+			<view class="reserve_pers_addPer">添加人员</view>
+		</view>
+	</view>
+	<view class="reserve_date">
+		<view class="reserve_dateTitle">选择体验日期</view>
+		<view class="cont_place">
+			<view class="cont_place_img">
+				<image style="width:20px;height: 20px;" src="https://heshiwork.com/storage/202401/5236db33d734f352c57d571fc31b1927.png" mode="" />
+			</view>
+			<view class="cont_place_sty">该岗位最少体验{{dataList.day_min}}天最长体验{{dataList.day_max}}天，同一天最多{{dataList.day_num}}人预订</view>
+		</view>
+		<!-- <view class="reserve_dateSelect">25日已经有3人预订审核中，建议选择其他日期</view> -->
+		<view class="alendar">
+			<view class="calendarTitle">
+				<view class="alendar_title">可选日期</view>
+				<view  class="alendar_List">
+					<view class="alendar_ListTime {{item.checkShow ? 'redColor' : ''}}"  wx:for="{{oldTimes}}" wx:key="index" bindtap="addTime" data-item="{{item}}">{{item.time}}</view>
+				</view>
+			</view>
+		</view>
+		<view class="reserve_hint">温馨提示</view>
+		<view class="reserve_hintText">请务必遵守企业规定，按照企业要求进行体验。</view>
+	</view>
+</view>
+<view class='indexFooter'>
+	<view class="indexFooter_all">
+		<text class="indexFooter_all_Text">合计</text>
+		<text class="indexFooter_all_Mony">¥ {{sumSalary}}元</text>
+	</view>
+	<view class="indexFooter_res" bindtap="gotoPayment">
+		去支付
+	</view>
+</view>

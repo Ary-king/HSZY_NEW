@@ -1,0 +1,139 @@
+/* 自定义全局公共样式 */
+.font-size-20{
+  font-size: 20rpx;
+}
+.font-size-22{
+  font-size: 22rpx;
+}
+.font-size-24{
+  font-size: 24rpx;
+}
+.font-size-26{
+  font-size: 26rpx;
+}
+.font-size-28{
+  font-size: 28rpx;
+}
+.font-size-30{
+  font-size: 30rpx;
+}
+.font-size-32{
+  font-size: 32rpx;
+}
+.font-size-34{
+  font-size: 34rpx;
+}
+.font-size-38{
+  font-size: 38rpx;
+}
+
+/* 字体加粗 */
+.font-size-width{
+   font-weight: 600;
+}
+/* 溢出隐藏 */
+.overflow-hidden{
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+}
+/* 百分比宽度 */
+.width-40{
+  width: 40%;
+}
+.width-50{
+  width: 50%;
+}
+.width-60{
+  width: 60%;
+}
+.width-70{
+  width: 70%;
+}
+.width-80{
+  width: 80%;
+}
+.width-90{
+  width: 90%;
+}
+.width-92{
+  width: 92%;
+}
+.width-100{
+  width: 100%;
+}
+/* flex布局 */
+.flex-start{
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+}
+.flex-space-between{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+.flex-wrap{
+   display: flex;
+   flex-wrap:wrap;
+   align-items: center;
+}
+.flex-end{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+/* icon大小 */
+.iconSize-30-30{
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.iconSize-40-40{
+   width: 80rpx;
+   height: 80rpx;
+}
+.iconSize-50-50{
+   width: 100rpx;
+   height: 100rpx;
+}
+.iconSize-80-80{
+   width: 160rpx;
+   height: 160rpx;
+}
+
+/* 字体颜色 */
+.color-kored{
+  color: #FA215F;
+}
+.color-999{
+  color: #999999;
+}
+/* 行高 */
+
+.link-height-20{
+  line-height: 40rpx;
+}
+.link-height-30{
+  line-height: 60rpx;
+}
+.link-height-40{
+  line-height: 80rpx;
+}
+.link-height-50{
+  line-height: 50rpx;
+}
+.link-height-60{
+  line-height: 120rpx;
+}
+.link-height-80{
+  line-height: 160rpx;
+}
+/* 文本居中 */
+.text-align{
+  text-align: center;
+}
+/* 隐藏 */
+.display-none{
+  display: none;
+}

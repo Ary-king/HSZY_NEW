@@ -1,0 +1,50 @@
+<view class="select">
+  <view wx:if="{{groupData.length > 0}}">
+    <view class="selecTxt">开放群体</view>
+    <view class="selectbox">
+      <view class="selectboxMin {{item.checked ? 'selectRed' : ''}}" wx:for="{{groupData}}" wx:key="index" data-item="{{item}}" bindtap="clickKfqts"> {{item.title}}</view>
+    </view>
+  </view>
+  <view wx:if="{{typeData.length > 0}}">
+    <view class="selecTxt">职位类型</view>
+    <view class="selectbox">
+      <view class="selectboxMin {{item.checked ? 'selectRed' : ''}}" wx:for="{{typeData}}" wx:key="index" data-item="{{item}}" bindtap="clickZwlx"> {{item.title}}</view>
+    </view>
+  </view>
+  <view wx:if="{{posNameData.length > 0}}">
+    <view class="selecTxt">职位名称</view>
+    <view class="selectbox">
+      <view class="selectboxMin {{item.checked ? 'selectRed' : ''}}" wx:for="{{posNameData}}" wx:key="index" data-item="{{item}}" bindtap="clickZwmc"> {{item.name}}</view>
+    </view>
+  </view>
+  <view wx:if="{{industryDatad.length > 0}}">
+    <view class="disHang">
+      <view class="selecTxt">所属行业</view>
+      <view class="selecBox" bindtap="showHy" wx:if="{{showHy}}">
+        <view class="selecBoxTxt">展开</view>
+        <view class="Img">
+          <image class="selecBoxImg" src="https://heshiwork.com/storage/202401/44de0667a56b8257838af4c2aee1bfa9.png" mode="" />
+        </view>
+      </view>
+    </view>
+    <view class="selectbox">
+      <view class="selectboxMin {{item.checked ? 'selectRed' : ''}}" wx:for="{{industryDatad}}" wx:key="index" data-item="{{item}}" bindtap="clicSshy"> {{item.name}}</view>
+    </view>
+  </view>
+  <view wx:if="{{setupTimeData.length > 0}}">
+    <view class="selecTxt">公司成立时间</view>
+    <view class="selectbox">
+      <view class="selectboxMin {{item.checked ? 'selectRed' : ''}}" wx:for="{{setupTimeData}}" wx:key="index" data-item="{{item}}" bindtap="clickClsj"> {{item.name}}</view>
+    </view>
+  </view>
+  <view wx:if="{{scaleComData.length > 0}}">
+    <view class="selecTxt">公司规模</view>
+    <view class="selectbox">
+      <view class="selectboxMin {{item.checked ? 'selectRed' : ''}}" wx:for="{{scaleComData}}" wx:key="index" data-item="{{item}}" bindtap="clickGsgm"> {{item.name}}</view>
+    </view>
+  </view>
+  <view class="indexBut">
+    <view class="indexBut_left" bindtap="goToEmpty">重置</view>
+    <view class="indexBut_right" bindtap="goSubmit">确定</view>
+  </view>
+</view>

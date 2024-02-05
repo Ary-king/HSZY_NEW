@@ -1,0 +1,30 @@
+<view class="city_box">
+  <view class="city_boxTop">
+    <view class="city_boxTitle">当前</view>
+  </view>
+  <view class="city_box_ad">
+    <view class="city_box_adLeft">
+      <view class="city_box_adIcon">
+        <image class="city_img" src="https://heshiwork.com/storage/202402/317069ddb391fc80ee947c09f92802bf.png" mode="" />
+      </view>
+      <view class="city_box_adTxt">北京</view>
+    </view>
+    <view class="city_box_adIcon">
+      <image class="city_img" src="https://heshiwork.com/storage/202402/a17e8edf6777718475d530a29e22f00b.png" mode="" />
+    </view>
+    <view class="city_box_adTxt" bindtap="goCity">切换城市</view>
+  </view>
+  <view class="content">
+    <view class='left'>
+      <view class="{{flag==0?'select':'nORMal'}}" id='0' bindtap='switchNav'>热门商圈</view>
+      <!-- <view class="{{flag==1?'select':'normal'}}" id='1' bindtap='switchNav'>9：00-10：00</view>
+    <view class="{{flag==2?'select':'normal'}}" id='2' bindtap='switchNav'>14：00-15：00</view>
+    <view class="{{flag==3?'select':'normal'}}" id='3' bindtap='switchNav'>15：00-16：00</view> -->
+    </view>
+    <view class='right'>
+      <view wx:for="{{dataList}}" wx:key="index" class='cateGory'>
+        <view class="cateGoryTxt {{item.checkShow ? 'bacClor' : ''}}" bindtap="getAlter" data-item="{{item}}">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+</view>
