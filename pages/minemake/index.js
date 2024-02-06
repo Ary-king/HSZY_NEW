@@ -74,32 +74,13 @@ Page({
       if (res.msg == '请求成功！') {
         this.setData({
           params: {
-            dataList: res.data
+            reserve: '3',
+            dataList: res.data,
           }
         });
         wx.navigateTo({
-          url: '/pages/makedetails/index',
+          url: '/pages/orderdetail/index',
         })
-        // if (jobstatus == 3) { //订单待审核
-        //   this.setData({
-        //     params: {
-        //       dataList: res.data
-        //     }
-        //   });
-        //   wx.navigateTo({
-        //     url: '/pages/orderdetail/index',
-        //   })
-        // }
-        // if (jobstatus == 1 || jobstatus == 2 ) { //订单审核通过
-        //   this.setData({
-        //     params: {
-        //       dataList: res.data
-        //     }
-        //   });
-        //   wx.navigateTo({
-        //     url: '/pages/jobdetails/index',
-        //   })
-        // }
       }
     }).catch(err => {
       sdk.utils.extend.hideLoading()

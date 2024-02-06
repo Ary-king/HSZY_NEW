@@ -21,7 +21,7 @@
 		<radio-group bindchange="radioChange">
 			<label class="weui-cell weui-check__label">
 				<view class="reserve_pers_select" wx:if="{{info_list.length > 0}}" wx:for="{{info_list}}" wx:key="index">
-					<view class="reserve_pers_selectIcon">{{item.type == 2 ? '未工作过' : '已工作过' }}</view>
+					<view class="reserve_pers_selectIcon">{{item.type == 2 ? '学生' : '社会人员' }}</view>
 					<view class="reserve_pers_selectBox">
 						<view class="reserve_pers_selectBoxPer">
 							<text class="reserve_pers_selectName">{{item.name}}</text> <text class="reserve_pers_selectAge">{{item.sex == 1 ? '男' : '女'}}</text> <text class="reserve_pers_selectAge">{{item.grade}}</text>
@@ -49,17 +49,24 @@
 			</view>
 			<view class="cont_place_sty">该岗位最少体验{{dataList.day_min}}天最长体验{{dataList.day_max}}天，同一天最多{{dataList.day_num}}人预订</view>
 		</view>
-		<!-- <view class="reserve_dateSelect">25日已经有3人预订审核中，建议选择其他日期</view> -->
+		<view class="reserve_dateSelect" wx:if="{{msg}}">{{msg}}</view>
 		<view class="alendar">
 			<view class="calendarTitle">
 				<view class="alendar_title">可选日期</view>
-				<view  class="alendar_List">
-					<view class="alendar_ListTime {{item.checkShow ? 'redColor' : ''}}"  wx:for="{{oldTimes}}" wx:key="index" bindtap="addTime" data-item="{{item}}">{{item.time}}</view>
-				</view>
+				<swiper style="height:440rpx;" autoplay='true' indicator-dots='true'>
+					<swiper-item wx:for="{{arrayTime}}" wx:key="index">
+						<view class="alendar_List">
+							<view class="alendar_ListTime {{items.checkShow ? 'redColor' : ''}}" wx:for="{{arrayTime[index]}}" wx:for-index="childindex" wx:for-item="items" data-parent='{{index}}' data-childindex="{{childindex}}" data-item="{{items}}" bindtap="addTime">{{items.time}}</view>
+						</view>
+					</swiper-item>
+				</swiper>
 			</view>
 		</view>
-		<view class="reserve_hint">温馨提示</view>
-		<view class="reserve_hintText">请务必遵守企业规定，按照企业要求进行体验。</view>
+		<view class="reserve_box">
+			<view class="reserve_hint">温馨提示</view>
+		<view class="reserve_hintText">目前职位预订支付成功后暂时不支持任何情况的退款，</view>
+		<view class="reserve_hintText">请务必检查仔细后再预订，并严格按照企业要求进行体验。</view>
+		</view>
 	</view>
 </view>
 <view class='indexFooter'>

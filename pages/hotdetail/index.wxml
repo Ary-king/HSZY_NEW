@@ -43,9 +43,9 @@
 		<view class="cont_explain_text">该岗位最少体验{{job.day_min}}天最长体验{{job.day_max}}天</view>
 	</view>
 	<view>
-		<view class="cont_details">职位体验内容：</view>
+		<view class="cont_detailsaLL">职位体验内容：</view>
 		<rich-text class="cont_details" nodes="{{job.job_desc}}"></rich-text>
-		<view class="cont_details">职位体验要求：</view>
+		<view class="cont_detailsaLL">职位体验要求：</view>
 		<rich-text class="cont_details" nodes="{{job.job_ask}}"></rich-text>
 
 
@@ -73,11 +73,12 @@
 		</view>
 	</view>
 	<view class="cont_map">
-		<map id="myMap" style="width: 100%; height: 200px;" title="jskadsakjd" latitude="{{latitude}}" longitude="{{longitude}}" bindmarkertap="markertap" bindcallouttap="callouttap" bindlabeltap="labeltap" markers="{{markers}}" scale="16">
+		<map id="myMap" style="width: 100%; height: 200px;"  latitude="{{latitude}}" longitude="{{longitude}}" bindmarkertap="markertap" bindcallouttap="callouttap" bindlabeltap="labeltap" markers="{{markers}}" scale="16">
 			<cover-view slot="callout">
 				<cover-view marker-id="1"></cover-view>
 			</cover-view>
 		</map>
+		<view class="myMap_txt">{{company.address}}</view>
 	</view>
 </view>
 <view class='indexFooter' wx:if="{{reserve == '1'}}">
@@ -93,11 +94,18 @@
 				<image class="indexFooter_img" src="https://heshiwork.com/storage/202402/64bc1e92542a2dc6a94bae7e38342616.png" mode="" />
 			</view>
 			<view class="indexFooter_font">
-				<button size="mini" hover-class="none" open-type="share" style="width:100%;height:100%;color:rgba(16, 16, 16, 1);font-size:28rpx;padding:0px;font-weight:400;text-align:center;align-items:center;background-color: #ffffff;"> 分享</button>
+				<button size="mini" hover-class="none" open-type="share" style="width:100%;height:100%;color:rgba(16, 16, 16, 1);font-size:28rpx;padding:0px;font-weight:bold;text-align:center;align-items:center;background-color: #ffffff;"> 分享</button>
 			</view>
 		</view>
 	</view>
 	<view class="indexFooter_res" bindtap="gotoReserve">
 		立即预订
 	</view>
+</view>
+<view class='indexFooters' wx:if="{{reserve == '3'}}">
+	<view class="indexFooter_boxs">
+		<view class="indexFooter_lets"> 预订{{order.day}}天</view>
+		<view class="indexFooter_rits">总计¥{{order.pay_price}}</view>
+	</view>
+	<view class="indexFooter_fonts {{order.jobstatus == 1 ? 'font1' : order.jobstatus == 2 ? 'font2'  : order.jobstatus == 3 ? 'font4'  : 'font3' }}">{{order.jobstatus == 1 ? '已通过' : order.jobstatus == 2 ? '已拒绝' : order.jobstatus == 3 ? '待审核'  : '已结束'}}</view>
 </view>

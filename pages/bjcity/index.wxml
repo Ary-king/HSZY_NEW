@@ -9,7 +9,7 @@
       </view>
       <view class="city_box_adTxt">北京</view>
     </view>
-    <view class="city_box_adIcon">
+    <view class="city_box_adIcon"  bindtap="goCity">
       <image class="city_img" src="https://heshiwork.com/storage/202402/a17e8edf6777718475d530a29e22f00b.png" mode="" />
     </view>
     <view class="city_box_adTxt" bindtap="goCity">切换城市</view>

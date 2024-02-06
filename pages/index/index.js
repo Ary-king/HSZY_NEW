@@ -19,7 +19,8 @@ Page({
     interval: 20,
     current: 1,
     zPges: 0,
-    listData: []
+    listData: [],
+    logSucces: false
   },
   onLoad() {
     if (wx.getStorageSync('userinfoData')) {
@@ -107,6 +108,13 @@ Page({
           }
           this.setData({
             listData: alldataList,
+            zPges: res.data.list.last_page,
+            swiperBanner: res.data.banner,
+            scrollbar: res.data.scrollbar
+          })
+        }else{
+          this.setData({
+            listData: res.data.list.data,
             zPges: res.data.list.last_page,
             swiperBanner: res.data.banner,
             scrollbar: res.data.scrollbar
@@ -245,5 +253,18 @@ Page({
     wx.navigateTo({
       url: '/pages/bjcity/index',
     })
+  },
+  goNoBut() {
+    this.setData({
+      modelShow: false
+    })
+  },
+  bindtaPhone(){
+    if(!this.data.pitch){
+      wx.showToast({
+        title: '请先查看协议同意后再登录',
+        icon:'none'
+      })
+    }
   }
 })

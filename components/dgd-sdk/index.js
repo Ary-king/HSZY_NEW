@@ -5,11 +5,9 @@
 const { request } = require('./utils/request');
 const utils = require("./utils/index");
 const extend = require("./utils/extend");
-const map = require("./map/index");
 const _sdk = {
   utils,
   request,
-  extend,
-  map
+  extend
 };
 module.exports = _sdk;

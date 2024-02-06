@@ -42,7 +42,7 @@
         <input id="address" name="address" style="width: 100%;" value="{{address}}" bind:change="handleChange" placeholder-class="firm_ryInput_class" placeholder="请填写公司具体办公地址" />
       </view>
     </view>
-    <view class="firm_select" >
+    <view class="firm_select">
       <view class="firm_selectTitle">所属行业</view>
       <view class="pickDis">
         <view class="postJobForm_pickwit">
@@ -68,8 +68,10 @@
     </view>
     <view class="introduce">
       <view class="firm_ryName">公司介绍</view>
-      <view class="introduce_txt">
-        <textarea id="desc" maxlength="{{maxLength}}" style="width:100%;height: 100%;" name="desc" placeholder="300字以内" value="{{desc}}" bindinput="handleChange" placeholder-style="font-size:32rpx;color:#6F6F6F;text-align: center;" />
+      <view class="introduce_txt"  bindtap="goCont" data-newName="gsjs">
+        <view wx:if="{{gsjs == ''}}">300字以内(去填写)</view>
+        <rich-text style="color: black;" nodes="{{gsjs}}"></rich-text>
+        <!-- <textarea id="desc" maxlength="{{maxLength}}" style="width:100%;height: 100%;" name="desc" placeholder="300字以内" value="{{desc}}" bindinput="handleChange" placeholder-style="font-size:32rpx;color:#6F6F6F;text-align: center;" /> -->
       </view>
     </view>
     <view class="introduce">
@@ -120,7 +122,9 @@
   </view>
   <view class="inputShowTop">
     <view class="inputShowstitle">公司介绍</view>
-    <view class="inputShowsBox">{{allData.desc}}</view>
+    <view class="inputShowsBox">
+    <rich-text nodes="{{allData.desc}}"></rich-text>
+    </view>
   </view>
   <view class="inputShowTop">
     <view class="inputShowstitle">上传营业执照</view>

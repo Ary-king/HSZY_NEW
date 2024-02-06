@@ -58,16 +58,21 @@
 .persdata_formTwo {
   display: flex;
 }
-
-.persdata_formOneName_txt {
+.persdata_formOneName_txts{
   color: rgba(255, 124, 0, 1);
   font-size: 36rpx;
   margin-right: 26rpx;
 }
+.persdata_formOneName_txt {
+  color: rgba(255, 124, 0, 1);
+  font-size: 36rpx;
+  margin-right: 26rpx;
+  width: 30%;
+}
 
 .persdata_formOneName_inpt {
   width: 66%;
-  /* text-align: center; */
+  text-align: center;
 }
 
 .inputClass {
@@ -101,7 +106,7 @@
 .formSubmit_title {
   color: rgba(16, 16, 16, 1);
   font-size: 34rpx;
-  font-weight: 600;
+  font-weight: bold;
   margin-top: 56rpx;
 }
 
@@ -209,7 +214,7 @@
 .firm_top {
   color: rgba(0, 0, 0, 1);
   font-size: 36rpx;
-  font-weight: 600;
+  font-weight: bold;
   margin-top: 40rpx;
 }
 

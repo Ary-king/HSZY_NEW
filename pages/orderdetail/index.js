@@ -24,7 +24,7 @@ Page({
    */
   onLoad() {
     const pageData = getPrevPageData()
-    console.log('--------------',pageData)
+    console.log('--------------', pageData)
     this.setData({
       company: pageData.dataList.company,
       job: pageData.dataList.job,
@@ -112,19 +112,17 @@ Page({
       }
       this.getexa_order(dataList).then(res => {
         console.log(res)
-        if (res.msg == '操作成功') {
-          wx.showToast({
-            title: "提交成功",
-            icon: 'none',
-          });
-          this.setData({
-            judge: false,
-            jobstatus: false
-          });
-          wx.switchTab({
-            url: '/pages/message/index',
-          })
-        }
+        wx.showToast({
+          title: "提交成功",
+          icon: 'none',
+        });
+        this.setData({
+          judge: false,
+          jobstatus: false
+        });
+        wx.switchTab({
+          url: '/pages/message/index',
+        })
       })
     } else {
       wx.showToast({

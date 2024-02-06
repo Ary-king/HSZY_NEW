@@ -15,7 +15,7 @@ page {
 .cont_title {
 	color: rgba(16, 16, 16, 1);
 	font-size: 52rpx;
-	font-weight: 600;
+	font-weight: bold;
 }
 
 .cont_place {
@@ -53,7 +53,7 @@ page {
 .cont_place_moy {
 	color: rgba(244, 98, 127, 1);
 	font-size: 36rpx;
-	font-weight: 800;
+	font-weight: bold;
 	/* width: 40%;
 	text-align: right; */
 }
@@ -63,7 +63,7 @@ page {
 	color: rgba(255, 153, 0, 1);
 	font-size: 28rpx;
 	/* width: 60%; */
-	font-weight: 400;
+	font-weight: bold;
 }
 
 .cont_place_sec {
@@ -78,7 +78,8 @@ page {
 }
 
 .cont_xian {
-	margin-top: 40rpx;
+	margin-top: 20rpx;
+	margin-bottom: 20rpx;
 	height: 1rpx;
 	width: 100%;
 	border-bottom: 1rpx #EEEDED solid;
@@ -132,13 +133,20 @@ page {
 .cont_explain_text {
 	color: #ff9900;
 	font-size: 28rpx;
-	font-weight: 600;
+	font-weight: bold;
 }
 
 .cont_details {
 	color: rgba(16, 16, 16, 1);
 	font-size: 32rpx;
 	padding-top: 20rpx;
+}
+.cont_detailsaLL{
+	color: rgba(16, 16, 16, 1);
+	font-size: 32rpx;
+	padding-top: 20rpx;
+	font-weight: bold;
+	padding-bottom: 20rpx;
 }
 
 .cont_address {
@@ -180,7 +188,7 @@ page {
 .cont_address_firmADTextAll {
 	color: rgba(16, 16, 16, 1);
 	font-size: 26rpx;
-	width: 80%;
+	width: 90%;
 }
 
 .cont_address_firmAD {
@@ -287,14 +295,14 @@ page {
 .footer_txt {
 	color: rgba(255, 0, 0, 1);
 	font-size: 40rpx;
-	font-weight: bolder;
+	font-weight: bold;
 	width: 68%;
 }
 
 .footer_over {
 	color: rgba(107, 107, 107, 1);
 	font-size: 40rpx;
-	font-weight: 600;
+	font-weight: bold;
 }
 
 .footerIndex {
@@ -429,4 +437,85 @@ page {
   flex: 0 1 auto;
   margin: 0 10px;
   font-size: 14px;
+}
+
+
+
+.indexFooter_two_reserves {
+	margin: auto;
+	font-weight: bold;
+	font-size: 32rpx;
+}
+
+.indexFooter_lets {
+	color: rgba(255, 0, 0, 1);
+	font-size: 40rpx;
+	font-weight: bold;
+	padding: 10rpx 0rpx;
+}
+
+.indexFooter_rits {
+	color: rgba(255, 0, 0, 1);
+	font-size: 40rpx;
+	font-weight: bold;
+	padding: 10rpx 20rpx;
+}
+
+.indexFooter_boxs {
+	width: 70%;
+	display: flex;
+	padding-left: 40rpx;
+	/* background-color: aqua; */
+}
+
+.indexFooter_fonts {
+	font-size: 40rpx;
+	font-weight: bold;
+	padding: 10rpx 20rpx;
+	width: 30%;
+	text-align: right;
+	padding-right: 40rpx;
+}
+
+.font1 {
+	color: rgba(69, 253, 6, 1);
+}
+
+.font2 {
+	color: rgba(107, 107, 107, 1);
+
+}
+
+.font3 {
+	color: rgba(107, 107, 107, 1);
+}
+
+.font4 {
+	color: rgba(255, 0, 0, 1);
+}
+
+.cont_jobTiltleBox {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.indexFooters {
+	overflow: hidden;
+	margin-bottom: 0;
+	/* background-color: rgba(255, 0, 0, 1); */
+	background-color: rgb(255, 255, 255);
+	border: 1rpx solid rgba(187, 187, 187, 1);
+	color: rgba(16, 16, 16, 1);
+	width: 100%;
+	padding: 30rpx 0rpx;
+	position: fixed;
+	bottom: 0px;
+	display: flex;
+	align-items: center;
+	z-index: 10000;
+}
+
+.myMap_txt{
+	font-size: 32rpx;
+	padding: 20rpx 0rpx;
 }

@@ -46,7 +46,7 @@ page {
 .mine_module_text {
 	color: rgba(16, 16, 16, 1);
 	font-size: 28rpx;
-	font-weight: 800;
+	font-weight: bold;
 }
 
 .pspgbg-ul {
@@ -147,7 +147,7 @@ page {
 .indexFooter_loingTxt {
 	color: rgba(255, 255, 255, 1);
 	font-size: 14px;
-	font-weight: 600;
+	font-weight: bold;
 
 }
 
@@ -209,7 +209,7 @@ page {
 
 .model_wrapper {
 	position: fixed;
-	top: -4%;
+	top: 0%;
 	right: 0;
 	bottom: 0;
 	left: 0;

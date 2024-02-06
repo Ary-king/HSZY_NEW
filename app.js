@@ -16,6 +16,8 @@ App({
     wx.removeStorageSync('dataListFilt');
     wx.removeStorageSync('bjCity');
     wx.removeStorageSync('cityName');
+    wx.removeStorageSync('gsjs');
+
   },
   onShow: function () {
     mainApp.onShow.apply(this, arguments);

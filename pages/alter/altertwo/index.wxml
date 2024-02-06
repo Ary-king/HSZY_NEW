@@ -112,16 +112,16 @@
     <view wx:if="{{restock_Show}}">
       <view class="txtBlack">补全要求和说明</view>
       <view class="txtInput" bindtap="goCont" data-newName="bqsm">
-        <view class="bot_class" wx:if="{{bqsm == ''}}">请填写具体要求和优惠政策</view>
-        <rich-text style="color: black;" nodes="{{bqsm}}"></rich-text>
+        <view class="bot_class" wx:if="{{restock_desc == ''}}">请填写具体要求和优惠政策</view>
+        <rich-text style="color: black;" nodes="{{restock_desc}}"></rich-text>
       </view>
     </view>
     <view class="butBox">
       <view class="butBox_one">
-        <button form-type="submit" data-com="3" style="width:85px;height:40px;font-size:15px;font-weight:200;padding:20rpx;border-radius: 28rpx;border: 1px solid rgba(187,187,187,1);" class="mini-btn">保存</button>
+        <button form-type="submit" data-com="3" style="width:85px;height:40px;font-size:15px;font-weight:bold;padding:20rpx;border-radius: 28rpx;border: 1px solid rgba(187,187,187,1);" class="mini-btn">保存</button>
       </view>
       <view class="butBox_two">
-        <button form-type="submit" data-com="0" style="width:85px;height:40px;font-size:15px;font-weight:200;padding:20rpx;border-radius: 28rpx;background-color: rgba(255,5,5,1);color: #ffffff;border: 1px solid rgba(255,5,5,1)" class="mini-btn">发布申请</button>
+        <button form-type="submit" data-com="0" style="width:85px;height:40px;font-size:15px;font-weight:bold;padding:20rpx;border-radius: 28rpx;background-color: rgba(255,5,5,1);color: #ffffff;border: 1px solid rgba(255,5,5,1)" class="mini-btn">发布申请</button>
       </view>
     </view>
   </form>

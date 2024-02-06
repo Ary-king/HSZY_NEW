@@ -52,7 +52,7 @@ module.exports = Object.assign({
   getcollectlist: htUrl + '/api/index/collectlist',
   //企业预定
   getcompany_order: htUrl + '/api/index/company_order',
-  //预定
+  //预订
   getcreate_order: htUrl + '/api/Wxpay/create_order',
   //我的消息
   getmessage_list: htUrl + '/api/index/message_list',

@@ -29,7 +29,7 @@
 
 /* 字体加粗 */
 .font-size-width{
-   font-weight: 600;
+   font-weight: bold;
 }
 /* 溢出隐藏 */
 .overflow-hidden{

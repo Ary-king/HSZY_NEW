@@ -26,7 +26,7 @@ Page({
 
   goCommit() {
     sdk.utils.extend.showLoading('加载中');
-    if(this.data.numbers != ''){
+    if (this.data.numbers != '') {
       sdk.request({
         url: CGI.getcash_out,
         method: 'POST',
@@ -43,7 +43,7 @@ Page({
           this.setData({
             judge: !this.data.judge
           })
-        }else{
+        } else {
           wx.showToast({
             title: '余额不足',
           })
@@ -51,6 +51,11 @@ Page({
       }).catch(err => {
         sdk.utils.extend.hideLoading()
         console.log(err);
+      })
+    } else {
+      wx.showToast({
+        title: '请输入金额',
+        icon: 'none'
       })
     }
   },
@@ -65,14 +70,15 @@ Page({
       })
     }
   },
-  handleChange(e) {
-    this.setData({
-      [e.target.id]: e.detail.value,
-    })
-  },
   goBack() {
     wx.switchTab({
       url: '/pages/mine/index',
+    })
+  },
+  eventhandle(e) {
+    console.log(e)
+    this.setData({
+      numbers: e.detail.value
     })
   }
 })

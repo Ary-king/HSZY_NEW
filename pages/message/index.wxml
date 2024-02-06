@@ -5,7 +5,7 @@
 			<view class="msg_box_text">您有1个新消息</view>
 		</view>
 		<view class="msg_box_state	{{item.jobstatus == 3 ? 'state1' : item.jobstatus == 1 ? 'state2' : 'state3'}}">
-			{{item.jobstatus == 3 ? '待审核' : item.jobstatus == 1 ? '审核通过' : '已拒绝'}}
+			{{item.jobstatus == 3 ? '待审核' : item.jobstatus == 1 ? '审核通过' : '已拒绝已退款'}}
 		</view>
 		<view class="msg_box_cont" bindtap="goderDetial" data-item="{{item}}">
 			<view class="indexHot_cont">
@@ -26,8 +26,8 @@
 				<view class="indexHot_cont_Int">
 					<rich-text class="indexHot_cont_Int" nodes="<div style='overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1; -webkit-box-orient: vertical;word-break: break-all; '></font>{{item.desc}}</div>"></rich-text>
 
-				 </view>
-				
+				</view>
+
 				<view class="indexHot_cont_foot">
 					<view class="indexHot_cont_footBox">
 						<view class="indexHot_cont_footBoxText">开放公司：{{item.company_title}} </view>
@@ -66,8 +66,11 @@
 	<view class="model_wrapper_box">
 		<image class="model_wrapper_boxImg" src="https://heshiwork.com/storage/202402/81d0c340bb8efeb105c531a57e1f8739.png" mode="" />
 		<view class="model_wrapper_boxTxt">登录荷适</view>
-		<view class="model_wrapper_boxCont">
-			<button style="font-size:14px;background-color:red;border:3px solid rgba(255, 255, 255, 1);border:3px solid rgba(255, 255, 255, 1);border-radius: 24px;color:#ffffff;padding:8px;width:211px;height:42px;font-weight:100;" open-type="getPhoneNumber" class="component-class" bindtap="bindtap" bindgetphonenumber="bindgetphonenumber">手机号一键登录 </button>
+		<view class="model_wrapper_boxCont" wx:if="{{pitch}}">
+			<button style="font-size:14px;background-color:red;border:3px solid rgba(255, 255, 255, 1);border:3px solid rgba(255, 255, 255, 1);border-radius: 24px;color:#ffffff;padding:8px;width:211px;height:42px;font-weight:bold;" open-type="getPhoneNumber" class="component-class" bindtap="bindtap" bindgetphonenumber="bindgetphonenumber">手机号一键登录 </button>
+		</view>
+		<view class="model_wrapper_boxCont" wx:if="{{!pitch}}">
+			<button style="font-size:14px;background-color:red;border:3px solid rgba(255, 255, 255, 1);border:3px solid rgba(255, 255, 255, 1);border-radius: 24px;color:#ffffff;padding:8px;width:211px;height:42px;font-weight:bold;"  class="component-class" bindtap="bindtaPhone" >手机号一键登录 </button>
 		</view>
 		<view class="model_box">
 			<label bindtap="gopitch">

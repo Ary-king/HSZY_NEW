@@ -6,6 +6,8 @@ const {
 const usedata = require('../../constant/usedata.js');
 Page({
   data: {
+    posNameShow: false,
+    induShow: false,
     opengroupsId: 0,
     opengroups: '',
     typeId: 0,
@@ -20,7 +22,6 @@ Page({
     typeData: [],
     industryData: [],
     industryDatad: [],
-    showHy: true,
     posNameData: [],
     setupTimeData: [{
       id: 1,
@@ -125,7 +126,7 @@ Page({
     this.getindustry()
     this.getjobname()
   },
-  onShow(){
+  onShow() {
     wx.removeStorageSync('againData');
     wx.removeStorageSync('dataListSelect');
     wx.removeStorageSync('dataListFilt');
@@ -193,10 +194,9 @@ Page({
         item.classname = 'policy_cancelSub';
         return item;
       });
-      this.allindustryDatad = newData.slice(0, 12)
       this.setData({
         industryData: newData,
-        industryDatad: newData.slice(0, 12)
+        industryDatad: newData.slice(0, 6)
       })
     }).catch(err => {
       console.log(err);
@@ -216,39 +216,14 @@ Page({
         return item;
       });
       this.setData({
-        posNameData: newData
+        allposNameData: newData,
+        posNameData: newData.slice(0, 6)
       })
-      // const industry2 = []
-      // const topData = res.data
-      // console.log("外层数据----", topData)
-      // topData.forEach(res => {
-      //   console.log(res)
-      //   res.data.forEach(item => {
-      //     industry2.push(item)
-      //   })
-      // })
-      // console.log("循环数据-----", industry2)
-      // let newData = industry2.map((item, index) => {
-      //   item.keyId = index + 1
-      //   item.classname = 'policy_cancelSub';
-      //   return item;
-      // });
-      // this.allindustryDatad = newData.slice(0, 12)
-      // this.setData({
-      //   industryData: newData,
-      //   industryDatad: newData.slice(0, 12)
-      // })
     }).catch(err => {
       console.log(err);
     })
   },
-  showHy() {
-    this.allindustryDatad = this.data.industryData
-    this.setData({
-      industryDatad: this.data.industryData,
-      showHy: false
-    })
-  },
+
   clickKfqts(e) {
     console.log(e)
     const ident = e.currentTarget.dataset.item;
@@ -347,14 +322,14 @@ Page({
       })
     })
   },
-  goSubmit(){
+  goSubmit() {
     const dataListFilt = {
-      opengroups:this.data.opengroups || '',
-      type:this.data.type || '',
-      posName:this.data.posName || '',
-      industry:this.data.industry || '',
-      setupTim:this.data.setupTim || '',
-      scaleCom:this.data.scaleCom || '',
+      opengroups: this.data.opengroups || '',
+      type: this.data.type || '',
+      posName: this.data.posName || '',
+      industry: this.data.industry || '',
+      setupTim: this.data.setupTim || '',
+      scaleCom: this.data.scaleCom || '',
     }
     console.log(dataListFilt)
     wx.setStorageSync('againData', '1')
@@ -362,5 +337,32 @@ Page({
     wx.switchTab({
       url: '/pages/index/index',
     })
-  }
+  },
+  showZwmc() {
+    if (this.data.posNameShow) {
+      this.setData({
+        posNameData: this.data.allposNameData.slice(0, 6),
+        posNameShow: !this.data.posNameShow
+      })
+    } else {
+      this.setData({
+        posNameData: this.data.allposNameData,
+        posNameShow: !this.data.posNameShow
+      })
+    }
+  },
+  showHy() {
+    if (this.data.induShow) {
+      this.setData({
+        industryDatad: this.data.industryData.slice(0, 6),
+        induShow: !this.data.induShow
+      })
+    } else {
+      this.setData({
+        industryDatad: this.data.industryData,
+        induShow: !this.data.induShow
+      })
+    }
+  },
+
 })

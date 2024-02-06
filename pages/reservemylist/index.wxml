@@ -59,7 +59,7 @@
 		<view class="msg_box_descr descr2" wx:if="{{item.jobstatus == 2}}">拒绝原因：{{item.orderdesc}} </view>
 	</view>
 	<view class="noList" wx:if="{{dataList.length <= 0}}">
-		<view class="noAllFont">暂未查询到被预定的职位</view>
+		<view class="noAllFont">暂未查询到被预订的职位</view>
 		<image class="noAllFontImg" src="https://heshiwork.com/storage/202401/6e326520f2cdaabe7c79d8841c51eb12.png" mode="" />
 	</view>
 </view>

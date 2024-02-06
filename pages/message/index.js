@@ -10,6 +10,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    pitch: false,
+    logSucces:false,
     num:0,
     dataSixe:false,
     dataList: [],
@@ -183,5 +185,13 @@ Page({
     wx.navigateTo({
       url: '/pages/agreement/index',
     })
+  },
+  bindtaPhone(){
+    if(!this.data.pitch){
+      wx.showToast({
+        title: '请先查看协议同意后再登录',
+        icon:'none'
+      })
+    }
   }
 })

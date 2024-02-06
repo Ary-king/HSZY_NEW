@@ -10,7 +10,7 @@
         <view class="indexBanner_swpBox_cont">
           <view class="indexBanner_swpBox_contFh">￥</view>
           <view class="indexBanner_swpBox_contInput">
-            <input type="number" id="numbers" name="numbers" value="{{numbers}}" bind:change="handleChange" style="height:100rpx;" placeholder-class="form_allInput_class" placeholder="请输入金额" />
+            <input type="number" id="numbers" name="numbers" value="{{numbers}}" bindinput='eventhandle' bind:change="handleChange" style="height:100rpx;" placeholder-class="form_allInput_class" placeholder="请输入金额" />
           </view>
         </view>
         <view class="indexBanner_swpBox_contAll" bindtap="goAll">全部提现</view>

@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    gsjs: '',
     industryIndex: [0, 0],
     industryname1: '',
     industryname2: '',
@@ -76,6 +77,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
+    wx.removeStorageSync('gsjs');
     let currentDate = new Date();
     let year = currentDate.getFullYear(); // 获取当前年份
     const month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
@@ -125,7 +127,7 @@ Page({
   formSubmit(e) {
     console.log(e)
     const sumdata = e.detail.value
-    if (sumdata.title == '' || sumdata.address == '' || sumdata.desc == '' || this.data.industryname2 == '' || this.data.number == '' || this.data.time == '') {
+    if (sumdata.title == '' || sumdata.address == '' || this.data.gsjs == '' || this.data.industryname2 == '' || this.data.number == '' || this.data.time == '') {
       wx.showModal({
         title: '提示',
         content: '信息未填写完整，请完善相关信息',
@@ -147,7 +149,7 @@ Page({
       time: this.data.time,
       address: sumdata.address,
       industry: this.data.industryname2,
-      desc: sumdata.desc,
+      desc: this.data.gsjs,
       img: this.data.imgsfile
     }
     console.log(dataList)
@@ -340,6 +342,25 @@ Page({
       industryIndex: e.detail.value,
       industryname1: this.data.industryData[oneVa].name,
       industryname2: this.data.industryData[oneVa].data[twoVa].name,
+    })
+  },
+  goCont(e) {
+    console.log(e)
+    console.log(e.currentTarget.dataset.newname)
+    let newName = e.currentTarget.dataset.newname
+    this.setData({
+      params: {
+        newName: newName,
+      }
+    })
+    wx.navigateTo({
+      url: '/pages/new/index',
+    })
+  },
+  onShow() {
+    let gsjs = wx.getStorageSync('gsjs')
+    this.setData({
+      gsjs: gsjs || '',
     })
   },
 })

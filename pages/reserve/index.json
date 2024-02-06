@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "预定职位",
+  "navigationBarTitleText": "预订职位",
   "usingComponents": {
     "calendar": "plugin://calendar/calendar"
   }

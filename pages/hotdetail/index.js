@@ -30,6 +30,7 @@ Page({
       })
     }
     this.setData({
+      order:pageData.dataList.order,
       status: pageData.status,
       reserve: pageData.reserve,
       identId: pageData.identId,

@@ -39,7 +39,7 @@
   width: 100%;
   text-align: right;
   font-size: 32rpx;
-  font-weight: 800;
+  font-weight: bold;
 }
 
 .state1 {
@@ -51,7 +51,7 @@
 }
 
 .state3 {
-  color: rgba(107, 107, 107, 1);
+  color: rgba(255,0,0,1);
 }
 
 .msg_box_cont {
@@ -238,7 +238,7 @@
 
 .msg_box_descr {
   font-size: 24rpx;
-  font-weight: 800;
+  font-weight: bold;
   padding-top: 10rpx;
 }
 

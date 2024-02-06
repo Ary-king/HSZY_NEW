@@ -7,16 +7,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    pitch: false,
     loginShow: false,
     headimgurl: '',
     modelShow: false,
     noLogin: true,
     logSucces: false,
     userinfoData: {
-      id: 3,
-      nickname: "会员1705419011",
-      headimgurl: "https://heshiwork.com/storage/202401/6f59640a09d3446fc47dda3ff065c53c.png",
-      company: 0
+
     },
     persCenter: [{
         title: '我的信息',
@@ -57,7 +55,7 @@ Page({
         params: {}
       },
       {
-        title: '预定我的',
+        title: '预订我的',
         iconUrl: 'https://heshiwork.com/storage/202401/802edcccab7141f9ce83c5e87a3a2a4d.png',
         bindMethod: 'gotoMine',
         goUrl: '/pages/reservemylist/index',
@@ -77,20 +75,44 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {
+  onShow() {
     if (wx.getStorageSync('logSucces')) {
+      console.log("11111111111111")
       this.setData({
         logSucces: wx.getStorageSync('logSucces'),
         userinfoData: wx.getStorageSync('userinfoData'),
-        userPhone: wx.getStorageSync('userPhone'),
-        headimgurl:wx.getStorageSync('headimgurl'),
+        headimgurl: wx.getStorageSync('headimgurl'),
+        userPhone: wx.getStorageSync('userPhone')
       })
+      this._get_userinfo()
     } else {
       this.setData({
         noLogin: false
       })
     }
     this.getadvertisement()
+  },
+
+  // 获取个人信息
+  _get_userinfo() {
+    wx.request({
+      url: 'https://heshiwork.com/api/index/get_userinfo',
+      method: 'GET',
+      header: {
+        token: wx.getStorageSync('token')
+      },
+      data: {},
+      success: (res) => {
+        console.log("个人信息---------", res)
+        const userinfoData = res.data.data
+        this.setData({
+          userinfoData:userinfoData
+        })
+      },
+      fail: (err) => {
+        console.log("个人信息获取失败---------", res)
+      }
+    })
   },
   gotoMine(e) {
     console.log(e)
@@ -206,12 +228,12 @@ Page({
       loginShow: true
     })
   },
-  goAgreement(){
+  goAgreement() {
     wx.navigateTo({
       url: '/pages/agreement/index',
     })
   },
-  gotoClause(){
+  gotoClause() {
     sdk.utils.extend.showLoading('加载中');
     sdk.request({
       url: CGI.getpcst,
@@ -219,20 +241,33 @@ Page({
       data: {}
     }).then(res => {
       console.log("服务条款------------", res)
-      if(res.msg == '请求成功'){
-      this.setData({
-        params: {
-          txt:res.data,
-        }
-      });
-      wx.navigateTo({
-        url: '/pages/termservice/index',
-      })
+      if (res.msg == '请求成功') {
+        this.setData({
+          params: {
+            txt: res.data,
+          }
+        });
+        wx.navigateTo({
+          url: '/pages/termservice/index',
+        })
       }
       sdk.utils.extend.hideLoading()
     }).catch(err => {
       sdk.utils.extend.hideLoading()
       console.log(err);
     })
-  }
+  },
+  bindtaPhone() {
+    if (!this.data.pitch) {
+      wx.showToast({
+        title: '请先查看协议同意后再登录',
+        icon: 'none'
+      })
+    }
+  },
+  gopitch() {
+    this.setData({
+      pitch: !this.data.pitch
+    })
+  },
 })

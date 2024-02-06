@@ -86,7 +86,7 @@
   background-color: rgba(255, 158, 62, 1);
   color: rgba(255, 255, 255, 1);
   font-size: 32rpx;
-  font-weight: 600;
+  font-weight: bold;
   text-align: center;
   padding: 26rpx 0rpx;
   margin-top: 100rpx;

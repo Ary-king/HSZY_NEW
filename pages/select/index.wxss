@@ -1,6 +1,7 @@
-page{
+page {
   padding-bottom: 200rpx;
 }
+
 .select {
   padding: 20rpx 40rpx;
 }
@@ -10,7 +11,7 @@ page{
   font-size: 32rpx;
   font-weight: bold;
   padding: 20rpx 0rpx;
-  width: 80%;
+  /* width: 80%; */
 }
 
 .selectbox {
@@ -18,12 +19,28 @@ page{
   flex-wrap: wrap;
   text-align: center;
   align-items: center;
+  width: 100%;
   /* justify-content: center; */
 }
 
 .selectboxMin {
   flex: 0 0 21%;
   width: 21%;
+  border: 1rpx solid rgba(187, 187, 187, 1);
+  background-color: rgba(255, 255, 255, 1);
+  color: rgba(16, 16, 16, 1);
+  margin: 10rpx;
+  font-size: 28rpx;
+  text-align: center;
+  padding: 10rpx 0rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.selectboxMin_two {
+  flex: 0 0 46%;
+  width: 46%;
   border: 1rpx solid rgba(187, 187, 187, 1);
   background-color: rgba(255, 255, 255, 1);
   color: rgba(16, 16, 16, 1);
@@ -54,6 +71,7 @@ page{
 .disHang {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .Img {
@@ -98,4 +116,37 @@ page{
   font-size: 32rpx;
   padding: 40rpx 0rpx;
   text-align: center;
+}
+
+.selecAll {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.seleImg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 20rpx;
+}
+
+.seleImg_txtImg {
+  display: flex;
+  align-items: center;
+  padding-right: 20rpx;
+  width: 40rpx;
+  height: 40rpx;
+  padding-top: 12%;
+}
+
+.seleImg_txtImgIcon {
+  height: 100%;
+  width: 100%;
+}
+
+.seleImg_txt {
+  color: rgba(16, 16, 16, 1);
+  font-size: 32rpx;
+  /* font-weight: bold; */
 }

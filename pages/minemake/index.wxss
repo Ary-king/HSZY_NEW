@@ -39,7 +39,7 @@
   width: 100%;
   text-align: right;
   font-size: 32rpx;
-  font-weight: 800;
+  font-weight: bold;
 }
 
 .state1 {
@@ -233,7 +233,7 @@
 
 .msg_box_descr {
   font-size: 24rpx;
-  font-weight: 800;
+  font-weight: bold;
   padding-top: 10rpx;
 }
 

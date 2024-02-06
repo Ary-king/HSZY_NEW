@@ -14,28 +14,7 @@ Page({
     collectImg: 'https://heshiwork.com/storage/202401/6af5d1fb20f31981048d4ef3a9ce55ec.png',
     companyShow: false,
     reserve: '1',
-    markers: [{
-      id: 0,
-      iconPath: "https://static.gjzwfw.gov.cn/location-icon.png",
-      width: 50,
-      height: 50,
-      latitude: 39.958339,
-      longitude: 116.313740,
-      title: "北京理工大学",
-      callout: {
-        content: "超警",
-        color: '#000000',
-        fontSize: 12,
-        // anchorX: item.lat,
-        // anchorY: item.lgt,
-        borderWidth: 1,
-        borderColor: '#000000',
-        borderRadius: 3,
-        bgColor: '#ffffff',
-        padding: 5,
-        textAlign: 'left'
-      }
-    }]
+    markers: []
   },
 
   /**
@@ -50,7 +29,27 @@ Page({
       identId: pageData.identId,
       company: pageData.dataList.company,
       job: pageData.dataList.job,
-      order:pageData.dataList.order
+      order:pageData.dataList.order,
+      markers: [{
+        id: 1,
+        title: pageData.dataList.company.address,
+        latitude: pageData.dataList.company.lat,
+        longitude: pageData.dataList.company.lng,
+        iconPath: '../../constant/images/location.png',
+        width: '100rpx',
+        height: '100rpx',
+        callout:{
+          color:'#000000',
+          content:pageData.dataList.company.title,
+          fontSize:'28rpx',
+          borderRadius:5,
+          bgColor:'#ffffff',
+          textAlign:'center',
+          padding:'20rpx',
+          display:"ALWAYS",
+          anchorY:10
+        }
+      }]
     })
   },
 

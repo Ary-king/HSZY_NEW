@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    restock_desc:'',
     salary_day: '',
     open_date: [],
     timeMin: '',
@@ -41,7 +42,9 @@ Page({
       day_max: dataAll.day_max,
       open_groups: dataAll.open_groups,
       eav: dataAll.eav,
-      type: dataAll.type
+      type: dataAll.type,
+      restock_desc: dataAll.restock_desc,
+      restock_Show: dataAll.restock_desc ? true : false
     })
   },
   handleChange(e) {
@@ -96,12 +99,17 @@ Page({
       data: {}
     }).then(res => {
       console.log(res)
-      let newData = res.data.map(item => {
-        item.checked = false;
-        return item;
+      res.data.forEach(item => {
+        console.log(item)
+        if (this.data.eav == item.id) {
+          console.log("1111111111111")
+          item.checked = true
+        } else {
+          item.checked = false
+        }
       });
       this.setData({
-        eavData: newData
+        eavData: res.data
       })
     }).catch(err => {
       console.log(err)
@@ -114,16 +122,19 @@ Page({
       data: {}
     }).then(res => {
       console.log(res)
-      let newData = res.data.map(item => {
-        if (item.title == '体验') {
-          item.checked = true;
-        } else {
-          item.checked = false;
+      let oldList = this.data.type
+      let newList = res.data
+      for (let i = 0; i <= oldList.length - 1; i++) {
+        for (let j = 1; j <= newList.length - 1; j++) {
+          if (oldList[i].title == newList[i].title) {
+            newList[i].checked = true
+          } else {
+            newList[i].checked = false
+          }
         }
-        return item;
-      });
+      }
       this.setData({
-        typeData: newData
+        typeData: newList
       })
     }).catch(err => {
       console.log(err)
@@ -136,12 +147,19 @@ Page({
       data: {}
     }).then(res => {
       console.log(res)
-      let newData = res.data.map(item => {
-        item.checked = false;
-        return item;
-      });
+      let oldList = this.data.open_groups
+      let newList = res.data
+      for (let i = 0; i <= oldList.length - 1; i++) {
+        for (let j = 0; j <= newList.length - 1; j++) {
+          if (oldList[i] == newList[i].title) {
+            newList[i].checked = true
+          } else {
+            newList[i].checked = false
+          }
+        }
+      }
       this.setData({
-        groupData: newData
+        groupData: res.data
       })
     }).catch(err => {
       console.log(err)

@@ -11,10 +11,6 @@ Page({
    */
   data: {
     title:'',
-
-
-
-
     zwms: '',
     zwsxnr: '',
     zwsxyq: '',
@@ -82,6 +78,8 @@ Page({
       salary_max: dataList.salary_max,
       industry: this.data.industryname1 + this.data.industryname2,
       major: this.data.mjoname1 + this.data.mjoname2,
+      industry_id:this.data.industryIndex,
+      major_id:this.data.multiIndex
     }
     console.log("提交的数据----------", goDetail)
     this.getjob_create(goDetail)

@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    posNameShow:false,
     posNameData:[],
     searchName:'',
     posNameId:0,
@@ -37,7 +38,8 @@ Page({
         return item;
       });
       this.setData({
-        posNameData: newData
+        allposNameData: newData,
+        posNameData: newData.slice(0, 20)
       })
     }).catch(err => {
       console.log(err);
@@ -88,5 +90,18 @@ Page({
     wx.switchTab({
       url: '/pages/index/index',
     })
-  }
+  },
+  showZwmc() {
+    if (this.data.posNameShow) {
+      this.setData({
+        posNameData: this.data.allposNameData.slice(0, 20),
+        posNameShow: !this.data.posNameShow
+      })
+    } else {
+      this.setData({
+        posNameData: this.data.allposNameData,
+        posNameShow: !this.data.posNameShow
+      })
+    }
+  },
 })

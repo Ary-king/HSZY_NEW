@@ -4,7 +4,7 @@
 		<swiper autoplay='true' duration='500' interval='2000' indicator-dots='true' style="height: 425rpx;">
 			<swiper-item wx:for="{{swiperBanner}}" wx:key="index">
 				<view class="indexBanner_img">
-					<image src="https://heshiwork.com{{item.imgUrl}}" style="width: 100%;height: 425rpx;"/>
+					<image src="https://heshiwork.com{{item.imgUrl}}" style="width: 100%;height: 425rpx;" />
 				</view>
 			</swiper-item>
 		</swiper>
@@ -19,8 +19,8 @@
 			<view class="example">
 				<view class="marquee_box">
 					<view class="marquee_text" style="{{orientation}}:{{marqueeDistance2}}px ">
-						<text>{{scrollbar[0].name}}大撒大撒大撒大撒大撒大撒大撒大撒大撒大撒大撒大撒</text>
-						<text wx:if="{{marquee2copy_status}}" style="margin-left:{{marquee2_margin}}px;">{{scrollbar[0].name}}大撒大撒大撒大撒大撒大撒大撒大撒</text>
+						<text>{{scrollbar[0].name}}</text>
+						<text wx:if="{{marquee2copy_status}}" style="margin-left:{{marquee2_margin}}px;">{{scrollbar[0].name}}</text>
 					</view>
 				</view>
 			</view>
@@ -90,18 +90,18 @@
 						</view>
 					</view>
 				</view>
-				<view class="indexHot_cont_reserve">预定</view>
+				<view class="indexHot_cont_reserve">预订</view>
 			</view>
 		</view>
 	</view>
 	<view style="height: 500rpx;"></view>
 	<!-- 底部注册登录 -->
 	<view class='indexFooter' wx:if="{{!logSucces}}" bindtap="goLogin">
-		<view style="display: flex;">
+		<view style="display:flex;align-items: center;">
 			<view class="indexFooter_content">
-			<image class="indexFooter_img" src="https://heshiwork.com/storage/202401/4e02628bc65f16a43adf386fad37e890.png" mode="widthFix" />
-		</view>
-		<view class="indexFooter_text">登录查看更多最新职位</view>
+				<image class="indexFooter_img" src="https://heshiwork.com/storage/202401/4e02628bc65f16a43adf386fad37e890.png" mode="widthFix" />
+			</view>
+			<view class="indexFooter_text">登录查看更多最新职位</view>
 		</view>
 		<view class="indexFooter_loing">
 			<view class="indexFooter_loingTxt">注册/登录</view>
@@ -110,16 +110,24 @@
 </view>
 <view class="model_wrapper" wx:if="{{modelShow}}">
 	<view class="model_wrapper_box">
-		<image class="model_wrapper_boxImg" src="https://heshiwork.com/storage/202402/81d0c340bb8efeb105c531a57e1f8739.png" mode="" />
-		<view class="model_wrapper_boxTxt">登录荷适</view>
-		<view class="model_wrapper_boxCont">
-			<button style="font-size:14px;background-color:red;border:3px solid rgba(255, 255, 255, 1);border:3px solid rgba(255, 255, 255, 1);border-radius: 24px;color:#ffffff;padding:8px;width:211px;height:42px;font-weight:100;" open-type="getPhoneNumber" class="component-class" bindtap="bindtap" bindgetphonenumber="bindgetphonenumber">手机号一键登录 </button>
+		<view class="but_cont">
+			<image class="model_wrapper_boxImg" src="https://heshiwork.com/storage/202402/81d0c340bb8efeb105c531a57e1f8739.png" mode="" />
+			<view class="model_wrapper_boxTxt">登录荷适</view>
+			<view class="model_wrapper_boxCont" wx:if="{{pitch}}">
+				<button hover-class='none' hover-stop-propagation='false' class="but_logins" open-type="getPhoneNumber" bindtap="bindtap" bindgetphonenumber="bindgetphonenumber">手机号一键登录 </button>
+			</view>
+			<view class="model_wrapper_boxCont" wx:if="{{!pitch}}">
+				<button hover-class='none' hover-stop-propagation='false' class="but_logins" bindtap="bindtaPhone" >手机号一键登录 </button>
+			</view>
+			<view class="model_box">
+				<label bindtap="gopitch">
+					<radio value="r1" checked="{{pitch}}" />
+				</label>
+				<view class="model_boxTxt">我已阅读并同意<text class="model_boxTxt_but" bindtap="goAgreement">《荷适用户服务协议》《个人信息保护政策》和《荷适职业小程序隐私保护指引》</text></view>
+			</view>
 		</view>
-		<view class="model_box">
-			<label  bindtap="gopitch">
-				<radio value="r1" checked="{{pitch}}" />
-			</label>
-			<view class="model_boxTxt">我已阅读并同意<text class="model_boxTxt_but" bindtap="goAgreement">《荷适用户服务协议》《个人信息保护政策》和《荷适职业小程序隐私保护指引》</text></view>
+		<view class="but_de" bindtap="goNoBut">
+			<image class="but_deImg" src="https://heshiwork.com/storage/202402/472ac3f5ffcb0a92242c2baa067bebe0.png" mode="" />
 		</view>
 	</view>
 </view>

@@ -15,7 +15,7 @@ page {
 .cont_title {
 	color: rgba(16, 16, 16, 1);
 	font-size: 52rpx;
-	font-weight: 600;
+	font-weight: bold;
 }
 
 .cont_place {
@@ -47,7 +47,7 @@ page {
 .cont_place_moy {
 	color: rgba(244, 98, 127, 1);
 	font-size: 36rpx;
-	font-weight: 800;
+	font-weight: bold;
 	width: 40%;
 	text-align: right;
 }
@@ -57,7 +57,7 @@ page {
 	color: rgba(255, 153, 0, 1);
 	font-size: 28rpx;
 	width: 60%;
-	font-weight: 400;
+	font-weight: bold;
 }
 
 .cont_place_sec {
@@ -125,13 +125,20 @@ page {
 .cont_explain_text {
 	color: #ff9900;
 	font-size: 28rpx;
-	font-weight: 600;
+	font-weight: bold;
 }
 
 .cont_details {
 	color: rgba(16, 16, 16, 1);
 	font-size: 32rpx;
 	padding-top: 20rpx;
+}
+.cont_detailsaLL{
+	color: rgba(16, 16, 16, 1);
+	font-size: 32rpx;
+	padding-top: 20rpx;
+	font-weight: bold;
+	padding-bottom: 20rpx;
 }
 
 .cont_address {
@@ -164,7 +171,7 @@ page {
 .cont_address_firmADText {
 	color: rgba(16, 16, 16, 1);
 	font-size: 26rpx;
-	width: 90%;
+	width: 80%;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -173,11 +180,13 @@ page {
 .cont_address_firmADTextAll {
 	color: rgba(16, 16, 16, 1);
 	font-size: 26rpx;
-	width: 90%;
+	width: 80%;
 }
 
 .cont_address_firmAD {
 	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 
@@ -219,14 +228,14 @@ page {
 .footer_txt {
 	color: rgba(255, 0, 0, 1);
 	font-size: 40rpx;
-	font-weight: bolder;
+	font-weight: bold;
 	width: 68%;
 }
 
 .footer_over {
 	color: rgba(107, 107, 107, 1);
 	font-size: 40rpx;
-	font-weight: 600;
+	font-weight: bold;
 }
 
 .footerIndex {
@@ -267,24 +276,26 @@ page {
 }
 
 .typeClassTxt {
+	position: relative; /* 设置相对定位 */
+	display: inline-block; /* 将元素变为行内块元素 */
 	background-color: rgba(182, 172, 242, 0.4);
 	color: rgba(0, 82, 255, 1);
 	font-size: 24rpx;
 	text-align: center;
 	font-family: Roboto;
 	border: 1px solid rgba(187, 187, 187, 1);
-	margin-right: 10rpx;
+	margin-right: 22rpx;
 	/* width: 56rpx; */
 	height: 36rpx;
 	justify-content: center;
-	display: flex;
 	align-items: center;
 }
+
 .typeClassTxt::after {
 	content: "?"; /* 必须有content属性才能显示伪元素 */
 	width: 20rpx; /* 设置图片宽度 */
 	height: 20rpx; /* 设置图片高度 */
-	border: 4rpx #FF712A  solid;
+	border: 2rpx #FF712A  solid;
 	font-size: 20rpx;
 	line-height: 20rpx;
 	color: #FF712A;
@@ -319,14 +330,14 @@ page {
 .indexFooter_let {
 	color: rgba(255, 0, 0, 1);
 	font-size: 40rpx;
-	font-weight: 600;
+	font-weight: bold;
 	padding: 10rpx 0rpx;
 }
 
 .indexFooter_rit {
 	color: rgba(255, 0, 0, 1);
 	font-size: 40rpx;
-	font-weight: 600;
+	font-weight: bold;
 	padding: 10rpx 20rpx;
 }
 
@@ -339,7 +350,7 @@ page {
 
 .indexFooter_font {
 	font-size: 40rpx;
-	font-weight: 600;
+	font-weight: bold;
 	padding: 10rpx 20rpx;
 	width: 30%;
 	text-align: right;

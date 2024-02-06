@@ -29,7 +29,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="indexHot_cont_reserve">预定</view>
+			<view class="indexHot_cont_reserve">预订</view>
 		</view>
 	</view>
 	<view class="noAll" wx:if="{{dataAll.length <= 0}}">

@@ -14,7 +14,7 @@ page {
 
 
 .indexAffiche {
-	padding: 40rpx 40rpx;
+	padding: 40rpx 40rpx 0rpx 40rpx;
 	box-sizing: border-box;
 	overflow: hidden;
 	/* margin-top: 12% */
@@ -67,12 +67,14 @@ page {
 
 
 .indexHot {
-	padding: 20rpx 20rpx;
+	padding: 20rpx 34rpx;
 }
 
 .indexHot_box {
 	display: flex;
-
+	height: 47px;
+	/* background-color: aliceblue; */
+	align-items: center;
 }
 
 .indexHot_select {
@@ -91,6 +93,7 @@ page {
 	color: rgb(62, 66, 72);
 	font-size: 32rpx;
 	padding-left: 10rpx;
+	font-weight: bold;
 }
 
 .indexHot_cont {
@@ -98,7 +101,7 @@ page {
 	align-items: center;
 	justify-content: space-between; */
 	justify-content: space-between;
-	margin-top: 40rpx;
+	margin-bottom: 32rpx;
 	left: 9px;
 	top: 355px;
 	/* width: 374px; */
@@ -293,18 +296,20 @@ page {
 	border-radius: 28rpx;
 	padding: 10rpx 20rpx;
 	border-radius: 14px 14px 14px 14px;
-	background-color: rgba(255,51,51,1);
-	border: 2px solid rgba(255,255,255,1);
+	background-color: rgba(255, 51, 51, 1);
+	border: 2px solid rgba(255, 255, 255, 1);
 	text-align: right;
 	color: rgba(255, 255, 255, 1);
 	font-size: 28rpx;
 }
-.indexFooter_loingTxt{
-	color: rgba(255,255,255,1);
-font-size: 14px;
-font-weight: 600;
+
+.indexFooter_loingTxt {
+	color: rgba(255, 255, 255, 1);
+	font-size: 14px;
+	font-weight: bold;
 
 }
+
 .cont_place_imgCon {
 	width: 30rpx;
 	height: 50rpx;
@@ -312,8 +317,8 @@ font-weight: 600;
 
 .cont_place_img {
 	padding-right: 10rpx;
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 
@@ -385,7 +390,7 @@ font-weight: 600;
 
 .model_wrapper_box {
 	background-color: #ffffff;
-	padding: 60rpx 40rpx 80rpx 40rpx;
+	/* padding: 0rpx 40rpx 80rpx 40rpx; */
 	margin: 290rpx 72rpx;
 	border-radius: 28rpx;
 	/* text-align: center; */
@@ -408,6 +413,7 @@ font-weight: 600;
 	align-items: center;
 	text-align: center;
 	justify-content: center;
+	color: #ffffff;
 }
 
 .model_wrapper_boxContImg {
@@ -451,10 +457,39 @@ font-weight: 600;
 	width: 80%;
 	padding-left: 20rpx;
 }
+
 radio .wx-radio-input {
 	width: 30rpx;
 	height: 30rpx;
 }
-.model_boxTxt_but{
+
+.model_boxTxt_but {
 	color: rgba(255, 0, 0, 1);
+}
+
+.but_logins {
+	font-size: 14px;
+	background-color: #ff0000 !important;
+	border-radius: 24px;
+	color: rgb(255, 255, 255) !important;
+	padding: 8px;
+	width: 211px;
+	height: 42px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+}
+
+.but_de {
+	text-align: center;
+	/* display: flex; */
+	align-items: center;
+}
+.but_deImg{
+	width: 50rpx;
+	height: 50rpx;
+}
+.but_cont{
+		padding: 40rpx 40rpx 60rpx 40rpx;
 }

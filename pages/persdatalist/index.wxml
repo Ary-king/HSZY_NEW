@@ -14,7 +14,7 @@
     <view class="perList_box_li">
       <view class="perList_boxName boxRight">
         <view class="perList_boxName-r">身份类型</view>
-        <text class="perList_boxName-l">{{item.type == 2? '未工作过' : '已工作过'}}</text>
+        <text class="perList_boxName-l">{{item.type == 2? '学生' : '社会人员'}}</text>
       </view>
       <view class="perList_boxName" wx:if="{{item.type == 2}}">
         <view class="perList_boxName-r">年级</view>

@@ -39,10 +39,10 @@
 		<view class="cont_explain_text">该岗位最少体验{{job.day_min}}天最长体验{{job.day_max}}天</view>
 	</view>
 	<view>
-		<view class="cont_details">职位体验内容：</view>
+		<view class="cont_detailsaLL">职位体验内容：</view>
 		<rich-text class="cont_details" nodes="{{job.job_desc}}"></rich-text>
 		<view class="cont_details">职位体验要求：</view>
-		<rich-text class="cont_details" nodes="{{job.job_ask}}"></rich-text>
+		<rich-text class="cont_detailsaLL" nodes="{{job.job_ask}}"></rich-text>
 
 
 	</view>
@@ -73,7 +73,7 @@
 </view>
 <view class='indexFooter'>
 	<view class="indexFooter_box">
-		<view class="indexFooter_let"> 预定{{order.day}}天</view>
+		<view class="indexFooter_let"> 预订{{order.day}}天</view>
 		<view class="indexFooter_rit">总计¥{{order.pay_price}}</view>
 	</view>
 	<view class="indexFooter_font {{order.jobstatus == 1 ? 'font1' : order.jobstatus == 2 ? 'font2' :'font3' }}">{{order.jobstatus == 1 ? '已通过' : order.jobstatus == 2 ? '已拒绝' :'已结束' }}</view>

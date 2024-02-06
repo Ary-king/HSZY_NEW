@@ -128,7 +128,7 @@ Page({
 
 
   formSubmit(e) {
-    console.log('没工作过----------------：', e.detail.value)
+    console.log('学生过----------------：', e.detail.value)
     const sumData = e.detail.value;
     if (sumData.name == '' || sumData.number == '' || sumData.mobile == '' || sumData.school == '') {
       wx.showModal({
@@ -169,14 +169,6 @@ Page({
         showCancel: false
       });
       return
-    }
-    if (sumData.number.length != 18 || !(idCard).test(sumData.number)) {
-      wx.showModal({
-        title: '提示',
-        content: '身份证格式不正确',
-        showCancel: false
-      });
-      return;
     }
     const contData = {
       type: 2,
@@ -245,7 +237,7 @@ Page({
   },
   formSubmitqy(e) {
     console.log(e)
-    console.log('已工作过form发生了submit事件，携带数据为：', e.detail.value)
+    console.log('社会人员form发生了submit事件，携带数据为：', e.detail.value)
     const sumData = e.detail.value;
     if (sumData.qyname == '' || sumData.qyidnumber == '' || sumData.qymobile == '' || sumData.qyage == "") {
       wx.showModal({
@@ -286,14 +278,6 @@ Page({
         showCancel: false
       });
       return
-    }
-    if (sumData.qyidnumber.length != 18 || !(idCard).test(sumData.qyidnumber)) {
-      wx.showModal({
-        title: '提示',
-        content: '身份证格式不正确',
-        showCancel: false
-      });
-      return;
     }
 
     const contData = {

@@ -1,9 +1,9 @@
 <view class="mine-all">
 	<view class="mineLog">
-		<button size="mini" wx:if="{{headimgurl == ''}}" style="padding:0rpx;margin:0rpx;" class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+		<button size="mini" wx:if="{{headimgurl == ''}}" style="padding:0px;margin:0px;background-color: #ffffff;" class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
 			<image class="mineLog_iconNo" src="https://heshiwork.com/storage/202402/01c0c5fac6614c8a4a8fd73e889da62e.png" />
 		</button>
-		<button size="mini"  style="padding:0rpx;margin:0rpx;" class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+		<button size="mini" wx:if="{{headimgurl != ''}}" style="padding:0px;margin:0px;background-color: #ffffff;" class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
 			<image class="mineLog_icon" src="{{headimgurl}}" />
 		</button>
 		<view class="mineTxt">
@@ -62,7 +62,7 @@
 	</view>
 </view>
 <view class='indexFooter' wx:if="{{!logSucces}}" bindtap="goLogin">
-	<view style="display: flex;">
+	<view style="display: flex;align-items:center;justify-content: space-between;">
 		<view class="indexFooter_content">
 			<image class="indexFooter_img" src="https://heshiwork.com/storage/202401/4e02628bc65f16a43adf386fad37e890.png" mode="widthFix" />
 		</view>
@@ -76,11 +76,14 @@
 	<view class="model_Show_box">
 		<image class="model_Show_boxImg" src="https://heshiwork.com/storage/202402/81d0c340bb8efeb105c531a57e1f8739.png" mode="" />
 		<view class="model_Show_boxTxt">登录荷适</view>
-		<view class="model_Show_boxCont">
+		<view class="model_Show_boxCont" wx:if="{{pitch}}">
 			<button style="font-size:14px;background-color:red;border:3px solid rgba(255, 255, 255, 1);border:3px solid rgba(255, 255, 255, 1);border-radius: 24px;color:#ffffff;padding:8px;width:211px;height:42px;font-weight:100;" open-type="getPhoneNumber" class="component-class" bindtap="bindtap" bindgetphonenumber="bindgetphonenumber">手机号一键登录 </button>
 		</view>
+		<view class="model_Show_boxCont"  wx:if="{{!pitch}}">
+			<button style="font-size:14px;background-color:red;border:3px solid rgba(255, 255, 255, 1);border:3px solid rgba(255, 255, 255, 1);border-radius: 24px;color:#ffffff;padding:8px;width:211px;height:42px;font-weight:100;"  class="component-class" bindtap="bindtaPhone">手机号一键登录 </button>
+		</view>
 		<view class="model_box">
-			<label  bindtap="gopitch">
+			<label bindtap="gopitch">
 				<radio value="r1" checked="{{pitch}}" />
 			</label>
 			<view class="model_boxTxt">我已阅读并同意<text class="model_boxTxt_but" bindtap="goAgreement">《荷适用户服务协议》《个人信息保护政策》和《荷适职业小程序隐私保护指引》</text></view>

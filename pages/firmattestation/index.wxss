@@ -148,7 +148,7 @@
   border: 1rpx solid rgba(187, 187, 187, 1);
   margin-top: 20rpx;
   padding: 20rpx;
-  height: 240rpx;
+  /* height: 240rpx; */
 }
 
 .upload_txt {
