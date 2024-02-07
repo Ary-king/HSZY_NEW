@@ -9,10 +9,41 @@ Page({
     "hidden": true,
     cityName: "北京", //获取选中的城市名
   },
-  onLoad(options) {},
-  onReady: function () {
+  onLoad(options) {
+    console.log(options)
+    this.setData({
+      cityName: options.cityname
+    })
+  },
+  // onReady: function () {
+  //   // 生命周期函数--监听页面初次渲染完成
+  //   var cityChild = city.City[0];
+  //   var that = this;
+  //   wx.getSystemInfo({
+  //     success: function (res) {
+  //       lineHeight = (res.windowHeight - 100) / 22;
+  //       console.log(res.windowHeight - 100)
+  //       that.setData({
+  //         city: cityChild,
+  //         winHeight: res.windowHeight - 40,
+  //         lineHeight: lineHeight
+  //       })
+  //     }
+  //   })
+  // },
+  onShow: function () {
+    // 生命周期函数--监听页面显示
     // 生命周期函数--监听页面初次渲染完成
     var cityChild = city.City[0];
+    console.log(cityChild)
+    for (let key in cityChild) {
+      console.log("for in循环" + key);
+        let arr = cityChild[key]
+        for (var i = 0; i < arr.length; i++) {
+          console.log(arr[i])
+          arr[i].checkShow = true
+      }
+    }
     var that = this;
     wx.getSystemInfo({
       success: function (res) {
@@ -25,10 +56,6 @@ Page({
         })
       }
     })
-  },
-  onShow: function () {
-    // 生命周期函数--监听页面显示
-
   },
   onHide: function () {
     // 生命周期函数--监听页面隐藏

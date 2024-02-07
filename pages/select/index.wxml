@@ -22,7 +22,7 @@
       </view>
     </view>
     <view class="selectbox">
-      <view class="selectboxMin_two {{item.checked ? 'selectRed' : ''}}" wx:for="{{posNameData}}" wx:key="index" data-item="{{item}}" bindtap="clickZwmc"> {{item.name}}</view>
+      <view class="selectboxMin_two {{item.checked ? 'selectRed' : ''}}" wx:for="{{posNameData}}" wx:key="index" wx:if="{{posNameShow ? true : index < 6}}" data-item="{{item}}" bindtap="clickZwmc"> {{item.name}}</view>
     </view>
   </view>
   <view wx:if="{{industryDatad.length > 0}}">
@@ -36,7 +36,7 @@
       </view>
     </view>
     <view class="selectbox">
-      <view class="selectboxMin_two {{item.checked ? 'selectRed' : ''}}" wx:for="{{industryDatad}}" wx:key="index" data-item="{{item}}" bindtap="clicSshy"> {{item.name}}</view>
+      <view class="selectboxMin_two {{item.checked ? 'selectRed' : ''}}" wx:for="{{industryDatad}}" wx:key="index" wx:if="{{induShow ? true : index < 6}}" data-item="{{item}}" bindtap="clicSshy"> {{item.name}}</view>
     </view>
   </view>
   <view wx:if="{{setupTimeData.length > 0}}">

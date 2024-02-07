@@ -77,9 +77,10 @@ Page({
       url: '/pages/index/index',
     })
   },
-  goCity(){
+  goCity(e){
+    let city = e.currentTarget.dataset.city
     wx.navigateTo({
-      url: '/pages/allCity/index',
+      url: '/pages/allCity/index?cityname=' + city,
     })
   }
 })

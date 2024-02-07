@@ -196,7 +196,7 @@ Page({
       });
       this.setData({
         industryData: newData,
-        industryDatad: newData.slice(0, 6)
+        industryDatad: newData
       })
     }).catch(err => {
       console.log(err);
@@ -217,7 +217,7 @@ Page({
       });
       this.setData({
         allposNameData: newData,
-        posNameData: newData.slice(0, 6)
+        posNameData: newData
       })
     }).catch(err => {
       console.log(err);
@@ -326,7 +326,7 @@ Page({
     const dataListFilt = {
       opengroups: this.data.opengroups || '',
       type: this.data.type || '',
-      posName: this.data.posName || '',
+      posName: this.data.posName == '不限' ? '' : this.data.posName,
       industry: this.data.industry || '',
       setupTim: this.data.setupTim || '',
       scaleCom: this.data.scaleCom || '',
@@ -339,30 +339,15 @@ Page({
     })
   },
   showZwmc() {
-    if (this.data.posNameShow) {
-      this.setData({
-        posNameData: this.data.allposNameData.slice(0, 6),
-        posNameShow: !this.data.posNameShow
-      })
-    } else {
-      this.setData({
-        posNameData: this.data.allposNameData,
-        posNameShow: !this.data.posNameShow
-      })
-    }
+    this.setData({
+      posNameShow: !this.data.posNameShow
+    })
   },
   showHy() {
-    if (this.data.induShow) {
-      this.setData({
-        industryDatad: this.data.industryData.slice(0, 6),
-        induShow: !this.data.induShow
-      })
-    } else {
-      this.setData({
-        industryDatad: this.data.industryData,
-        induShow: !this.data.induShow
-      })
-    }
+    this.setData({
+      induShow: !this.data.induShow
+    })
+
   },
 
 })

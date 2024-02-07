@@ -9,10 +9,10 @@
       </view>
       <view class="city_box_adTxt">{{cityName}}</view>
     </view>
-    <view class="city_box_adIcon"  bindtap="goCity">
+    <view class="city_box_adIcon"  bindtap="goCity"  data-city="{{cityName}}">
       <image class="city_img" src="https://heshiwork.com/storage/202402/a17e8edf6777718475d530a29e22f00b.png" mode="" />
     </view>
-    <view class="city_box_adTxt" bindtap="goCity">切换城市</view>
+    <view class="city_box_adTxt" bindtap="goCity" data-city="{{cityName}}">切换城市</view>
   </view>
   <view class="content">
     <view class='left'>
