@@ -23,10 +23,10 @@
     </view>
     <view class="payset_box">
       <view class="payset_title">开放日期设置</view>
-      <view  class="payset_all">
+      <!-- <view  class="payset_all">
         <view class="payset_title_txt">旧的可预订日期：</view>
         <view class="payset_title_time" wx:for="{{open_date}}">{{item}}</view>
-      </view>
+      </view> -->
       <calendar weektitle-style='weektitle-style' colored='colored' datatitle-style='datatitle-style' header-style='header-style' remark_style='headline' bindrecordClickedDate='bindrecordClickedDate' active-coloro='active-coloro' active-colort='active-colort' ifRecordClickedDate='true' bindselectDate='selectDate' bindnextMonth='nextMonth' bindprevMonth='prevMonth' />
     </view>
     <view class="payset_box">

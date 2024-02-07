@@ -105,6 +105,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/persdatalist/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

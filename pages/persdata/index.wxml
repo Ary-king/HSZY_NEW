@@ -1,6 +1,6 @@
 <view class="persdata">
   <view class="prefecture-title-wrapper">
-    <view class="prefecture-title-txt {{isContainer === '2' ? 'selected' : ''}}" data-container="2" bindtap="containerMs">学生过</view>
+    <view class="prefecture-title-txt {{isContainer === '2' ? 'selected' : ''}}" data-container="2" bindtap="containerMs">学生</view>
     <view class="prefecture-title-txt {{isContainer === '1' ? 'selected' : ''}}" data-container="1" bindtap="containerMs">社会人员</view>
   </view>
   <view class="prefecture-container prefecture-container-1" hidden="{{isContainer !== '2'}}">
@@ -152,13 +152,13 @@
       <view class="persdata_form">
         <view class="persdata_formOne">
           <view class="persdata_formOneName">
-            <view class="persdata_formOneName_txt">姓名</view>
+            <view class="persdata_formOneName_txts">姓名</view>
             <view class="persdata_formOneName_inpt">
               <input id="qyname" name="qyname" bind:change="handleChange" placeholder-class="form_allInput_class" placeholder="与证件保持一致" />
             </view>
           </view>
           <view class="persdata_formTwo">
-            <view class="persdata_formOneName_txt">性别</view>
+            <view class="persdata_formOneName_txts">性别</view>
             <view class="persdata_formOneAge_select">
               <picker style="font-size:32rpx;" id="qysex" name="qysex" mode="selector" bindchange="bindPickerChangeAge" range-key="name" range="{{range}}" value="{{ageindex}}" custom-item="{{customItem}}">
                 <view class="picker">

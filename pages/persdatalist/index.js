@@ -10,7 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    info_list:[]
+    info_list: []
   },
 
   /**
@@ -45,7 +45,7 @@ Page({
     }).then(res => {
       console.log(res.data);
       sdk.utils.extend.hideLoading()
-      if(res.data.length >0){
+      if (res.data.length > 0) {
         let newData = res.data.map(item => {
           item.showIs = false;
           return item;
@@ -65,13 +65,37 @@ Page({
     console.log(e.currentTarget.dataset.indexid)
     const indexid = e.currentTarget.dataset.indexid
     const allData = this.data.info_list
-    allData.forEach((item,index) => {
-      if(indexid == index){
+    allData.forEach((item, index) => {
+      if (indexid == index) {
         item.showIs = !item.showIs
       }
     })
     this.setData({
-      info_list:allData
+      info_list: allData
+    })
+  },
+  goDelete(e) {
+    console.log(e.currentTarget.dataset.id)
+    const id = e.currentTarget.dataset.id
+    sdk.utils.extend.showLoading('加载中');
+    sdk.request({
+      url: CGI.del_user_info,
+      method: 'GET',
+      header: {
+        token: wx.getStorageSync('token')
+      },
+      data: {
+        id: id
+      }
+    }).then(res => {
+      console.log("删除个人信息-----", res);
+      if (res.msg == '操作成功') {
+        this.get_info_list()
+      }
+      sdk.utils.extend.hideLoading()
+    }).catch(err => {
+      sdk.utils.extend.hideLoading()
+      console.log(err);
     })
   }
 })

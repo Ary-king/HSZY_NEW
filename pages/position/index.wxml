@@ -25,8 +25,7 @@
         <view class="indexHot_cont_title">
           <view class="indexHot_cont_titleFont">{{item.title}}</view>
           <view class="indexHot_cont_titleClassfiy">
-            <view class="indexHot_cont_titleClassText">体验</view>
-            <view class="indexHot_cont_titleClassText">运营</view>
+            <view class="indexHot_cont_titleClassText" wx:for="{{item.type}}" wx:key="index" wx:for-item="items">{{items.title}}</view>
           </view>
         </view>
         <view class="indexHot_cont_titlePrice">¥{{item.salary_day}}元/月</view>

@@ -73,7 +73,12 @@ radio .wx-radio-input {
   border-bottom: 1rpx #000000 solid;
   padding: 0rpx 20rpx;
 }
-
+.pickers{
+  color: #000000;
+  font-size: 36rpx;
+  border-bottom: 1rpx #000000 solid;
+  padding: 0rpx 20rpx;
+}
 .payset_dataMaxInput {
   display: flex;
 }

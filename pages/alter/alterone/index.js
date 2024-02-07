@@ -12,13 +12,13 @@ Page({
   data: {
     dataAll:{},
     title: '', //职位名称
-    zwms: '', //职位描述
-    industryIndex: [0, 0], //所属行业
-    zwsxnr: '', //职位体验内容
-    zwsxyq: '', //职位体验要求
+    zwmsxg: '', //职位描述
+    industry_id: [0, 0], //所属行业
+    zwsxnrxg: '', //职位体验内容
+    zwsxyqxg: '', //职位体验要求
     salary_min: '', //最低薪酬
     salary_max: '', //最高薪酬
-    multiIndex: [0, 0],
+    major_id: [0, 0],
     id: '',
     industry: '',
     mjoname1: '',
@@ -27,6 +27,7 @@ Page({
     industryname2: '',
     majorData: [],
     industryData: []
+    
   },
 
   /**
@@ -39,26 +40,31 @@ Page({
     this.setData({
       dataAll: pageData.dataList.job,
       title: dataAll.title,
-      zwms: dataAll.desc,
-      zwsxnr: dataAll.job_desc,
-      zwsxyq: dataAll.job_ask,
+      zwmsxg: dataAll.desc,
+      zwsxnrxg: dataAll.job_desc,
+      zwsxyqxg: dataAll.job_ask,
       salary_min: dataAll.salary_min,
       salary_max: dataAll.salary_max,
       industry: dataAll.industry,
       id: dataAll.id,
+      industryIndex:dataAll.industry_id,
+      multiIndex:dataAll.major_id,
     })
+    wx.setStorageSync('zwmsxg', dataAll.desc)
+    wx.setStorageSync('zwsxnrxg', dataAll.job_desc)
+    wx.setStorageSync('zwsxyqxg', dataAll.job_ask)
     this.getmajor();
     this.getindustry()
   },
   onShow() {
-    // let zwms = wx.getStorageSync('zwms')
-    // let zwsxnr = wx.getStorageSync('zwsxnr')
-    // let zwsxyq = wx.getStorageSync('zwsxyq')
-    // this.setData({
-    //   zwms: zwms || '',
-    //   zwsxnr: zwsxnr || '',
-    //   zwsxyq: zwsxyq || ''
-    // })
+    let zwmsxg = wx.getStorageSync('zwmsxg')
+    let zwsxnrxg = wx.getStorageSync('zwsxnrxg')
+    let zwsxyqxg = wx.getStorageSync('zwsxyqxg')
+    this.setData({
+      zwmsxg: zwmsxg || '',
+      zwsxnrxg: zwsxnrxg || '',
+      zwsxyqxg: zwsxyqxg || ''
+    })
   },
   formSubmit(e) {
     console.log(e);
@@ -75,32 +81,26 @@ Page({
     const goDetail = {
       id: this.data.id,
       title: dataList.title,
-      desc: this.data.zwms,
-      job_desc: this.data.zwsxnr,
-      job_ask: this.data.zwsxyq,
+      desc: this.data.zwmsxg,
+      job_desc: this.data.zwsxnrxg,
+      job_ask: this.data.zwsxyqxg,
       salary_min: dataList.salary_min,
       salary_max: dataList.salary_max,
       industry: this.data.industryname1 + this.data.industryname2,
       major: this.data.mjoname1 + this.data.mjoname2,
+      industry_id:this.data.industryIndex,
+      major_id:this.data.multiIndex
     }
     console.log("提交的数据----------", goDetail)
-    this.setData({
-      params: {
-        id: this.data.id,
-        dataAll:this.data.dataAll
-      }
-    })
-    wx.navigateTo({
-      url: '/pages/alter/altertwo/index',
-    })
-    // this.getjob_create(goDetail)
+
+    this.getjob_create(goDetail)
 
   },
 
   getjob_create(dataList) {
     sdk.utils.extend.showLoading('加载中');
     sdk.request({
-      url: CGI.getjob_create,
+      url: CGI.getedit_job,
       method: 'POST',
       header: {
         token: wx.getStorageSync('token')
@@ -108,7 +108,7 @@ Page({
       data: dataList
     }).then(res => {
       sdk.utils.extend.hideLoading()
-      console.log(res)
+      console.log('111111111111----',res)
       if (res.msg == '操作成功') {
         this.setData({
           params: {
@@ -117,7 +117,7 @@ Page({
           }
         })
         wx.navigateTo({
-          url: '/pages/payset/index',
+          url: '/pages/alter/altertwo/index',
         })
       }
     }).catch(err => {

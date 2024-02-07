@@ -59,16 +59,21 @@ module.exports = Object.assign({
   // 订单详情
   getorderdetail: htUrl + '/api/index/orderdetail',
   // 审核职位
-  getexa_order: 'https://heshiwork.com/api/index/exa_order',
+  getexa_order: htUrl + '/api/index/exa_order',
   //上传用户头像
-  getset_userinfo:'https://heshiwork.com/api/index/set_userinfo',
+  getset_userinfo: htUrl + '/api/index/set_userinfo',
   // 当前日期是否可以预定
-  getjobday:'https://heshiwork.com/api/index/jobday',
+  getjobday: htUrl + '/api/index/jobday',
   // 获取城市
-  getAllCity:'https://heshiwork.com/api/index/getAllCity',
-  getuserAgreement:'https://heshiwork.com/api/index/userAgreement',
+  getAllCity: htUrl + 'api/index/getAllCity',
+  getuserAgreement: htUrl + '/api/index/userAgreement',
   // 北京的区
-  getBjprodistrictvince:'https://heshiwork.com/api/index/getBjprodistrictvince',
+  getBjprodistrictvince: htUrl + '/api/index/getBjprodistrictvince',
   //服务条款
-  getpcst:'https://heshiwork.com/api/index/getpcst'
+  getpcst: htUrl + '/api/index/getpcst',
+  //职位在编辑
+  getedit_job: htUrl + '/api/index/edit_job',
+  //个人信息删除
+  del_user_info: htUrl + '/api/index/del_user_info'
+
 }, sdkCGI);

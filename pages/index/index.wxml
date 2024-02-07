@@ -36,7 +36,7 @@
 				<view class="indexHot_select_text">热门职位</view>
 			</view>
 			<view class="indexHot_select_right">
-				<view class="indexHot_select_rightBox" bindtap="goCity">
+				<view class="indexHot_select_rightBox" bindtap="goCity" data-city="{{cityName}}">
 					<view class="indexHot_select_rightBoxTxt">{{cityName}}</view>
 					<view class="indexHot_select_rightBoxImg">
 						<image class="indexHot_select_rightBoxImgIcon" src="https://heshiwork.com/storage/202401/0b57f6af6ce56ca2fbeaad1840f67183.png" mode="" />

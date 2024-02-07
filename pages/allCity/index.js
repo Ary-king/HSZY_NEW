@@ -140,17 +140,17 @@ Page({
     console.log(e)
     console.log(e.currentTarget.dataset.cityname)
     let city = e.currentTarget.dataset.cityname
-    if (city == '北京') {
-      wx.navigateTo({
-        url: '/pages/bjcity/index?cityname=' + city,
-      })
-    } else {
+    // if (city == '北京') {
+    //   wx.navigateTo({
+    //     url: '/pages/bjcity/index?cityname=' + city,
+    //   })
+    // } else {
       wx.setStorageSync('cityName', city)
       wx.setStorageSync('againData', '1')
       wx.switchTab({
         url: '/pages/index/index',
       })
-    }
+    // }
   }
 
 })

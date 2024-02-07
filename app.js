@@ -17,7 +17,9 @@ App({
     wx.removeStorageSync('bjCity');
     wx.removeStorageSync('cityName');
     wx.removeStorageSync('gsjs');
-
+    wx.removeStorageSync('zwmsxg');
+    wx.removeStorageSync('zwsxnrxg');
+    wx.removeStorageSync('zwsxyqxg');
   },
   onShow: function () {
     mainApp.onShow.apply(this, arguments);

@@ -7,7 +7,7 @@
       <view class="city_box_adIcon">
         <image class="city_img" src="https://heshiwork.com/storage/202402/317069ddb391fc80ee947c09f92802bf.png" mode="" />
       </view>
-      <view class="city_box_adTxt">北京</view>
+      <view class="city_box_adTxt">{{cityName}}</view>
     </view>
     <view class="city_box_adIcon"  bindtap="goCity">
       <image class="city_img" src="https://heshiwork.com/storage/202402/a17e8edf6777718475d530a29e22f00b.png" mode="" />

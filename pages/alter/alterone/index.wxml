@@ -11,10 +11,10 @@
       <view class="postJobForm_top">所属行业</view>
       <view class="pickDis">
         <view class="postJobForm_pickwit">
-          <picker style="font-size:36rpx;color: rgba(186,185,185,1);" id="major" name="major" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" range="{{indusData}}" value="{{industry}}">
+          <picker style="font-size:36rpx;color: rgba(186,185,185,1);" id="major" name="major" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" range="{{indusData}}" value="{{industry_id}}">
             <view class="picker">
               <!-- {{majorData[multiIndex[0]].name}} -->
-              {{indusData[0][industryIndex[0]]}}，{{indusData[1][industryIndex[1]]}}
+              {{indusData[0][industry_id[0]]}}，{{indusData[1][industry_id[1]]}}
             </view>
           </picker>
         </view>
@@ -25,23 +25,23 @@
     </view>
     <view class="postJobForm">
       <view class="postJobForm_top">职位描述</view>
-      <view class="postJobForm_bot bot_class" bindtap="goCont" data-newName="zwms">
-        <view class="bot_class" wx:if="{{zwms == ''}}">请描述职位主要职责和任职要求，不得填写联系方式</view>
-        <rich-text style="color: black;" nodes="{{zwms}}"></rich-text>
+      <view class="postJobForm_bot bot_class" bindtap="goCont" data-newName="zwmsxg">
+        <view class="bot_class" wx:if="{{zwmsxg == ''}}">请描述职位主要职责和任职要求，不得填写联系方式</view>
+        <rich-text style="color: black;" nodes="{{zwmsxg}}"></rich-text>
       </view>
     </view>
     <view class="postJobForm">
       <view class="postJobForm_top">职位体验内容</view>
-      <view class="postJobForm_bot bot_class" bindtap="goCont" data-newName="zwsxnr">
-        <view class="bot_class" wx:if="{{zwsxnr == ''}}">请描述工作内容或流程，不得填写联系方式</view>
-        <rich-text  style="color: black;" nodes="{{zwsxnr}}"></rich-text>
+      <view class="postJobForm_bot bot_class" bindtap="goCont" data-newName="zwsxnrxg">
+        <view class="bot_class" wx:if="{{zwsxnrxg == ''}}">请描述工作内容或流程，不得填写联系方式</view>
+        <rich-text  style="color: black;" nodes="{{zwsxnrxg}}"></rich-text>
       </view>
     </view>
     <view class="postJobForm">
       <view class="postJobForm_top">职位体验要求</view>
-      <view class="postJobForm_bot bot_class" bindtap="goCont" data-newName="zwsxyq">
-        <view class="bot_class" wx:if="{{zwsxyq == ''}}">请描述注意事项，不得填写联系方式</view>
-        <rich-text style="color: black;" nodes="{{zwsxyq}}"></rich-text>
+      <view class="postJobForm_bot bot_class" bindtap="goCont" data-newName="zwsxyqxg">
+        <view class="bot_class" wx:if="{{zwsxyqxg == ''}}">请描述注意事项，不得填写联系方式</view>
+        <rich-text style="color: black;" nodes="{{zwsxyqxg}}"></rich-text>
       </view>
     </view>
     <view class="postJobForm">
@@ -62,10 +62,10 @@
       <view class="postJobForm_top">对口专业</view>
       <view class="pickDis">
         <view class="postJobForm_pickwit">
-          <picker style="font-size:36rpx;color: rgba(186,185,185,1);" id="major" name="major" mode="multiSelector" bindchange="bindMultiPickerChangemajor" bindcolumnchange="bindMultiPickerColumnChangemajor" range="{{allData}}" value="{{multiIndex}}">
+          <picker style="font-size:36rpx;color: rgba(186,185,185,1);" id="major" name="major" mode="multiSelector" bindchange="bindMultiPickerChangemajor" bindcolumnchange="bindMultiPickerColumnChangemajor" range="{{allData}}" value="{{major_id}}">
             <view class="picker">
               <!-- {{majorData[multiIndex[0]].name}} -->
-              {{allData[0][multiIndex[0]]}}，{{allData[1][multiIndex[1]]}}
+              {{allData[0][major_id[0]]}}，{{allData[1][major_id[1]]}}
             </view>
           </picker>
         </view>

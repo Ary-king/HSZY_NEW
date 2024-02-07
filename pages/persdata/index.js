@@ -128,7 +128,7 @@ Page({
 
 
   formSubmit(e) {
-    console.log('学生过----------------：', e.detail.value)
+    console.log('学生----------------：', e.detail.value)
     const sumData = e.detail.value;
     if (sumData.name == '' || sumData.number == '' || sumData.mobile == '' || sumData.school == '') {
       wx.showModal({
@@ -291,7 +291,7 @@ Page({
       school: '',
       grade: '',
       img1: this.data.iDone,
-      img2: this.data.iDthre,
+      img2: this.data.iDtwo,
       img3: '',
       imgs: [],
       age: sumData.qyage,

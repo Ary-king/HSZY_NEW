@@ -26,6 +26,7 @@ Page({
     const pageData = getPrevPageData()
     console.log('--------------', pageData)
     this.setData({
+      reserve:pageData.reserve,
       company: pageData.dataList.company,
       job: pageData.dataList.job,
       order: pageData.dataList.order,

@@ -57,7 +57,7 @@
             <view class="picker" wx:if="{{!timeMin}}">
               请选择
             </view>
-            <view class="picker" wx:if="{{timeMin}}">
+            <view class="pickers" wx:if="{{timeMin}}">
               {{timeMin}}
             </view>
           </picker>
@@ -68,7 +68,7 @@
             <view class="picker" wx:if="{{!timeMax}}">
               请选择
             </view>
-            <view class="picker" wx:if="{{timeMax}}">
+            <view class="pickers" wx:if="{{timeMax}}">
               {{timeMax}}
             </view>
           </picker>

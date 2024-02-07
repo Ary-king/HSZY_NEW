@@ -24,10 +24,7 @@ Page({
   onLoad() {
     this.getjob_list('-1', this.data.current)
   },
-  formatRich(val) {
-    vsl ='1、负责业务需求分析、架构设计，保障高可用、高性能和可扩展性:2、支持业务架构升级、老系统的迁移改这应用的研发3、能够根据不同的业务需求，灵活快速地完成具有挑战性的项目。'
-    return "<div style='overflow: hidden;text-overflow: ellipsis;white-space: nowrap;'>" + vsl + "</div>"
-  },
+
 
   containerMs(e) {
     console.log(e)

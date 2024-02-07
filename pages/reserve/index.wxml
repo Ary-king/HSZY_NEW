@@ -19,8 +19,8 @@
 	<view class="reserve_pers">
 		<view class="reserve_persTitle">选择人员</view>
 		<radio-group bindchange="radioChange">
-			<label class="weui-cell weui-check__label">
-				<view class="reserve_pers_select" wx:if="{{info_list.length > 0}}" wx:for="{{info_list}}" wx:key="index">
+			<label class="weui-cell weui-check__label"  wx:if="{{info_list.length > 0}}" wx:for="{{info_list}}">
+				<view class="reserve_pers_select" wx:key="index">
 					<view class="reserve_pers_selectIcon">{{item.type == 2 ? '学生' : '社会人员' }}</view>
 					<view class="reserve_pers_selectBox">
 						<view class="reserve_pers_selectBoxPer">

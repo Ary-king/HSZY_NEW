@@ -249,9 +249,10 @@ Page({
       url: '/pages/agreement/index',
     })
   },
-  goCity() {
-    wx.navigateTo({
-      url: '/pages/bjcity/index',
+  goCity(e) {
+    let city = e.currentTarget.dataset.city
+      wx.navigateTo({
+        url: '/pages/bjcity/index?cityname=' + city,
     })
   },
   goNoBut() {

@@ -185,7 +185,7 @@ page {
 	white-space: nowrap;
 }
 
-.cont_address_firmADTextAll {
+.indexHot_cont_Int {
 	color: rgba(16, 16, 16, 1);
 	font-size: 26rpx;
 	width: 90%;

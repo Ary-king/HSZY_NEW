@@ -1,6 +1,9 @@
 <view class="perList">
   <view class="perList_title">人员信息</view>
   <view class="perList_box" wx:for="{{info_list}}" wx:key="index">
+		<view class="but_de" bindtap="goDelete" data-id="{{item.id}}">
+			<image class="but_deImg" src="https://heshiwork.com/storage/202402/472ac3f5ffcb0a92242c2baa067bebe0.png" mode="" />
+		</view>
     <view class="perList_box_li">
       <view class="perList_boxName boxRight">
         <view class="perList_boxName-r">姓名</view>
@@ -84,7 +87,7 @@
     </view>
     <view class="perList_box_li" wx:if="{{item.images.length > 0}}">
       <view class="perList_boxNameimg ">
-        <view class="perList_boxNameimg-r">社保缴纳激励</view>
+        <view class="perList_boxNameimg-r">社保缴纳记录</view>
         <view class="perList_boxNameimg-top" wx:for="{{item.images}}">
           <image class="perList_boxNameimg-Img" src="{{item}}" mode="" />
         </view>

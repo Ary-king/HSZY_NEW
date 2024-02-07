@@ -85,7 +85,7 @@
       <image class="imgsAll" src="{{item}}" mode="" />
     </view>
   </view>
-  <view class="orderdetail_oper" wx:if="{{jobstatus}}">
+  <view class="orderdetail_oper" wx:if="{{reserve != '3'}}">
     <view class="orderdetail_operPass" bindtap="goPass">通过</view>
     <view class=" orderdetail_operPass turn" bindtap="goRefuse">拒绝</view>
   </view>

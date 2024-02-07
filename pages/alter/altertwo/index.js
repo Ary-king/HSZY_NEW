@@ -10,7 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    restock_desc:'',
+    restock_desc: '',
     salary_day: '',
     open_date: [],
     timeMin: '',
@@ -18,9 +18,12 @@ Page({
     bqsm: '',
     open_groups: [],
     eav: "",
+    newtype: [],
     type: [],
+    oldnewtype: [],
     time: [],
-    restock_Show: false
+    restock_Show: false,
+    id: ''
   },
 
   /**
@@ -32,7 +35,9 @@ Page({
     this.get_open_groups()
     console.log("上个页面带过来的数据-------", getPrevPageData())
     const dataAll = getPrevPageData().dataAll
+    wx.setStorageSync('bqsm', dataAll.restock_desc)
     this.setData({
+      id: dataAll.id,
       salary_day: dataAll.salary_day,
       open_date: dataAll.open_date,
       timeMin: dataAll.salary_min,
@@ -42,9 +47,16 @@ Page({
       day_max: dataAll.day_max,
       open_groups: dataAll.open_groups,
       eav: dataAll.eav,
-      type: dataAll.type,
+      oldnewtype: dataAll.type,
       restock_desc: dataAll.restock_desc,
       restock_Show: dataAll.restock_desc ? true : false
+    })
+  },
+  onShow() {
+    let bqsm = wx.getStorageSync('bqsm')
+    console.log(bqsm)
+    this.setData({
+      restock_desc: bqsm || '',
     })
   },
   handleChange(e) {
@@ -102,7 +114,6 @@ Page({
       res.data.forEach(item => {
         console.log(item)
         if (this.data.eav == item.id) {
-          console.log("1111111111111")
           item.checked = true
         } else {
           item.checked = false
@@ -122,19 +133,21 @@ Page({
       data: {}
     }).then(res => {
       console.log(res)
-      let oldList = this.data.type
+      let oldList = this.data.oldnewtype
       let newList = res.data
+      let type = []
       for (let i = 0; i <= oldList.length - 1; i++) {
-        for (let j = 1; j <= newList.length - 1; j++) {
-          if (oldList[i].title == newList[i].title) {
-            newList[i].checked = true
-          } else {
-            newList[i].checked = false
+        console.log('111---',oldList[i].title)
+        for (let j = 0; j <= newList.length - 1; j++) {
+          if (oldList[i].title == newList[j].title) {
+            newList[j].checked = true
+            type.push(newList[j].id)
           }
         }
       }
       this.setData({
-        typeData: newList
+        typeData: newList,
+        type: type
       })
     }).catch(err => {
       console.log(err)
@@ -150,16 +163,15 @@ Page({
       let oldList = this.data.open_groups
       let newList = res.data
       for (let i = 0; i <= oldList.length - 1; i++) {
-        for (let j = 0; j <= newList.length - 1; j++) {
-          if (oldList[i] == newList[i].title) {
-            newList[i].checked = true
-          } else {
-            newList[i].checked = false
+        console.log(oldList[i])
+        newList.forEach(res => {
+          if (oldList[i] == res.title) {
+            res.checked = true
           }
-        }
+        })
       }
       this.setData({
-        groupData: res.data
+        groupData: newList
       })
     }).catch(err => {
       console.log(err)
@@ -203,7 +215,8 @@ Page({
       });
       return
     }
-    if (this.data.open_groups.length == 0 || this.data.eav == "" || this.data.type.length == 0 || this.data.bqsm == '') {
+    console.log(this.data.open_groups, this.data.eav, this.data.type, this.data.restock_desc)
+    if (this.data.open_groups.length == 0 || this.data.eav == "" || this.data.type.length == 0 || this.data.restock_desc == '') {
       wx.showModal({
         title: '提示',
         content: '信息未填写完整，请完善相关信息',
@@ -221,11 +234,10 @@ Page({
       return
     }
     const dataList = {
-      id: this.id,
+      id: this.data.id,
       open_groups: this.data.open_groups,
       salary_day: sumData.salary_day,
       open_date: this.data.time,
-      // open_date_end: "",
       work_hours_start: this.data.timeMin,
       work_hours_end: this.data.timeMax,
       day_min: sumData.day_min,
@@ -233,7 +245,7 @@ Page({
       day_num: sumData.day_num,
       eav: this.data.eav,
       type: this.data.type,
-      restock_desc: this.data.bqsm,
+      restock_desc: this.data.restock_desc,
       status: comId
     }
     console.log("最终提交的数据--------", dataList)
@@ -301,12 +313,7 @@ Page({
       showCancel: false
     });
   },
-  onShow() {
-    let bqsm = wx.getStorageSync('bqsm')
-    this.setData({
-      bqsm: bqsm || '',
-    })
-  },
+
   goCont(e) {
     console.log(e)
     console.log(e.currentTarget.dataset.newname)
