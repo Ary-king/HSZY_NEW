@@ -18,7 +18,7 @@
       </view>
     </view>
     <view class="selectbox">
-      <view class="selectboxMin {{item.checked ? 'selectRed' : ''}}" wx:for="{{posNameData}}" wx:key="index" data-item="{{item}}" bindtap="clickZwmc"> {{item.name}}</view>
+      <view class="selectboxMin {{item.checked ? 'selectRed' : ''}}" wx:for="{{posNameData}}" wx:key="index"  wx:if="{{posNameShow ? true : index < 20}}" data-item="{{item}}" bindtap="clickZwmc"> {{item.name}}</view>
     </view>
   </view>
   <view class="indexBut">

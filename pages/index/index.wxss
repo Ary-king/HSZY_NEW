@@ -67,7 +67,7 @@ page {
 
 
 .indexHot {
-	padding: 20rpx 34rpx;
+	padding: 20rpx 30rpx;
 }
 
 .indexHot_box {
@@ -114,7 +114,7 @@ page {
 	/* text-align: center; */
 	box-shadow: 2px 2px 10px 2px rgba(213, 221, 232, 0.5);
 	font-family: Roboto;
-	padding: 28rpx;
+	padding: 20rpx 20rpx;
 }
 
 .indexHot_cont_all {
@@ -139,21 +139,20 @@ page {
 	/* 超出部分隐藏 */
 	text-overflow: ellipsis;
 	/* 显示省略号 */
-	/* width: 30%; */
-}
+	width: 200rpx;}
 
 .indexHot_cont_titlePrice {
 	/* display: flex; */
 	align-items: center;
 	padding: 5rpx 0;
-	padding-left: 40rpx;
+	/* padding-left: 40rpx; */
 	box-sizing: border-box;
 	flex: 1;
 	text-align: right;
 	color: rgba(244, 98, 127, 1);
 	font-size: 32rpx;
 	font-weight: bold;
-	width: 40%;
+   width: 300rpx;
 	white-space: nowrap;
 	/* 不换行 */
 	overflow: hidden;
@@ -165,14 +164,14 @@ page {
 .indexHot_cont_titleFont {
 	font-size: 40rpx;
 	font-weight: bold;
-	padding-right: 32rpx;
+	padding-right: 14rpx;
 	white-space: nowrap;
 	/* 不换行 */
 	overflow: hidden;
 	/* 超出部分隐藏 */
 	text-overflow: ellipsis;
 	/* 显示省略号 */
-	width: 180rpx;
+	width:280rpx;
 }
 
 .indexHot_cont_titleClassText {
@@ -242,7 +241,7 @@ page {
 
 .indexHot_cont_footBoxMini {
 	color: rgba(100, 100, 100, 1);
-	font-size: 20rpx;
+	font-size: 22rpx;
 	/* display: flex; */
 	align-items: center;
 }

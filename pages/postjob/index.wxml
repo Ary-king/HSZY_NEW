@@ -59,19 +59,15 @@
       </view>
     </view>
     <view class="postJobForm">
-      <view class="postJobForm_top">对口专业</view>
-      <view class="pickDis">
-        <view class="postJobForm_pickwit">
-          <picker style="font-size:36rpx;color: rgba(186,185,185,1);" id="major" name="major" mode="multiSelector" bindchange="bindMultiPickerChangemajor" bindcolumnchange="bindMultiPickerColumnChangemajor" range="{{allData}}" value="{{multiIndex}}">
-            <view class="picker">
-              <!-- {{majorData[multiIndex[0]].name}} -->
-              {{allData[0][multiIndex[0]]}}，{{allData[1][multiIndex[1]]}}
-            </view>
-          </picker>
-        </view>
-        <view>
-          <image class="postJobForm_botImg" src="https://heshiwork.com/storage/202401/1994409330111e65016028665d66ee2b.png" mode="" />
-        </view>
+      <view class="postJobForm_top">对口专业<text class="postJobForm_topTxt">(选填一个)</text></view>
+      <view class="major1_class">
+        <input id="major1" name="major1" value="{{major1}}" maxlength='20' bind:change="handleChange" placeholder-class="form_allInput_class" placeholder="请填写专业" />
+      </view>
+      <view class="major1_class">
+        <input id="major2" name="major2" value="{{major2}}" maxlength='20' bind:change="handleChange" placeholder-class="form_allInput_class" placeholder="请填写专业" />
+      </view>
+      <view class="major1_class">
+        <input id="major3" name="major3" value="{{major3}}" maxlength='20' bind:change="handleChange" placeholder-class="form_allInput_class" placeholder="请填写专业" />
       </view>
     </view>
     <view class="post_but">

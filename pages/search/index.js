@@ -39,7 +39,7 @@ Page({
       });
       this.setData({
         allposNameData: newData,
-        posNameData: newData.slice(0, 20)
+        posNameData: newData
       })
     }).catch(err => {
       console.log(err);
@@ -92,16 +92,8 @@ Page({
     })
   },
   showZwmc() {
-    if (this.data.posNameShow) {
       this.setData({
-        posNameData: this.data.allposNameData.slice(0, 20),
         posNameShow: !this.data.posNameShow
       })
-    } else {
-      this.setData({
-        posNameData: this.data.allposNameData,
-        posNameShow: !this.data.posNameShow
-      })
-    }
   },
 })

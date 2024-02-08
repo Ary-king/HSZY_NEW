@@ -73,3 +73,12 @@
   font-size: 28rpx;
 
 }
+.major1_class{
+  width: 80%;
+  border: 1rpx solid rgba(187, 187, 187, 1);
+  padding: 10rpx;
+  margin-bottom: 20rpx;
+}
+.postJobForm_topTxt{
+  color: rgba(255,5,5,1);
+}

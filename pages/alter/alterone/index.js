@@ -18,6 +18,9 @@ Page({
     zwsxyqxg: '', //职位体验要求
     salary_min: '', //最低薪酬
     salary_max: '', //最高薪酬
+    major1:'',//选填专业1
+    major2:'',//选填专业2
+    major3:'',//选填专业3
     major_id: [0, 0],
     id: '',
     industry: '',

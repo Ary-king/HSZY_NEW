@@ -21,7 +21,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    this.getcompany_order(this.data.current, this.data.typeSataus)
   },
   containerMs(e) {
     const isContainer = e.currentTarget.dataset.container;
@@ -50,6 +49,9 @@ Page({
     }, () => {
       this.getcompany_order(this.data.current, this.data.typeSataus);
     });
+  },
+  onShow(){
+    this.getcompany_order(this.data.current, this.data.typeSataus)
   },
 
   goResult(e) {

@@ -51,7 +51,7 @@ page {
 }
 
 .state3 {
-	color: #FF0000 ;
+	color: rgba(107,107,107,1);
 }
 
 .msg_box_cont {

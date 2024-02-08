@@ -23,6 +23,7 @@ Page({
    */
   onLoad() {
     this.getjob_list('-1', this.data.current)
+    this._get_userinfo()
   },
 
 
@@ -40,9 +41,17 @@ Page({
     });
   },
   getPostJob() {
-    wx.navigateTo({
-      url: '/pages/postjob/index',
-    })
+    console.log(this.data.userinfoData.company)
+    if(this.data.userinfoData.company == 1){
+      wx.navigateTo({
+        url: '/pages/postjob/index',
+      })
+    }else{
+      wx.showToast({
+        title: '您企业还未认证通过不能发布职位',
+        icon:'none'
+      })
+    }
   },
   getjob_list(status, current) {
     const statId = status
@@ -98,12 +107,12 @@ Page({
       }
     }).then(res => {
       sdk.utils.extend.hideLoading()
-      console.log("数据详情-----",res)
+      console.log("数据详情-----", res)
       //职位管理跳转详情
       if (res.code == 0) {
         _this.setData({
           params: {
-            status:item.status,
+            status: item.status,
             reserve: "2",
             identId: item.id,
             dataList: res.data
@@ -133,5 +142,26 @@ Page({
         this.godataList(this.data.isContainer, current);
       });
     }
+  },
+  // 获取个人信息
+  _get_userinfo() {
+    wx.request({
+      url: 'https://heshiwork.com/api/index/get_userinfo',
+      method: 'GET',
+      header: {
+        token: wx.getStorageSync('token')
+      },
+      data: {},
+      success: (res) => {
+        console.log("个人信息---------", res)
+        const userinfoData = res.data.data
+        this.setData({
+          userinfoData: userinfoData
+        })
+      },
+      fail: (err) => {
+        console.log("个人信息获取失败---------", res)
+      }
+    })
   },
 })

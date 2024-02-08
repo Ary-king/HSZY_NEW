@@ -27,30 +27,26 @@ Page({
     ageindex: 0,
     scaleComData: [{
       id: 1,
-      name: '不限',
-      checked: false
-    }, {
-      id: 2,
       name: '0-20人',
       checked: false
     }, {
-      id: 3,
+      id: 2,
       name: '21-99人',
       checked: false
     }, {
-      id: 4,
+      id: 3,
       name: '100-499人',
       checked: false
     }, {
-      id: 5,
+      id: 4,
       name: '500-999人',
       checked: false
     }, {
-      id: 6,
+      id: 5,
       name: '1000-9999人',
       checked: false
     }, {
-      id: 7,
+      id: 6,
       name: '10000人以上',
       checked: false
     }],
