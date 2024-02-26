@@ -131,7 +131,7 @@ page {
 
 .indexHot_cont_titleClassfiy {
 	display: flex;
-	justify-content: center;
+	/* justify-content: center; */
 	align-items: center;
 	white-space: nowrap;
 	/* 不换行 */
@@ -139,7 +139,8 @@ page {
 	/* 超出部分隐藏 */
 	text-overflow: ellipsis;
 	/* 显示省略号 */
-	width: 200rpx;}
+	width: 200rpx;
+}
 
 .indexHot_cont_titlePrice {
 	/* display: flex; */
@@ -162,7 +163,7 @@ page {
 }
 
 .indexHot_cont_titleFont {
-	font-size: 40rpx;
+	font-size: 38rpx;
 	font-weight: bold;
 	padding-right: 14rpx;
 	white-space: nowrap;
@@ -171,7 +172,7 @@ page {
 	/* 超出部分隐藏 */
 	text-overflow: ellipsis;
 	/* 显示省略号 */
-	width:280rpx;
+	width:265rpx;
 }
 
 .indexHot_cont_titleClassText {

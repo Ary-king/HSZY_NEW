@@ -52,6 +52,9 @@ Page({
       id: dataAll.id,
       industryIndex:dataAll.industry_id,
       multiIndex:dataAll.major_id,
+      major:dataAll.major,
+      major2:dataAll.major2,
+      major3:dataAll.major3
     })
     wx.setStorageSync('zwmsxg', dataAll.desc)
     wx.setStorageSync('zwsxnrxg', dataAll.job_desc)

@@ -20,7 +20,9 @@ Page({
     industryIndex: [0, 0],
     industryname1: '',
     industryname2: '',
-    majorData: [],
+    major: '',
+    major2:'',
+    major3:'',
     industryData: [{
         name: '教师',
         value: 1
@@ -61,7 +63,7 @@ Page({
     console.log(e);
     console.log(e.detail.value);
     const dataList = e.detail.value;
-    if(dataList.major1=='' && dataList.major2=='' && dataList.major3==''){
+    if(dataList.major=='' && dataList.major2=='' && dataList.major3==''){
       wx.showModal({
         title: '提示',
         content: '信息未填写完整，请完善相关信息',
@@ -69,9 +71,6 @@ Page({
       });
       return
     }
-    let major =[]
-    major.push(dataList.major1,dataList.major2,dataList.major3)
-    console.log(major)
     if (dataList.title == '' || this.data.zwms == '' || this.data.zwsxnr == '' || this.data.zwsxyq == '' || dataList.salary_min == '' || dataList.salary_max == '') {
       wx.showModal({
         title: '提示',
@@ -88,7 +87,9 @@ Page({
       salary_min: dataList.salary_min,
       salary_max: dataList.salary_max,
       industry: this.data.industryname1 + this.data.industryname2,
-      major: this.data.mjoname1 + this.data.mjoname2,
+      major: dataList.major,
+      major2: dataList.major2,
+      major3: dataList.major3,
       industry_id:this.data.industryIndex,
       major_id:this.data.multiIndex
     }
