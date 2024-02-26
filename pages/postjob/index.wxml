@@ -64,7 +64,7 @@
         <input id="major1" name="major" value="{{major}}" maxlength='20' bind:change="handleChange" placeholder-class="form_allInput_class" placeholder="请填写专业" />
       </view>
       <view class="major1_class">
-        <input id="major2" name="major2" value="{{major2}}" maxlength='20' bind:change="handleChange" placeholder-class="form_allInput_class" placeholder="请填写专业" />
+        <input id="major2" name="major2" value="{{major2 || ''}}" maxlength='20' bind:change="handleChange" placeholder-class="form_allInput_class" placeholder="请填写专业" />
       </view>
       <view class="major1_class">
         <input id="major3" name="major3" value="{{major3}}" maxlength='20' bind:change="handleChange" placeholder-class="form_allInput_class" placeholder="请填写专业" />

@@ -20,14 +20,16 @@
 	<view class="cont_jobTiltleBox">
 		<view class="cont_jobTiltle">职位介绍</view>
 		<view class="typeClass">
-			<view class="typeClassTxt"  bindtap="goJiaobiao" data-bz="{{item.desc}}" wx:for="{{job.type}}" wx:key="index" >{{item.title}}</view>
+			<view class="typeClassTxt" bindtap="goJiaobiao" data-bz="{{item.desc}}" wx:for="{{job.type}}" wx:key="index">{{item.title}}</view>
 		</view>
 	</view>
 	<view class="cont_jobDuty">
 		<rich-text class="cont_details" nodes="{{job.desc}}"></rich-text>
 		<view class="cont_jobDuty_top">对口专业</view>
 		<view class="cont_jobDuty_list">
-			<view class="cont_jobDuty_listText">{{job.major}}</view>
+			<view class="cont_jobDuty_listText">{{job.major || ''}}</view>
+			<view class="cont_jobDuty_listText">{{job.major2 || ''}}</view>
+			<view class="cont_jobDuty_listText">{{job.major3 || ''}}</view>
 		</view>
 	</view>
 	<view class="cont_xian"></view>
@@ -81,5 +83,5 @@
 		<view class="indexFooter_let"> 预订{{order.day}}天</view>
 		<view class="indexFooter_rit">总计¥{{order.pay_price}}</view>
 	</view>
-	<view class="indexFooter_font {{order.jobstatus == 1 ? 'font1' : order.jobstatus == 2 ? 'font2'  : order.jobstatus == 3 ? 'font4'  : 'font3' }}">{{order.jobstatus == 1 ? '已通过' : order.jobstatus == 2 ? '已拒绝' : order.jobstatus == 3 ? '待审核'  : '已结束'}}</view>
+	<view class="indexFooter_font {{order.jobstatus == 1 ? 'font1' : order.jobstatus == 2 ? 'font2'  : order.jobstatus == 3 ? 'font4'  : 'font3' }}">{{order.jobstatus == 1 ? '已通过' : order.jobstatus == 2 ? '已拒绝' : order.jobstatus == 3 ? '待审核' : '已结束'}}</view>
 </view>

@@ -31,7 +31,9 @@
 		<rich-text class="cont_jobDuty_view" nodes="{{job.desc}}"></rich-text>
 		<view class="cont_jobDuty_top">对口专业</view>
 		<view class="cont_jobDuty_list">
-			<view class="cont_jobDuty_listText">{{job.major}}</view>
+			<view class="cont_jobDuty_listText">{{job.major || ''}}</view>
+			<view class="cont_jobDuty_listText">{{job.major2 || ''}}</view>
+			<view class="cont_jobDuty_listText">{{job.major3 || ''}}</view>
 		</view>
 	</view>
 	<view class="cont_xian"></view>

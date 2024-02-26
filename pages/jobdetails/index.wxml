@@ -20,14 +20,16 @@
 	<view style="display:flex;align-items: center;">
 		<view class="cont_jobTiltle">职位介绍</view>
 		<view class="typeClass">
-			<view class="typeClassTxt"  bindtap="goJiaobiao" data-bz="{{item.desc}}" wx:for="{{job.type}}" wx:key="index" >{{item.title}}</view>
+			<view class="typeClassTxt" bindtap="goJiaobiao" data-bz="{{item.desc}}" wx:for="{{job.type}}" wx:key="index">{{item.title}}</view>
 		</view>
 	</view>
 	<view class="cont_jobDuty">
 		<rich-text class="cont_details" nodes="{{job.desc}}"></rich-text>
 		<view class="cont_jobDuty_top">对口专业</view>
 		<view class="cont_jobDuty_list">
-			<view class="cont_jobDuty_listText">{{job.major}}</view>
+			<view class="cont_jobDuty_listText">{{job.major || ''}}</view>
+			<view class="cont_jobDuty_listText">{{job.major2 || ''}}</view>
+			<view class="cont_jobDuty_listText">{{job.major3 || ''}}</view>
 		</view>
 	</view>
 	<view class="cont_xian"></view>
