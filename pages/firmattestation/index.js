@@ -78,7 +78,6 @@ Page({
     let year = currentDate.getFullYear(); // 获取当前年份
     const month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
     const day = ('0' + currentDate.getDate()).slice(-2);
-    console.log(year + '-' + month + '-' + day)
     this.setData({
       nowData: year + '-' + month + '-' + day,
       endData: year + '-' + month + '-' + day,
@@ -87,7 +86,6 @@ Page({
     this.getcompany_status()
   },
   bindPickerChangeAge(e) {
-    console.log(e)
     console.log('picker发送选择改变，携带值为', e.detail.value)
     const ageId = e.detail.value
     this.setData({
@@ -104,12 +102,9 @@ Page({
     })
   },
   handleList(e) {
-    console.log(e);
-    console.log(e.currentTarget.dataset.item);
     const ident = e.currentTarget.dataset.item;
     this.data.industryDatad.forEach(res => {
       if (res.keyId == ident.keyId) {
-        console.log(res.classname);
         res.classname = res.classname == 'policy_cancelSub' ? 'policy_canSub' : 'policy_cancelSub';
       } else {
         res.classname = 'policy_cancelSub';
@@ -121,7 +116,6 @@ Page({
     })
   },
   formSubmit(e) {
-    console.log(e)
     const sumdata = e.detail.value
     if (sumdata.title == '' || sumdata.address == '' || this.data.gsjs == '' || this.data.industryname2 == '' || this.data.number == '' || this.data.time == '') {
       wx.showModal({
@@ -148,7 +142,6 @@ Page({
       desc: this.data.gsjs,
       img: this.data.imgsfile
     }
-    console.log(dataList)
     this.getcompany_create(dataList)
   },
   //所属行业
@@ -158,7 +151,6 @@ Page({
       method: 'GET',
       data: {}
     }).then(res => {
-      console.log("行业------------", res)
       const industry1 = []
       const industry2 = []
       res.data[0].data.forEach(res => {
@@ -197,7 +189,6 @@ Page({
       sizeType: ['original'],
       sourceType: ['album', 'camera'],
       success: res => {
-        console.log(res)
         const tempFiles = res.tempFiles
         wx.showLoading({
           title: '正在上传...',
@@ -212,11 +203,8 @@ Page({
             filePath: filePath,
             name: 'file',
             success(res) {
-              console.log(res)
-              console.log(JSON.parse(res.data))
               const data = JSON.parse(res.data);
               newfils = that.data.imgsfile.concat('https://heshiwork.com' + data.data);
-              console.log(data, that.data.imgsfile, that.data.imgsfile, 'data------------------');
               that.setData({
                 imgsfile: newfils
               })
@@ -240,7 +228,6 @@ Page({
       data: dataList
     }).then(res => {
       sdk.utils.extend.hideLoading()
-      console.log(res)
       if (res.msg == '操作成功') {
         this.setData({
           inputShow: false
@@ -323,7 +310,6 @@ Page({
       })
       const indusDatas = []
       indusDatas.push(this.data.industry1, industry2)
-      console.log(indusDatas)
       this.setData({
         indusData: indusDatas
       })
@@ -331,7 +317,6 @@ Page({
   },
   bindMultiPickerChange(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
-    // console.log(e.detail.value[0])
     const oneVa = e.detail.value[0]
     const twoVa = e.detail.value[1]
     this.setData({
@@ -341,8 +326,6 @@ Page({
     })
   },
   goCont(e) {
-    console.log(e)
-    console.log(e.currentTarget.dataset.newname)
     let newName = e.currentTarget.dataset.newname
     this.setData({
       params: {

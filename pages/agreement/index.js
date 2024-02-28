@@ -28,7 +28,6 @@ Page({
       data: {}
     }).then(res => {
       sdk.utils.extend.hideLoading()
-      console.log(res)
       if(res.msg == '请求成功'){
         this.setData({
           taxtData:res.data
@@ -36,7 +35,6 @@ Page({
       }
     }).catch(err => {
       sdk.utils.extend.hideLoading()
-      console.log(err);
     })
   },
 })

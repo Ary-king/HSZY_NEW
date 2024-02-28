@@ -24,7 +24,6 @@ Page({
   },
   containerMs(e) {
     const isContainer = e.currentTarget.dataset.container;
-    console.log(isContainer)
     if (isContainer === this.data.isContainer) {
       return;
     }
@@ -58,7 +57,6 @@ Page({
     console.log(e)
     const item = e.currentTarget.dataset.item
     const jobstatus = item.jobstatus
-    console.log("-------------", item)
     sdk.utils.extend.showLoading('加载中');
     sdk.request({
       url: CGI.getorderdetail,
@@ -70,7 +68,6 @@ Page({
         id: item.id
       }
     }).then(res => {
-      console.log("11111111111--------------", res)
       sdk.utils.extend.hideLoading()
       if (res.msg == '请求成功！') {
         this.setData({
@@ -101,7 +98,6 @@ Page({
         jobstatus: typeSataus
       }
     }).then(res => {
-      console.log("11111111111--------------", res)
       sdk.utils.extend.hideLoading()
       if (res.msg == '请求成功') {
         if (res.data.list.total > 0) {
@@ -109,7 +105,6 @@ Page({
           if (current > 1) {
             alldataList = this.data.dataList.concat(alldataList);
           }
-          console.log("1111111111111111",res.data.num)
           this.setData({
             dataList: alldataList,
             zPges: res.data.list.last_page,
@@ -132,8 +127,6 @@ Page({
     let zPges = this.data.zPges;
     let current = this.data.current;
     current++;
-    console.log(current)
-    console.log(zPges)
     if (current <= zPges) {
       this.setData({
         current

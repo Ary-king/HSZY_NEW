@@ -38,7 +38,6 @@ Page({
         jobstatus: ''
       }
     }).then(res => {
-      console.log("消息列表-----",res)
       sdk.utils.extend.hideLoading()
       if (res.msg == '请求成功') {
         if (res.data.list.total > 0) {
@@ -56,19 +55,15 @@ Page({
       }
     }).catch(err => {
       sdk.utils.extend.hideLoading()
-      console.log(err)
       this.setData({
         dataSixe:false
       })
     })
   },
   onReachBottom(e) {
-    console.log(e)
     let zPges = this.data.zPges;
     let current = this.data.current;
     current++;
-    console.log(current)
-    console.log(zPges)
     if (current <= zPges) {
       this.setData({
         current
@@ -80,7 +75,6 @@ Page({
 
 
   goderDetial(e) {
-    console.log(e)
     const ident = e.currentTarget.dataset.item.id
     sdk.utils.extend.showLoading('加载中');
     sdk.request({
@@ -93,7 +87,6 @@ Page({
         id: ident
       }
     }).then(res => {
-      console.log("11111111111--------------", res)
       sdk.utils.extend.hideLoading()
       if (res.msg == '请求成功！') {
         if (res.data.iscompany == 0) {
@@ -149,7 +142,6 @@ Page({
     sdk.utils.extend.showLoading('加载中');
     // 接口正常
     if (e.detail.errMsg == "getPhoneNumber:ok") {
-      console.log()
       sdk.utils.session.getphonenumber(e.detail.code).then(logSucces => {
         this.setData({
           logSucces
@@ -158,7 +150,6 @@ Page({
       })
     } else {
       sdk.utils.extend.hideLoading();
-      console.log("取消获取数据")
       const logSucces = false;
       wx.setStorageSync('logSucces', logSucces)
     }

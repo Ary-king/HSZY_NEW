@@ -77,7 +77,6 @@ Page({
    */
   onShow() {
     if (wx.getStorageSync('logSucces')) {
-      console.log("11111111111111")
       this.setData({
         logSucces: wx.getStorageSync('logSucces'),
         userinfoData: wx.getStorageSync('userinfoData'),
@@ -115,7 +114,6 @@ Page({
     })
   },
   gotoMine(e) {
-    console.log(e)
     const logSucces = wx.getStorageSync('logSucces')
     if (logSucces) {
       const item = e.currentTarget.dataset.item
@@ -145,7 +143,6 @@ Page({
           loginShow: false
         })
       }).then(res => {
-        console.log("------------------------", res)
         this.setData({
           userinfoData: wx.getStorageSync('userinfoData'),
           userPhone: wx.getStorageSync('userPhone'),
@@ -155,7 +152,6 @@ Page({
       })
     } else {
       sdk.utils.extend.hideLoading();
-      console.log("取消获取数据")
       const logSucces = false;
       wx.setStorageSync('logSucces', logSucces)
       this.setData({
@@ -172,7 +168,6 @@ Page({
       method: 'GET',
       data: {}
     }).then(res => {
-      console.log("广告位-------------", res)
       sdk.utils.extend.hideLoading()
       this.setData({
         advertiData: res.data
@@ -200,7 +195,6 @@ Page({
     const {
       avatarUrl
     } = e.detail
-    console.log(avatarUrl);
     sdk.request({
       url: CGI.getset_userinfo,
       method: 'POST',
@@ -212,7 +206,6 @@ Page({
         headimgurl: avatarUrl
       }
     }).then(res => {
-      console.log("头像上传成功------------", res)
       this.setData({
         headimgurl: avatarUrl,
       })
@@ -220,7 +213,6 @@ Page({
       wx.setStorageSync('headimgurl', avatarUrl)
     }).catch(err => {
       sdk.utils.extend.hideLoading()
-      console.log(err);
     })
   },
   goLogin() {
@@ -240,7 +232,6 @@ Page({
       method: 'GET',
       data: {}
     }).then(res => {
-      console.log("服务条款------------", res)
       if (res.msg == '请求成功') {
         this.setData({
           params: {

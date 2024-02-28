@@ -194,7 +194,6 @@ Component({
     getEditorContent() {
       this.editorCtx.getContents({
         success: res => {
-          // console.log('[getContents rich text success]', res)
           this.triggerEvent('getEditorContent', {
             value: res,
           });

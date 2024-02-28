@@ -33,8 +33,6 @@ const session = {
         ._checkSession()
         .then(isValid => {
           const sessionId = wx.getStorageSync('sessionId');
-          console.log('sync sessionId: ', sessionId);
-          console.log('getSessionId: ', isValid);
           if (!isValid) {
             return _this._fetchSessionId();
           }
@@ -63,7 +61,6 @@ const session = {
       const sidTime = sessionIdTime;
       // 防止频繁调用wx.checkSession，10min内不检查
       if (now - sidTime < 10 * 60 * 1000 && sid) {
-        console.log('check sid range...');
         resolve(true);
       }
       wx.checkSession({
@@ -86,7 +83,6 @@ const session = {
     return new Promise((resolve, reject) => {
       wx.login({
         success: res => {
-          console.log("微信的login", res)
           resolve(res.code);
         },
         fail: res => {
@@ -143,7 +139,6 @@ const session = {
           const wxCodes = wxCode;
           // 存到storage，并设置存储时的时间戳
           wx.setStorageSync('wxCodes', wxCodes);
-          console.log("_fetchSessionId_conde------------" + wxCode)
           if (!wxCode) {
             reject(new Error('Failed to get code!'));
           }
@@ -158,7 +153,6 @@ const session = {
               js_code: code,
             },
             success: (res) => {
-              console.log(res)
               console.log('fetch sessionId: ', res);
               if (res.data.code === 0 && res.data.data.session_key) {
                 const sessionId = res.data.data.session_key;
@@ -174,48 +168,9 @@ const session = {
                 wx.setStorageSync('uIc', uIc);
                 wx.setStorageSync('unionid', uid);
                 wx.setStorageSync('token', token);
-                console.log('set sid: ', sessionId);
                 resolve(sessionId);
                 getApp().__isLogin__ = true;
               }
-
-              //   success: res => {
-              //     console.log('fetch sessionId: ', res);
-              //     if (res.data.errcode === 0 && res.data.data.session_id) {
-              //         const sessionId = res.data.data.session_id, openid = res.data.data.openid, uid = res.data.data.uid;
-              //         if (res.data && res.data.data && res.data.data.real_name && res.data.data.credential_id) {
-              //             res.data.data.real_name = CryptoJS.DecryptByKey(res.data.data.real_name);
-              //             res.data.data.credential_id = CryptoJS.DecryptByKey(res.data.data.credential_id);
-              //             const lastNum = res.data.data.credential_id.substr(14, 4);
-              //             const firstNum = res.data.data.credential_id.substr(0, 0).padEnd(14, '*');
-              //             const cardId = `${firstNum}${lastNum}`;
-              //             console.log('解密信息', res.data.data.real_name, res.data.data.credential_id, cardId);
-              //             const uIc = {
-              //                 name: res.data.data.real_name,
-              //                 cid: res.data.data.credential_id,
-              //                 mCid: cardId
-              //             };
-              //             wx.setStorageSync('uIc', uIc);
-              //         }
-              //         // 存到storage，并设置存储时的时间戳
-              //         wx.setStorageSync('sessionId', sessionId);
-              //         sessionIdTime = +new Date();
-              //         wx.setStorageSync('openid', openid);
-              //         wx.setStorageSync('unionid', uid);
-              //         console.log('set sid: ', sessionId);
-              //         resolve(sessionId);
-              //         Event.dispatch('__isLogin__', true);
-              //     }
-              //     else {
-              //         console.error('Request Fail to fetch SessionId', res);
-              //         reject(res);
-              //         reportjs.statpid2({
-              //             eid: 'GSS_FETCHSESSIONIDERR',
-              //             desc: 'fetchSessionId错误',
-              //             exp1: res.errMsg
-              //         });
-              //     }
-              // },
             },
             fail: (res) => {
               console.error('Request Fail to fetch SessionId', res);
@@ -248,10 +203,8 @@ const session = {
           code: code
         },
         success: (res) => {
-          console.log(res)
           if (wx.getStorageSync('sessionId')) {
             const logSucces = true;
-            console.log(res.data.mobile);
             const userPhone = res.data.data.mobile
             wx.setStorageSync('logSucces', logSucces)
             wx.setStorageSync('userPhone', userPhone)
@@ -261,7 +214,6 @@ const session = {
         },
         fail: (res) => {
           utilsd.hideLoading();
-          console.error('Request Fail to fetch SessionId', res);
           console.log('获取手机号失败', err);
           const logSucces = false;
           wx.setStorageSync('logSucces', logSucces)
@@ -280,12 +232,11 @@ const session = {
       },
       data: {},
       success: (res) => {
-        console.log("个人信息---------", res)
         const userinfoData = res.data.data
         wx.setStorageSync('userinfoData', userinfoData)
       },
       fail: (err) => {
-        console.log("个人信息获取失败---------", res)
+        console.log("个人信息获取失败---------", err)
       }
     })
   }

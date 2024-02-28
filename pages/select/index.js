@@ -138,7 +138,6 @@ Page({
       method: 'POST',
       data: {}
     }).then(res => {
-      console.log("数据-----------", res)
       let newData = res.data.map(item => {
         item.checked = false;
         return item;
@@ -178,17 +177,13 @@ Page({
       method: 'GET',
       data: {}
     }).then(res => {
-      console.log("行业------------", res)
       const industry2 = []
       const topData = res.data
-      console.log("外层数据----", topData)
       topData.forEach(res => {
-        console.log(res)
         res.data.forEach(item => {
           industry2.push(item)
         })
       })
-      console.log("循环数据-----", industry2)
       let newData = industry2.map((item, index) => {
         item.keyId = index + 1
         item.classname = 'policy_cancelSub';
@@ -209,7 +204,6 @@ Page({
       method: 'GET',
       data: {}
     }).then(res => {
-      console.log("职位名称------------", res)
       let newData = res.data
       newData.map(item => {
         item.checked = false;

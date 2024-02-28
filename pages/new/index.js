@@ -19,9 +19,7 @@ Page({
    */
   onLoad() {
     let data = getPrevPageData()
-    console.log(data)
     this.zname = data.newName
-    console.log(this.zname)
   },
 
 

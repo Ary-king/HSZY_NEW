@@ -18,27 +18,9 @@ Page({
   onLoad() {
     this.getcollectlist()
   },
-  // gotoDetail(e){
-  //   const ident = e.currentTarget.dataset.item
-  //   const _this = this;
-  //   _this.setData({
-  //     params: {
-  //       reserve: "1",
-  //       identId:ident.id,
-  //       dataList:this.data.dataAll
-  //     }
-  //   });
-  //   wx.navigateTo({
-  //     url: '/pages/hotdetail/index',
-  //   })
-  // },
   gotoDetail(e) {
     const _this = this;
-    console.log(e)
     const ident = e.currentTarget.dataset.item
-    console.log(ident)
-    console.log(ident.id)
-    console.log(ident.id.toString())
     sdk.utils.extend.showLoading('加载中');
     sdk.request({
       url: CGI.getjob_detail,
@@ -51,7 +33,6 @@ Page({
       }
     }).then(res => {
       sdk.utils.extend.hideLoading()
-      console.log(res)
       if(res.code == 0){
         _this.setData({
           params: {
@@ -81,7 +62,6 @@ Page({
       data: {}
     }).then(res => {
       sdk.utils.extend.hideLoading()
-      console.log(res)
       this.setData({
         dataAll:res.data.data
       })

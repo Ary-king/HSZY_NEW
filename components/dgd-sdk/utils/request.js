@@ -10,7 +10,6 @@ const {
 const requestPackage = {
   // 原生request的封装
   request(options) {
-    console.log(utilsPackage)
     return new Promise((resolve, reject) => {
       wx.request({
         url: urlJoinParams(options.url, options.querystring),
@@ -18,7 +17,6 @@ const requestPackage = {
         header: Object.assign({}, options.header || {}),
         data: options.data,
         success(res) {
-          // console.log(`${options.url} Success:`, res.data);
           resolve(res.data);
         },
         fail(err) {

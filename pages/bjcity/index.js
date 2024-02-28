@@ -9,7 +9,6 @@ Page({
     vertical: true
   },
   onLoad(e) {
-    console.log(e)
     this.setData({
       cityName: e.cityname
     })
@@ -42,7 +41,6 @@ Page({
       data: {}
     }).then(res => {
       sdk.utils.extend.hideLoading()
-      console.log(res)
       if (res.msg == '请求成功') {
         res.data.forEach(res => {
           res.checkShow = false

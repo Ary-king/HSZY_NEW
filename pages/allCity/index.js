@@ -35,12 +35,9 @@ Page({
     // 生命周期函数--监听页面显示
     // 生命周期函数--监听页面初次渲染完成
     var cityChild = city.City[0];
-    console.log(cityChild)
     for (let key in cityChild) {
-      console.log("for in循环" + key);
         let arr = cityChild[key]
         for (var i = 0; i < arr.length; i++) {
-          console.log(arr[i])
           arr[i].checkShow = true
       }
     }
@@ -48,7 +45,6 @@ Page({
     wx.getSystemInfo({
       success: function (res) {
         lineHeight = (res.windowHeight - 100) / 22;
-        console.log(res.windowHeight - 100)
         that.setData({
           city: cityChild,
           winHeight: res.windowHeight - 40,
@@ -133,11 +129,9 @@ Page({
   },
   //选择城市，并让选中的值显示在文本框里
   bindCity: function (e) {
-    console.log(e);
     let idxName = e.currentTarget.dataset.idx
     let cityName = e.currentTarget.dataset.city;
     this.data.city[idxName].forEach(res => {
-      console.log(res)
       if (cityName == res.names) {
         res.checkShow = false
       } else {
@@ -145,14 +139,10 @@ Page({
       }
     })
     let allCitys = this.data.city
-    console.log(allCitys)
     for (let key in allCitys) {
-      console.log("for in循环" + key);
       if (idxName != key) {
-        console.log(allCitys[key])
         let arr = allCitys[key]
         for (var i = 0; i < arr.length; i++) {
-          console.log(arr[i])
           arr[i].checkShow = true
         }
       }

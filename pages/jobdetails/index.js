@@ -84,7 +84,6 @@ Page({
       }
     }).then(res => {
       sdk.utils.extend.hideLoading()
-      console.log(res)
       if (res.code == 0) {
         if (res.msg == '加入收藏成功！') {
           this.setData({
@@ -131,7 +130,6 @@ Page({
     }
 },
 goJiaobiao(e){
-  console.log(e)
   wx.showModal({
     title: '备注',
     content: e.currentTarget.dataset.bz,

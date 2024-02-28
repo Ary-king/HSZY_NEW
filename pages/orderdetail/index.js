@@ -24,7 +24,6 @@ Page({
    */
   onLoad() {
     const pageData = getPrevPageData()
-    console.log('--------------', pageData)
     this.setData({
       reserve:pageData.reserve,
       company: pageData.dataList.company,
@@ -61,9 +60,6 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    console.log(e)
-    console.log(e.detail.value)
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
     if (e.detail.value.name || e.detail.value.phone) {
       let dataList = {
         id: this.data.order.id.toString(),
@@ -73,7 +69,6 @@ Page({
         desc: ''
       }
       this.getexa_order(dataList).then(res => {
-        console.log(res)
         if (res.msg == '操作成功') {
           wx.showToast({
             title: "提交成功",
@@ -100,9 +95,6 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    console.log(e)
-    console.log(e.detail.value)
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
     if (e.detail.value.causetxt) {
       let dataList = {
         id: this.data.order.id.toString(),
@@ -135,7 +127,6 @@ Page({
   },
 
   getexa_order(dataList) {
-    console.log('调用 wx.login');
     return new Promise((resolve, reject) => {
       sdk.utils.extend.showLoading('加载中');
       wx.request({

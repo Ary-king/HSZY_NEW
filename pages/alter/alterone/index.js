@@ -72,8 +72,6 @@ Page({
     })
   },
   formSubmit(e) {
-    console.log(e);
-    console.log(e.detail.value);
     const dataList = e.detail.value;
     if (dataList.title == '' || this.data.zwms == '' || this.data.zwsxnr == '' || this.data.zwsxyq == '' || dataList.salary_min == '' || dataList.salary_max == '') {
       wx.showModal({
@@ -113,7 +111,6 @@ Page({
       data: dataList
     }).then(res => {
       sdk.utils.extend.hideLoading()
-      console.log('111111111111----',res)
       if (res.msg == '操作成功') {
         this.setData({
           params: {
@@ -137,7 +134,6 @@ Page({
       method: 'GET',
       data: {}
     }).then(res => {
-      console.log("行业------------", res)
       const industry1 = []
       const industry2 = []
       res.data[0].data.forEach(res => {
@@ -162,8 +158,6 @@ Page({
     })
   },
   bindMultiPickerChangemajor(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    console.log(e.detail.value[0])
     const oneVa = e.detail.value[0]
     const twoVa = e.detail.value[1]
     this.setData({
@@ -174,7 +168,6 @@ Page({
   },
   bindMultiPickerColumnChangemajor(e) {
     // this.data.
-    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
     const oneId = e.detail.value
     if (e.detail.column == 1) {
       return
@@ -184,18 +177,14 @@ Page({
       majorData[oneId].data.forEach(res => {
         twoData.push(res.name)
       })
-      console.log(twoData)
       const allDatas = []
       allDatas.push(this.data.oneData, twoData)
-      console.log(allDatas)
       this.setData({
         allData: allDatas
       })
     }
   },
   bindMultiPickerChange(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    // console.log(e.detail.value[0])
     const oneVa = e.detail.value[0]
     const twoVa = e.detail.value[1]
     this.setData({
@@ -205,8 +194,6 @@ Page({
     })
   },
   bindMultiPickerColumnChange(e) {
-    // this.data.
-    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
     const oneId = e.detail.value
     if (e.detail.column == 1) {
       return
@@ -218,15 +205,12 @@ Page({
       })
       const indusDatas = []
       indusDatas.push(this.data.industry1, industry2)
-      console.log(indusDatas)
       this.setData({
         indusData: indusDatas
       })
     }
   },
   goCont(e) {
-    console.log(e)
-    console.log(e.currentTarget.dataset.newname)
     let newName = e.currentTarget.dataset.newname
     this.setData({
       params: {

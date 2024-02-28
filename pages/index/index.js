@@ -29,11 +29,7 @@ Page({
 	},
 	gotoDetail(e) {
 		const _this = this;
-		console.log(e)
 		const ident = e.currentTarget.dataset.item
-		console.log(ident)
-		console.log(ident.id)
-		console.log(ident.id.toString())
 		sdk.utils.extend.showLoading('加载中');
 		if (wx.getStorageSync('logSucces')) {
 			sdk.request({
@@ -47,7 +43,6 @@ Page({
 				}
 			}).then(res => {
 				sdk.utils.extend.hideLoading()
-				console.log(res)
 				if (res.code == 0) {
 					_this.setData({
 						params: {
@@ -123,7 +118,6 @@ Page({
 		sdk.utils.extend.showLoading('加载中');
 		// 接口正常
 		if (e.detail.errMsg == "getPhoneNumber:ok") {
-			console.log()
 			sdk.utils.session.getphonenumber(e.detail.code).then(logSucces => {
 				this.setData({
 					logSucces,
@@ -139,7 +133,6 @@ Page({
 
 	},
 	onShow() {
-		console.log("-------------------------", wx.getStorageSync('againData') == '1')
 		if (wx.getStorageSync('againData') == '1') {
 			const dataListSelect = wx.getStorageSync('dataListSelect')
 			const dataListFilt = wx.getStorageSync('dataListFilt')
@@ -183,8 +176,6 @@ Page({
 		let zPges = this.data.zPges;
 		let current = this.data.current;
 		current++;
-		console.log(current)
-		console.log(zPges)
 		if (current <= zPges) {
 			this.setData({
 				current

@@ -36,8 +36,6 @@ Page({
     this.get_open_groups()
     console.log("上个页面带过来的数据-------", getPrevPageData())
     const dataAll = getPrevPageData().dataAll
-    console.log('----', dataAll)
-    console.log('----', dataAll.open_date)
     wx.setStorageSync('bqsm', dataAll.restock_desc)
     let result = []
     while (dataAll.open_date.length > 0) {
@@ -88,7 +86,6 @@ Page({
   },
   onShow() {
     let bqsm = wx.getStorageSync('bqsm')
-    console.log(bqsm)
     this.setData({
       restock_desc: bqsm || '',
     })
@@ -99,7 +96,6 @@ Page({
     })
   },
   radioChange(e) {
-    console.log('radio发生change事件，携带value值为：', e.detail.value)
     const idIndex = e.detail.value - 1
     this.data.groupData.forEach((item) => {
       item[idIndex] = true
@@ -119,7 +115,6 @@ Page({
     })
   },
   radioChangeType(e) {
-    console.log("1111111---------", e)
     console.log('radio发生change事件，携带value值为：', e.detail.value)
     const idIndex = e.detail.value - 1
     this.data.typeData.forEach((item) => {
@@ -144,9 +139,7 @@ Page({
       method: 'POST',
       data: {}
     }).then(res => {
-      console.log(res)
       res.data.forEach(item => {
-        console.log(item)
         if (this.data.eav == item.id) {
           item.checked = true
         } else {
@@ -171,7 +164,6 @@ Page({
       let newList = res.data
       let type = []
       for (let i = 0; i <= oldList.length - 1; i++) {
-        console.log('111---', oldList[i].title)
         for (let j = 0; j <= newList.length - 1; j++) {
           if (oldList[i].title == newList[j].title) {
             newList[j].checked = true
@@ -193,12 +185,10 @@ Page({
       method: 'POST',
       data: {}
     }).then(res => {
-      console.log(res)
       let oldList = this.data.open_groups
       let newList = res.data
       let endList = []
       for (let i = 0; i <= oldList.length - 1; i++) {
-        console.log(oldList[i])
         newList.forEach(res => {
           if (oldList[i] == res.title) {
             res.checked = true
@@ -215,32 +205,26 @@ Page({
     })
   },
   bindDateChangeStart(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       timestart: e.detail.value
     })
   },
   bindDateChangeEnd(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       timeEnd: e.detail.value
     })
   },
   bindTimeChangeStart: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       timeMin: e.detail.value
     })
   },
   bindTimeChangeEnd: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       timeMax: e.detail.value
     })
   },
   formSubmit(e) {
-    console.log(e)
-    console.log(e.detail.target.dataset.com)
     console.log("提交的数据----", e.detail.value)
     const comId = e.detail.target.dataset.com
     const sumData = e.detail.value
@@ -252,7 +236,6 @@ Page({
       });
       return
     }
-    console.log(this.data.open_groups, this.data.eav, this.data.type, this.data.restock_desc)
     if (this.data.open_groups.length == 0 || this.data.eav == "" || this.data.type.length == 0 || this.data.restock_desc == '') {
       wx.showModal({
         title: '提示',
@@ -261,7 +244,6 @@ Page({
       });
       return
     }
-    console.log(this.data.newTime.length)
     const dataList = {
       id: this.data.id,
       open_groups: this.data.open_groups,
@@ -291,7 +273,6 @@ Page({
       data: dataList
     }).then(res => {
       sdk.utils.extend.hideLoading()
-      console.log(res)
       if (res.msg == "操作成功") {
         wx.reLaunch({
           url: '/pages/position/index',
@@ -306,36 +287,7 @@ Page({
       console.log(err);
     })
   },
-  /**
-   * 点击的日期
-   */
-  selectDate: function (e) {
-    console.log(e)
-    let clickDay = e.detail.date
-    console.log(clickDay)
-  },
-  /**
-   * 点击上个月
-   */
-  prevMonth: function (e) {
-    console.log(e)
-  },
-  /**
-   * 点击下个月
-   */
-  nextMonth: function (e) {
-    console.log(e)
-  },
-  bindrecordClickedDate(e) {
-    console.log('11111111111111---', e)
-    this.setData({
-      time: e.detail
-    })
-    console.log(this.data.time)
-  },
   goRemark(e) {
-    console.log(e)
-    console.log(e.currentTarget.dataset.item)
     wx.showModal({
       title: '备注',
       content: e.currentTarget.dataset.item,
@@ -344,8 +296,6 @@ Page({
   },
 
   goCont(e) {
-    console.log(e)
-    console.log(e.currentTarget.dataset.newname)
     let newName = e.currentTarget.dataset.newname
     this.setData({
       params: {

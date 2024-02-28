@@ -7,7 +7,6 @@ module.exports = {
     const now = Number(new Date());
     const sidTime = wx.getStorageSync('sessionIdTime') || 0;
     const sessionId = wx.getStorageSync('sessionId');
-    console.log(sessionId)
     if (sessionId && now - sidTime < 10 * 60 * 1000) {
       this.__isLogin__ = true;
     } else {
@@ -20,7 +19,6 @@ module.exports = {
     console.log('app onShow_', opt);
     sdk.utils.session.getSessionId();
     if (wx.getStorageSync('sessionId')) {
-      console.log("11111111111111111")
       sdk.utils.session.getSessionId();
     } // 将referrerInfo存到globalData
   },

@@ -46,7 +46,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(e) {
-    console.log("------------------", e)
     if (e.arr) {
       let arr = JSON.parse(e.arr);
       this.setData({

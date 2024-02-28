@@ -35,7 +35,6 @@ Page({
       data: {}
     }).then(res => {
       sdk.utils.extend.hideLoading()
-      console.log('余额变动明细-----', res)
       if (res.msg == '请求成功') {
         this.setData({
           balanced: res.data.balance,
@@ -51,7 +50,6 @@ Page({
           if (current > 1) {
             alldataList = this.data.dataList.concat(alldataList);
           }
-          console.log(res.data.balance)
           this.setData({
             dataList: alldataList,
             zPges: res.data.last_page
@@ -74,12 +72,9 @@ Page({
     })
   },
   onReachBottom(e) {
-    console.log(e)
     let zPges = this.data.zPges;
     let current = this.data.current;
     current++;
-    console.log(current)
-    console.log(zPges)
     if (current <= zPges) {
       this.setData({
         current

@@ -31,7 +31,6 @@ Page({
       method: 'GET',
       data: {}
     }).then(res => {
-      console.log("职位名称------------", res)
       let newData = res.data
       newData.map(item => {
         item.checked = false;
@@ -62,7 +61,6 @@ Page({
     })
   },
   handleChange(e) {
-    console.log("----------------",e)
     this.setData({
       searchName: e.detail.value,
     })

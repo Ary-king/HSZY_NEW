@@ -22,13 +22,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    // console.log(getPrevPageData())
-    // this.id = getPrevPageData().id || this.id
+    this.id = getPrevPageData().id || this.id
     let currentDate = new Date();
     let year = currentDate.getFullYear(); // 获取当前年份
     const month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
     const day = ('0' + currentDate.getDate()).slice(-2);
-    console.log(year + '-' + month + '-' + day)
     this.setData({
       nowData: year + '-' + month + '-' + day,
       endData: year + '-' + month + '-' + day,
@@ -107,7 +105,6 @@ Page({
     })
   },
   radioChangeType(e) {
-    console.log("1111111---------", e)
     console.log('radio发生change事件，携带value值为：', e.detail.value)
     const idIndex = e.detail.value - 1
     this.data.typeData.forEach((item) => {
@@ -132,7 +129,6 @@ Page({
       method: 'POST',
       data: {}
     }).then(res => {
-      console.log(res)
       let newData = res.data.map(item => {
         item.checked = false;
         return item;
