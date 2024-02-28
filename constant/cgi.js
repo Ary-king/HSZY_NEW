@@ -74,6 +74,8 @@ module.exports = Object.assign({
   //职位在编辑
   getedit_job: htUrl + '/api/index/edit_job',
   //个人信息删除
-  del_user_info: htUrl + '/api/index/del_user_info'
+  del_user_info: htUrl + '/api/index/del_user_info',
+  //获取开放日期
+  getDates: htUrl + '/api/index/getDates'
 
 }, sdkCGI);

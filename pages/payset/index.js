@@ -10,7 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bqsm:'',
+    bqsm: '',
     open_groups: [],
     eav: "",
     type: [],
@@ -36,6 +36,56 @@ Page({
     this.get_eav()
     this.get_type()
     this.get_open_groups()
+    this.getDates()
+  },
+  getDates() {
+    sdk.request({
+      url: CGI.getDates,
+      method: 'GET',
+      data: {}
+    }).then(res => {
+      console.log("------------", res.data)
+      let result = [];
+      while (res.data.length > 0) {
+        var tempSlice = res.data.splice(0, 16); // 从索引0开始，提取长度为sliceSize的元素并删除这些元素
+        result.push(tempSlice);
+      }
+      this.setData({
+        arrayTime: result
+      })
+    }).catch(err => {
+      console.log(err)
+    })
+  },
+  addTime(e) {
+    // 选择日期
+    console.log(e)
+    console.log(e.currentTarget.dataset.item)
+    console.log(e.currentTarget.dataset.parent)
+    const item = e.currentTarget.dataset.item
+    const index = e.currentTarget.dataset.parent
+    console.log(item)
+    console.log(index)
+    this.data.arrayTime[index].forEach(res => {
+      console.log(res)
+      if (res.time == item.time) {
+        if (!res.check) {
+          res.check = true
+        } else {
+          res.check = false
+        }
+      }
+    })
+    let newTime = []
+    for (let i = 0; i <= this.data.arrayTime.length - 1; i++) {
+      for (let j = 1; j <= this.data.arrayTime[i].length - 1; j++) {
+          newTime.push(this.data.arrayTime[i][j])
+      }
+    }
+    this.setData({
+      arrayTime: this.data.arrayTime,
+      newTime:newTime
+    })
   },
   handleChange(e) {
     this.setData({
@@ -108,9 +158,9 @@ Page({
     }).then(res => {
       console.log(res)
       let newData = res.data.map(item => {
-        if(item.title == '体验'){
+        if (item.title == '体验') {
           item.checked = true;
-        }else{
+        } else {
           item.checked = false;
         }
         return item;
@@ -178,7 +228,7 @@ Page({
       });
       return
     }
-    if (this.data.open_groups.length == 0 || this.data.eav == "" || this.data.type.length == 0 || this.data.bqsm == '') {
+    if (this.data.open_groups.length == 0 || this.data.eav == "" || this.data.type.length == 0) {
       wx.showModal({
         title: '提示',
         content: '信息未填写完整，请完善相关信息',
@@ -186,8 +236,8 @@ Page({
       });
       return
     }
-    console.log(this.data.time.length)
-    if (this.data.time.length <= 0) {
+    console.log(this.data.newTime.length)
+    if (this.data.time.newTime <= 0) {
       wx.showModal({
         title: '提示',
         content: '未选择开放日期',
@@ -199,7 +249,7 @@ Page({
       id: this.id,
       open_groups: this.data.open_groups,
       salary_day: sumData.salary_day,
-      open_date: this.data.time,
+      open_date: this.data.newTime,
       // open_date_end: "",
       work_hours_start: this.data.timeMin,
       work_hours_end: this.data.timeMax,
@@ -240,33 +290,7 @@ Page({
       console.log(err);
     })
   },
-  /**
-   * 点击的日期
-   */
-  selectDate: function (e) {
-    console.log(e)
-    let clickDay = e.detail.date
-    console.log(clickDay)
-  },
-  /**
-   * 点击上个月
-   */
-  prevMonth: function (e) {
-    console.log(e)
-  },
-  /**
-   * 点击下个月
-   */
-  nextMonth: function (e) {
-    console.log(e)
-  },
-  bindrecordClickedDate(e) {
-    console.log('11111111111111---', e)
-    this.setData({
-      time: e.detail
-    })
-    console.log(this.data.time)
-  },
+
   goRemark(e) {
     console.log(e)
     console.log(e.currentTarget.dataset.item)

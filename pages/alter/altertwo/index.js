@@ -39,7 +39,7 @@ Page({
     this.setData({
       id: dataAll.id,
       salary_day: dataAll.salary_day,
-      open_date: dataAll.open_date,
+      arrayTime: dataAll.open_date,
       timeMin: dataAll.salary_min,
       timeMax: dataAll.salary_max,
       day_num: dataAll.day_num,
