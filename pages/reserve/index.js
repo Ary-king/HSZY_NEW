@@ -213,9 +213,6 @@ Page({
   },
   addTime(e) {
     // 选择日期
-    console.log(e)
-    console.log(e.currentTarget.dataset.item)
-    console.log(e.currentTarget.dataset.parent)
     const item = e.currentTarget.dataset.item
     const index = e.currentTarget.dataset.parent
     this.getjobday(item.time, index)

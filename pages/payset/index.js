@@ -59,15 +59,9 @@ Page({
   },
   addTime(e) {
     // 选择日期
-    console.log(e)
-    console.log(e.currentTarget.dataset.item)
-    console.log(e.currentTarget.dataset.parent)
     const item = e.currentTarget.dataset.item
     const index = e.currentTarget.dataset.parent
-    console.log(item)
-    console.log(index)
     this.data.arrayTime[index].forEach(res => {
-      console.log(res)
       if (res.time == item.time) {
         if (!res.check) {
           res.check = true
