@@ -22,8 +22,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    console.log(getPrevPageData())
-    this.id = getPrevPageData().id || this.id
+    // console.log(getPrevPageData())
+    // this.id = getPrevPageData().id || this.id
     let currentDate = new Date();
     let year = currentDate.getFullYear(); // 获取当前年份
     const month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
@@ -78,7 +78,7 @@ Page({
     })
     let newTime = []
     for (let i = 0; i <= this.data.arrayTime.length - 1; i++) {
-      for (let j = 1; j <= this.data.arrayTime[i].length - 1; j++) {
+      for (let j = 0; j <= this.data.arrayTime[i].length - 1; j++) {
           newTime.push(this.data.arrayTime[i][j])
       }
     }

@@ -59,7 +59,6 @@ Page({
     wx.setStorageSync('zwmsxg', dataAll.desc)
     wx.setStorageSync('zwsxnrxg', dataAll.job_desc)
     wx.setStorageSync('zwsxyqxg', dataAll.job_ask)
-    this.getmajor();
     this.getindustry()
   },
   onShow() {
@@ -131,35 +130,7 @@ Page({
       console.log(err);
     })
   },
-  getmajor() {
-    sdk.request({
-      url: CGI.getmajor,
-      method: 'GET',
-      data: {}
-    }).then(res => {
-      console.log("专业------------", res)
-      const oneData = []
-      const twoData = []
-      res.data[0].data.forEach(res => {
-        twoData.push(res.name)
-      })
-      res.data.forEach(res => {
-        oneData.push(res.name)
-      })
-      const allData = []
-      allData.push(oneData, twoData)
-      this.setData({
-        oneData: oneData,
-        twoData: twoData,
-        allData: allData,
-        majorData: res.data,
-        mjoname1: res.data[0].name,
-        mjoname2: res.data[0].data[0].name,
-      })
-    }).catch(err => {
-      console.log(err);
-    })
-  },
+
   getindustry() {
     sdk.request({
       url: CGI.getindustry,

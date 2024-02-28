@@ -23,7 +23,8 @@ Page({
     oldnewtype: [],
     time: [],
     restock_Show: false,
-    id: ''
+    id: '',
+    newTime: []
   },
 
   /**
@@ -35,11 +36,19 @@ Page({
     this.get_open_groups()
     console.log("上个页面带过来的数据-------", getPrevPageData())
     const dataAll = getPrevPageData().dataAll
+    console.log('----', dataAll)
+    console.log('----', dataAll.open_date)
     wx.setStorageSync('bqsm', dataAll.restock_desc)
+    let result = []
+    while (dataAll.open_date.length > 0) {
+      let tempSlice = dataAll.open_date.splice(0, 16); // 从索引0开始，提取长度为sliceSize的元素并删除这些元素
+      result.push(tempSlice);
+    }
     this.setData({
+      arrayTime: result,
       id: dataAll.id,
       salary_day: dataAll.salary_day,
-      arrayTime: dataAll.open_date,
+      newTime: dataAll.open_date,
       timeMin: dataAll.salary_min,
       timeMax: dataAll.salary_max,
       day_num: dataAll.day_num,
@@ -50,6 +59,37 @@ Page({
       oldnewtype: dataAll.type,
       restock_desc: dataAll.restock_desc,
       restock_Show: dataAll.restock_desc ? true : false
+    })
+
+  },
+  addTime(e) {
+    // 选择日期
+    console.log(e)
+    console.log(e.currentTarget.dataset.item)
+    console.log(e.currentTarget.dataset.parent)
+    const item = e.currentTarget.dataset.item
+    const index = e.currentTarget.dataset.parent
+    console.log(item)
+    console.log(index)
+    this.data.arrayTime[index].forEach(res => {
+      console.log(res)
+      if (res.time == item.time) {
+        if (!res.check) {
+          res.check = true
+        } else {
+          res.check = false
+        }
+      }
+    })
+    let newTime = []
+    for (let i = 0; i <= this.data.arrayTime.length - 1; i++) {
+      for (let j = 0; j <= this.data.arrayTime[i].length - 1; j++) {
+        newTime.push(this.data.arrayTime[i][j])
+      }
+    }
+    this.setData({
+      arrayTime: this.data.arrayTime,
+      newTime: newTime
     })
   },
   onShow() {
@@ -137,7 +177,7 @@ Page({
       let newList = res.data
       let type = []
       for (let i = 0; i <= oldList.length - 1; i++) {
-        console.log('111---',oldList[i].title)
+        console.log('111---', oldList[i].title)
         for (let j = 0; j <= newList.length - 1; j++) {
           if (oldList[i].title == newList[j].title) {
             newList[j].checked = true
@@ -162,16 +202,19 @@ Page({
       console.log(res)
       let oldList = this.data.open_groups
       let newList = res.data
+      let endList = []
       for (let i = 0; i <= oldList.length - 1; i++) {
         console.log(oldList[i])
         newList.forEach(res => {
           if (oldList[i] == res.title) {
             res.checked = true
+            endList.push(res.id)
           }
         })
       }
       this.setData({
-        groupData: newList
+        groupData: newList,
+        open_groups:endList
       })
     }).catch(err => {
       console.log(err)
@@ -224,20 +267,12 @@ Page({
       });
       return
     }
-    console.log(this.data.time.length)
-    if (this.data.time.length <= 0) {
-      wx.showModal({
-        title: '提示',
-        content: '未选择开放日期',
-        showCancel: false
-      });
-      return
-    }
+    console.log(this.data.newTime.length)
     const dataList = {
       id: this.data.id,
       open_groups: this.data.open_groups,
       salary_day: sumData.salary_day,
-      open_date: this.data.time,
+      open_date: this.data.newTime,
       work_hours_start: this.data.timeMin,
       work_hours_end: this.data.timeMax,
       day_min: sumData.day_min,

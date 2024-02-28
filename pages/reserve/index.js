@@ -24,11 +24,11 @@ Page({
     const times = pageData.dataList.open_date
     let oldTimes = []
     times.forEach(item => {
-      oldTimes.push({
-        time: item,
-        checkShow: false
-      })
+      if(item.check == true){
+        oldTimes.push(item)
+      }
     })
+    console.log(oldTimes)
     let result = [];
     while (oldTimes.length > 0) {
       var tempSlice = oldTimes.splice(0, 16); // 从索引0开始，提取长度为sliceSize的元素并删除这些元素
@@ -62,12 +62,6 @@ Page({
   },
   onShow() {
     let arrayTime = this.data.arrayTime
-    for (let i = 0; i < arrayTime.length - 1; i++) {
-      console.log(arrayTime[i])
-      arrayTime[i].forEach(item => {
-        item.checkShow = false
-      })
-    }
     this.setData({
       arrayTime :arrayTime
     })
