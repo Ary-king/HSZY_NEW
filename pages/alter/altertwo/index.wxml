@@ -86,7 +86,7 @@
         <view>人</view>
       </view>
     </view>
-    <view class="payset_box">
+    <!-- <view class="payset_box">
       <view class="payset_title">审核设置</view>
       <radio-group bindchange="radioChangeEav">
         <view class="payset_sectionall">
@@ -98,7 +98,7 @@
           </view>
         </view>
       </radio-group>
-    </view>
+    </view> -->
     <view class="payset_box">
       <view class="payset_title">职位类型</view>
       <checkbox-group bindchange="radioChangeType">

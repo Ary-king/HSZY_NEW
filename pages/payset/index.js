@@ -22,7 +22,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    this.id = getPrevPageData().id || this.id
+    // this.id = getPrevPageData().id || this.id
     let currentDate = new Date();
     let year = currentDate.getFullYear(); // 获取当前年份
     const month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
@@ -31,7 +31,7 @@ Page({
       nowData: year + '-' + month + '-' + day,
       endData: year + '-' + month + '-' + day,
     })
-    this.get_eav()
+    // this.get_eav()
     this.get_type()
     this.get_open_groups()
     this.getDates()
@@ -94,16 +94,16 @@ Page({
       open_groups: e.detail.value,
     })
   },
-  radioChangeEav(e) {
-    console.log('radio发生change事件，携带value值为：', e.detail.value)
-    const idIndex = e.detail.value - 1
-    this.data.eavData.forEach((item) => {
-      item[idIndex] = true
-    });
-    this.setData({
-      eav: e.detail.value,
-    })
-  },
+  // radioChangeEav(e) {
+  //   console.log('radio发生change事件，携带value值为：', e.detail.value)
+  //   const idIndex = e.detail.value - 1
+  //   this.data.eavData.forEach((item) => {
+  //     item[idIndex] = true
+  //   });
+  //   this.setData({
+  //     eav: e.detail.value,
+  //   })
+  // },
   radioChangeType(e) {
     console.log('radio发生change事件，携带value值为：', e.detail.value)
     const idIndex = e.detail.value - 1
@@ -123,23 +123,23 @@ Page({
       type: e.detail.value,
     })
   },
-  get_eav() {
-    sdk.request({
-      url: CGI.get_eav,
-      method: 'POST',
-      data: {}
-    }).then(res => {
-      let newData = res.data.map(item => {
-        item.checked = false;
-        return item;
-      });
-      this.setData({
-        eavData: newData
-      })
-    }).catch(err => {
-      console.log(err)
-    })
-  },
+  // get_eav() {
+  //   sdk.request({
+  //     url: CGI.get_eav,
+  //     method: 'POST',
+  //     data: {}
+  //   }).then(res => {
+  //     let newData = res.data.map(item => {
+  //       item.checked = false;
+  //       return item;
+  //     });
+  //     this.setData({
+  //       eavData: newData
+  //     })
+  //   }).catch(err => {
+  //     console.log(err)
+  //   })
+  // },
   get_type() {
     sdk.request({
       url: CGI.get_type,
@@ -218,7 +218,7 @@ Page({
       });
       return
     }
-    if (this.data.open_groups.length == 0 || this.data.eav == "" || this.data.type.length == 0) {
+    if (this.data.open_groups.length == 0 || this.data.type.length == 0) {
       wx.showModal({
         title: '提示',
         content: '信息未填写完整，请完善相关信息',
@@ -246,7 +246,7 @@ Page({
       day_min: sumData.day_min,
       day_max: sumData.day_max,
       day_num: sumData.day_num,
-      eav: this.data.eav,
+      eav: [],
       type: this.data.type,
       restock_desc: this.data.bqsm,
       status: comId

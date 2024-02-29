@@ -239,10 +239,8 @@ Page({
     const ident = e.currentTarget.dataset.item;
     this.data.typeData.forEach(item => {
       if (item.id == ident.id) {
-        item.checked = true
-      } else {
-        item.checked = false
-      }
+        item.checked = !item.checked
+      } 
       this.setData({
         typeData: this.data.typeData,
         typeId: ident.id,
@@ -317,9 +315,15 @@ Page({
     })
   },
   goSubmit() {
+    let typeall = []
+    this.data.typeData.forEach(res=>{
+      if(res.checked){
+        typeall.push(res.title)
+      }
+    })
     const dataListFilt = {
       opengroups: this.data.opengroups || '',
-      type: this.data.type || '',
+      type: typeall || '',
       posName: this.data.posName == '不限' ? '' : this.data.posName,
       industry: this.data.industry || '',
       setupTim: this.data.setupTim || '',

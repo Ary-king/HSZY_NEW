@@ -59,7 +59,7 @@
       </view>
     </view>
     <view class="postJobForm">
-      <view class="postJobForm_top">对口专业<text class="postJobForm_topTxt">(选填一个)</text></view>
+      <view class="postJobForm_top">对口专业<text class="postJobForm_topTxt">(必填一个)</text></view>
       <view class="major1_class">
         <input id="major1" name="major" value="{{major}}" maxlength='20' bind:change="handleChange" placeholder-class="form_allInput_class" placeholder="请填写专业" />
       </view>

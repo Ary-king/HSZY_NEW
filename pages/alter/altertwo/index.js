@@ -31,12 +31,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    this.get_eav()
+    // this.get_eav()
     this.get_type()
     this.get_open_groups()
     console.log("上个页面带过来的数据-------", getPrevPageData())
     const dataAll = getPrevPageData().dataAll
     wx.setStorageSync('bqsm', dataAll.restock_desc)
+    console.log("上个页面带过来的日期-------", dataAll.open_date)
+    console.log("上个页面带过来的日期-------", dataAll.open_date)
     let result = []
     while (dataAll.open_date.length > 0) {
       let tempSlice = dataAll.open_date.splice(0, 16); // 从索引0开始，提取长度为sliceSize的元素并删除这些元素
@@ -47,13 +49,13 @@ Page({
       id: dataAll.id,
       salary_day: dataAll.salary_day,
       newTime: dataAll.open_date,
-      timeMin: dataAll.salary_min,
-      timeMax: dataAll.salary_max,
+      timeMin: dataAll.work_hours_start,
+      timeMax: dataAll.work_hours_end,
       day_num: dataAll.day_num,
       day_min: dataAll.day_min,
       day_max: dataAll.day_max,
       open_groups: dataAll.open_groups,
-      eav: dataAll.eav,
+      eav: [],
       oldnewtype: dataAll.type,
       restock_desc: dataAll.restock_desc,
       restock_Show: dataAll.restock_desc ? true : false
@@ -90,6 +92,7 @@ Page({
       restock_desc: bqsm || '',
     })
   },
+
   handleChange(e) {
     this.setData({
       [e.target.id]: e.detail.value,
@@ -104,16 +107,16 @@ Page({
       open_groups: e.detail.value,
     })
   },
-  radioChangeEav(e) {
-    console.log('radio发生change事件，携带value值为：', e.detail.value)
-    const idIndex = e.detail.value - 1
-    this.data.eavData.forEach((item) => {
-      item[idIndex] = true
-    });
-    this.setData({
-      eav: e.detail.value,
-    })
-  },
+  // radioChangeEav(e) {
+  //   console.log('radio发生change事件，携带value值为：', e.detail.value)
+  //   const idIndex = e.detail.value - 1
+  //   this.data.eavData.forEach((item) => {
+  //     item[idIndex] = true
+  //   });
+  //   this.setData({
+  //     eav: e.detail.value,
+  //   })
+  // },
   radioChangeType(e) {
     console.log('radio发生change事件，携带value值为：', e.detail.value)
     const idIndex = e.detail.value - 1
@@ -133,26 +136,26 @@ Page({
       type: e.detail.value,
     })
   },
-  get_eav() {
-    sdk.request({
-      url: CGI.get_eav,
-      method: 'POST',
-      data: {}
-    }).then(res => {
-      res.data.forEach(item => {
-        if (this.data.eav == item.id) {
-          item.checked = true
-        } else {
-          item.checked = false
-        }
-      });
-      this.setData({
-        eavData: res.data
-      })
-    }).catch(err => {
-      console.log(err)
-    })
-  },
+  // get_eav() {
+  //   sdk.request({
+  //     url: CGI.get_eav,
+  //     method: 'POST',
+  //     data: {}
+  //   }).then(res => {
+  //     res.data.forEach(item => {
+  //       if (this.data.eav == item.id) {
+  //         item.checked = true
+  //       } else {
+  //         item.checked = false
+  //       }
+  //     });
+  //     this.setData({
+  //       eavData: res.data
+  //     })
+  //   }).catch(err => {
+  //     console.log(err)
+  //   })
+  // },
   get_type() {
     sdk.request({
       url: CGI.get_type,
@@ -198,7 +201,7 @@ Page({
       }
       this.setData({
         groupData: newList,
-        open_groups:endList
+        open_groups: endList
       })
     }).catch(err => {
       console.log(err)
@@ -236,7 +239,7 @@ Page({
       });
       return
     }
-    if (this.data.open_groups.length == 0 || this.data.eav == "" || this.data.type.length == 0 || this.data.restock_desc == '') {
+    if (this.data.open_groups.length == 0  || this.data.type.length == 0 || this.data.restock_desc == '') {
       wx.showModal({
         title: '提示',
         content: '信息未填写完整，请完善相关信息',

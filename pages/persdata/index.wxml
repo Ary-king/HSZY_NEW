@@ -91,7 +91,7 @@
       </view>
       <!-- 从相册选择图片 -->
       <view>
-        <view class="noImg">
+        <view class="noImg" wx:if="{{certificateTypeName == '身份证'}}">
           <view class="noImgTxt" bindtap="pushimgOne" data-imgId="iDone">
             <view class="noImgTxt_Box" wx:if="{{iDone == ''}}">
               <image class="noImgTxtImg" src="https://heshiwork.com/storage/202402/6e2e08336694bf7f8333af5691b68b5e.png" mode="" />

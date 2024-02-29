@@ -5,12 +5,12 @@ const {
 } = sdk.utils.pageData;
 const usedata = require('../../../constant/usedata.js');
 Page({
-
+  id: '',
   /**
    * 页面的初始数据
    */
   data: {
-    dataAll:{},
+    dataAll: {},
     title: '', //职位名称
     zwmsxg: '', //职位描述
     industry_id: [0, 0], //所属行业
@@ -18,9 +18,9 @@ Page({
     zwsxyqxg: '', //职位体验要求
     salary_min: '', //最低薪酬
     salary_max: '', //最高薪酬
-    major1:'',//选填专业1
-    major2:'',//选填专业2
-    major3:'',//选填专业3
+    major: '', //选填专业1
+    major2: '', //选填专业2
+    major3: '', //选填专业3
     major_id: [0, 0],
     id: '',
     industry: '',
@@ -30,7 +30,12 @@ Page({
     industryname2: '',
     majorData: [],
     industryData: []
-    
+
+  },
+  handleChange(e) {
+    this.setData({
+      [e.target.id]: e.detail.value,
+    })
   },
 
   /**
@@ -39,36 +44,73 @@ Page({
   onLoad() {
     const pageData = getPrevPageData()
     console.log('上一个页面带过来的--------------', pageData)
-    const dataAll = pageData.dataList.job
-    this.setData({
-      dataAll: pageData.dataList.job,
-      title: dataAll.title,
-      zwmsxg: dataAll.desc,
-      zwsxnrxg: dataAll.job_desc,
-      zwsxyqxg: dataAll.job_ask,
-      salary_min: dataAll.salary_min,
-      salary_max: dataAll.salary_max,
-      industry: dataAll.industry,
-      id: dataAll.id,
-      industryIndex:dataAll.industry_id,
-      multiIndex:dataAll.major_id,
-      major:dataAll.major,
-      major2:dataAll.major2,
-      major3:dataAll.major3
-    })
-    wx.setStorageSync('zwmsxg', dataAll.desc)
-    wx.setStorageSync('zwsxnrxg', dataAll.job_desc)
-    wx.setStorageSync('zwsxyqxg', dataAll.job_ask)
+    this.id = pageData.identId
     this.getindustry()
   },
   onShow() {
-    let zwmsxg = wx.getStorageSync('zwmsxg')
-    let zwsxnrxg = wx.getStorageSync('zwsxnrxg')
-    let zwsxyqxg = wx.getStorageSync('zwsxyqxg')
-    this.setData({
-      zwmsxg: zwmsxg || '',
-      zwsxnrxg: zwsxnrxg || '',
-      zwsxyqxg: zwsxyqxg || ''
+    console.log('------------', this.id)
+    this.gotoDetail(this.id)
+    // let zwmsxg = wx.getStorageSync('zwmsxg')
+    // let zwsxnrxg = wx.getStorageSync('zwsxnrxg')
+    // let zwsxyqxg = wx.getStorageSync('zwsxyqxg')
+    // this.setData({
+    //   zwmsxg: zwmsxg || '',
+    //   zwsxnrxg: zwsxnrxg || '',
+    //   zwsxyqxg: zwsxyqxg || ''
+    // })
+  },
+
+  gotoDetail(id) {
+    console.log("id详情------", id)
+    sdk.utils.extend.showLoading('加载中');
+    sdk.request({
+      url: CGI.getjob_detail,
+      method: 'GET',
+      header: {
+        token: wx.getStorageSync('token')
+      },
+      data: {
+        id: id.toString()
+      }
+    }).then(res => {
+      sdk.utils.extend.hideLoading()
+      console.log("数据详情-----", res)
+      //职位管理跳转详情
+      if (res.code == 0) {
+        this.setData({
+          dataAll: res.data.job,
+          title: res.data.job.title,
+          zwmsxg: res.data.job.desc,
+          zwsxnrxg: res.data.job.job_desc,
+          zwsxyqxg: res.data.job.job_ask,
+          salary_min: res.data.job.salary_min,
+          salary_max: res.data.job.salary_max,
+          industry: res.data.job.industry,
+          id: this.id,
+          industryIndex: res.data.job.industry_id,
+          multiIndex: res.data.job.major_id,
+          major: res.data.job.major,
+          major2: res.data.job.major2,
+          major3: res.data.job.major3
+        })
+        wx.setStorageSync('zwmsxg', res.data.job.desc)
+        wx.setStorageSync('zwsxnrxg', res.data.job.job_desc)
+        wx.setStorageSync('zwsxyqxg', res.data.job.job_ask)
+        // _this.setData({
+        //   params: {
+        //     status: item.status,
+        //     reserve: "2",
+        //     identId: item.id,
+        //     dataList: res.data
+        //   }
+        // });
+        // wx.navigateTo({
+        //   url: '/pages/alter/alterone/index',
+        // })
+      }
+    }).catch(err => {
+      sdk.utils.extend.hideLoading()
+      console.log(err);
     })
   },
   formSubmit(e) {
@@ -90,14 +132,15 @@ Page({
       salary_min: dataList.salary_min,
       salary_max: dataList.salary_max,
       industry: this.data.industryname1 + this.data.industryname2,
-      major: this.data.mjoname1 + this.data.mjoname2,
-      industry_id:this.data.industryIndex,
-      major_id:this.data.multiIndex
+      major: this.data.major,
+      major2: this.data.major2,
+      major3: this.data.major3,
+      industry_id: this.data.industryIndex,
+      major_id: this.data.multiIndex
     }
     console.log("提交的数据----------", goDetail)
-
+    console.log('------------11111111111111111', this.allData)
     this.getjob_create(goDetail)
-
   },
 
   getjob_create(dataList) {
@@ -111,11 +154,13 @@ Page({
       data: dataList
     }).then(res => {
       sdk.utils.extend.hideLoading()
+      console.log('1111111111111111111111111------------', res)
       if (res.msg == '操作成功') {
+        console.log('------------2222222222222222', this.id)
         this.setData({
           params: {
             id: res.data,
-            dataAll:this.data.dataAll
+            dataAll: this.data.dataAll
           }
         })
         wx.navigateTo({
@@ -157,15 +202,15 @@ Page({
       console.log(err);
     })
   },
-  bindMultiPickerChangemajor(e) {
-    const oneVa = e.detail.value[0]
-    const twoVa = e.detail.value[1]
-    this.setData({
-      multiIndex: e.detail.value,
-      mjoname1: this.data.majorData[oneVa].name,
-      mjoname2: this.data.majorData[oneVa].data[twoVa].name,
-    })
-  },
+  // bindMultiPickerChangemajor(e) {
+  //   const oneVa = e.detail.value[0]
+  //   const twoVa = e.detail.value[1]
+  //   this.setData({
+  //     multiIndex: e.detail.value,
+  //     mjoname1: this.data.majorData[oneVa].name,
+  //     mjoname2: this.data.majorData[oneVa].data[twoVa].name,
+  //   })
+  // },
   bindMultiPickerColumnChangemajor(e) {
     // this.data.
     const oneId = e.detail.value

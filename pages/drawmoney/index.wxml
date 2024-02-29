@@ -7,7 +7,7 @@
   </view>
   <view class="list">
     <view class="list_title">余额变动明细</view>
-    <view class="list_detail" wx:if="{{dataList.length > 0}}"  wx:for="{{dataList}}" wx:key="index">
+    <view class="list_detail" wx:if="{{dataList.length > 0}}" wx:for="{{dataList}}" wx:key="index">
       <view class="list_detailImg">
         <image class="list_detailImg_imgs" src="https://heshiwork.com/storage/202401/fa89edee23c3ae16903805c78d07731c.png" mode="" />
       </view>
@@ -17,10 +17,10 @@
       </view>
       <view class="list_detailEnd">
         <view class="list_detailEnd_mony">{{item.inc == 1 ? '+' : '-'}}{{item.price}}</view>
-        <view class="list_detailEnd_type">订单：{{item.status == '1' ? '审核通过' : item.status == '0' ? '申请中' : '申请被驳回'}}</view>
+        <view class="list_detailEnd_type">订单：{{item.status == '1' ? '审核通过' : item.status == '0' ? '申请中' : item.status == '2' ? '未通过退回' : item.status == '3' ? '提现成功' :'申请被驳回'}}</view>
       </view>
     </view>
-    <view class="listNo" wx:if="{{dataList.length <= 0}}" >
+    <view class="listNo" wx:if="{{dataList.length <= 0}}">
       暂未查询到余额变动明细
     </view>
   </view>

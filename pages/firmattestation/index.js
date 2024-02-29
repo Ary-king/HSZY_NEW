@@ -51,10 +51,6 @@ Page({
       checked: false
     }],
     setupTimeData: [{
-      id: 1,
-      name: '不限',
-      checked: false
-    }, {
       id: 2,
       name: '一年以内',
       checked: false
@@ -234,9 +230,18 @@ Page({
         }, () => {
           this.getcompany_status()
         });
+      } else {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none'
+        })
       }
     }).catch(err => {
       sdk.utils.extend.hideLoading()
+      wx.showToast({
+        title: err.msg,
+        icon: 'none'
+      })
       console.log(err);
     })
   },

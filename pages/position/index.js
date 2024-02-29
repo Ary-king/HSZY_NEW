@@ -96,37 +96,14 @@ Page({
     console.log("详情------", e)
     const item = e.currentTarget.dataset.item
     sdk.utils.extend.showLoading('加载中');
-    sdk.request({
-      url: CGI.getjob_detail,
-      method: 'GET',
-      header: {
-        token: wx.getStorageSync('token')
-      },
-      data: {
-        id: item.id.toString()
+    _this.setData({
+      params: {
+        identId: item.id,
       }
-    }).then(res => {
-      sdk.utils.extend.hideLoading()
-      console.log("数据详情-----", res)
-      //职位管理跳转详情
-      if (res.code == 0) {
-        _this.setData({
-          params: {
-            status: item.status,
-            reserve: "2",
-            identId: item.id,
-            dataList: res.data
-          }
-        });
-        wx.navigateTo({
-          url: '/pages/alter/alterone/index',
-        })
-      }
-    }).catch(err => {
-      sdk.utils.extend.hideLoading()
-      console.log(err);
+    });
+    wx.navigateTo({
+      url: '/pages/alter/alterone/index',
     })
-
   },
   onReachBottom(e) {
     console.log(e)

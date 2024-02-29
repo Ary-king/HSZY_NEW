@@ -10,7 +10,7 @@
 		<view>
 			<!-- 待审核state1  已通过state2  已结束 state3  -->
 			<view class="msg_box_state	{{item.jobstatus == 3 ? 'state1' : item.jobstatus == 1 ? 'state2' : 'state3'}}">
-				{{item.jobstatus == 3 ? '待审核' : item.jobstatus == 1 ? '审核通过' : '已拒绝'}}
+				{{item.jobstatus == 3 ? '待审核' : item.jobstatus == 1 ? '审核通过' : '已拒绝已退款'}}
 			</view>
 			<view class="msg_box_cont">
 				<view class="indexHot_cont">
