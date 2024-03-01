@@ -1,5 +1,5 @@
 .payset {
-  padding: 0rpx 40rpx;
+  padding: 0rpx 30rpx;
 }
 
 .payset_title {
@@ -189,7 +189,7 @@ radio .wx-radio-input {
 .calendarTitle {
 	border-radius: 24rpx;
 	background-color: rgba(255, 255, 255, 1);
-	border: 1px solid rgba(0, 255, 215, 1);
+	/* border: 1px solid rgba(0, 255, 215, 1); */
 	padding-top: 20rpx;
 }
 

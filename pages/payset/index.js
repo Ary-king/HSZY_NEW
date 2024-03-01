@@ -14,7 +14,6 @@ Page({
     open_groups: [],
     eav: "",
     type: [],
-    time: [],
     restock_Show: false
   },
 
@@ -227,7 +226,7 @@ Page({
       return
     }
     console.log(this.data.newTime.length)
-    if (this.data.time.newTime <= 0) {
+    if (this.data.newTime <= 0) {
       wx.showModal({
         title: '提示',
         content: '未选择开放日期',
@@ -240,7 +239,6 @@ Page({
       open_groups: this.data.open_groups,
       salary_day: sumData.salary_day,
       open_date: this.data.newTime,
-      // open_date_end: "",
       work_hours_start: this.data.timeMin,
       work_hours_end: this.data.timeMax,
       day_min: sumData.day_min,

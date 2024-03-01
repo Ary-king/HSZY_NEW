@@ -1,5 +1,5 @@
 .payset {
-  padding: 0rpx 40rpx;
+  padding: 0rpx 30rpx;
 }
 
 .payset_title {

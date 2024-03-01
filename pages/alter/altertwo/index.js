@@ -31,14 +31,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    // this.get_eav()
-    this.get_type()
-    this.get_open_groups()
     console.log("上个页面带过来的数据-------", getPrevPageData())
     const dataAll = getPrevPageData().dataAll
     wx.setStorageSync('bqsm', dataAll.restock_desc)
     console.log("上个页面带过来的日期-------", dataAll.open_date)
     console.log("上个页面带过来的日期-------", dataAll.open_date)
+    this.get_type()
+    this.get_open_groups()
     let result = []
     while (dataAll.open_date.length > 0) {
       let tempSlice = dataAll.open_date.splice(0, 16); // 从索引0开始，提取长度为sliceSize的元素并删除这些元素
@@ -46,9 +45,9 @@ Page({
     }
     this.setData({
       arrayTime: result,
+      newTime: dataAll.open_date,
       id: dataAll.id,
       salary_day: dataAll.salary_day,
-      newTime: dataAll.open_date,
       timeMin: dataAll.work_hours_start,
       timeMax: dataAll.work_hours_end,
       day_num: dataAll.day_num,
@@ -107,16 +106,6 @@ Page({
       open_groups: e.detail.value,
     })
   },
-  // radioChangeEav(e) {
-  //   console.log('radio发生change事件，携带value值为：', e.detail.value)
-  //   const idIndex = e.detail.value - 1
-  //   this.data.eavData.forEach((item) => {
-  //     item[idIndex] = true
-  //   });
-  //   this.setData({
-  //     eav: e.detail.value,
-  //   })
-  // },
   radioChangeType(e) {
     console.log('radio发生change事件，携带value值为：', e.detail.value)
     const idIndex = e.detail.value - 1
@@ -231,6 +220,29 @@ Page({
     console.log("提交的数据----", e.detail.value)
     const comId = e.detail.target.dataset.com
     const sumData = e.detail.value
+    let newTimes = []
+    for (let i = 0; i <= this.data.arrayTime.length - 1; i++) {
+      for (let j = 0; j <= this.data.arrayTime[i].length - 1; j++) {
+        newTimes.push(this.data.arrayTime[i][j])
+      }
+    }
+    console.log(newTimes)
+    let noTime = false
+    newTimes.forEach(res => {
+      if (res.check) {
+        noTime = true
+        return
+      }
+    })
+    console.log(noTime)
+    if (!noTime) {
+      wx.showModal({
+        title: '提示',
+        content: '未选择开放日期',
+        showCancel: false
+      });
+      return
+    }
     if (sumData.salary_day == "" || sumData.day_max == "" || sumData.day_min == "" || sumData.day_num == "") {
       wx.showModal({
         title: '提示',
@@ -239,7 +251,7 @@ Page({
       });
       return
     }
-    if (this.data.open_groups.length == 0  || this.data.type.length == 0 || this.data.restock_desc == '') {
+    if (this.data.open_groups.length == 0 || this.data.type.length == 0 || this.data.restock_desc == '') {
       wx.showModal({
         title: '提示',
         content: '信息未填写完整，请完善相关信息',
@@ -251,7 +263,7 @@ Page({
       id: this.data.id,
       open_groups: this.data.open_groups,
       salary_day: sumData.salary_day,
-      open_date: this.data.newTime,
+      open_date: newTimes,
       work_hours_start: this.data.timeMin,
       work_hours_end: this.data.timeMax,
       day_min: sumData.day_min,

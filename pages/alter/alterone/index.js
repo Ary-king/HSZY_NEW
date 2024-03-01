@@ -49,15 +49,21 @@ Page({
   },
   onShow() {
     console.log('------------', this.id)
-    this.gotoDetail(this.id)
-    // let zwmsxg = wx.getStorageSync('zwmsxg')
-    // let zwsxnrxg = wx.getStorageSync('zwsxnrxg')
-    // let zwsxyqxg = wx.getStorageSync('zwsxyqxg')
-    // this.setData({
-    //   zwmsxg: zwmsxg || '',
-    //   zwsxnrxg: zwsxnrxg || '',
-    //   zwsxyqxg: zwsxyqxg || ''
-    // })
+    if (wx.getStorageSync('zwmsxg') == '' || wx.getStorageSync('zwsxnrxg') == '' || wx.getStorageSync('zwsxyqxg') == '') {
+      console.log("1111111111111")
+      this.gotoDetail(this.id, 1)
+    } else {
+      console.log("222222")
+      let zwmsxg = wx.getStorageSync('zwmsxg')
+      let zwsxnrxg = wx.getStorageSync('zwsxnrxg')
+      let zwsxyqxg = wx.getStorageSync('zwsxyqxg')
+      this.setData({
+        zwmsxg: zwmsxg || '',
+        zwsxnrxg: zwsxnrxg || '',
+        zwsxyqxg: zwsxyqxg || ''
+      })
+    }
+
   },
 
   gotoDetail(id) {
@@ -96,17 +102,6 @@ Page({
         wx.setStorageSync('zwmsxg', res.data.job.desc)
         wx.setStorageSync('zwsxnrxg', res.data.job.job_desc)
         wx.setStorageSync('zwsxyqxg', res.data.job.job_ask)
-        // _this.setData({
-        //   params: {
-        //     status: item.status,
-        //     reserve: "2",
-        //     identId: item.id,
-        //     dataList: res.data
-        //   }
-        // });
-        // wx.navigateTo({
-        //   url: '/pages/alter/alterone/index',
-        // })
       }
     }).catch(err => {
       sdk.utils.extend.hideLoading()
@@ -135,7 +130,7 @@ Page({
       major: this.data.major,
       major2: this.data.major2,
       major3: this.data.major3,
-      industry_id: this.data.industryIndex,
+      industryIndex: this.data.industryIndex,
       major_id: this.data.multiIndex
     }
     console.log("提交的数据----------", goDetail)
@@ -160,12 +155,16 @@ Page({
         this.setData({
           params: {
             id: res.data,
-            dataAll: this.data.dataAll
+            dataAll: this.data.dataAll,
+            timeData: this.data.dataAll.open_date
           }
         })
         wx.navigateTo({
           url: '/pages/alter/altertwo/index',
         })
+        wx.removeStorageSync('zwmsxg');
+        wx.removeStorageSync('zwsxnrxg');
+        wx.removeStorageSync('zwsxyqxg');
       }
     }).catch(err => {
       sdk.utils.extend.hideLoading()
@@ -230,6 +229,7 @@ Page({
     }
   },
   bindMultiPickerChange(e) {
+    console.log(e)
     const oneVa = e.detail.value[0]
     const twoVa = e.detail.value[1]
     this.setData({
@@ -257,6 +257,7 @@ Page({
   },
   goCont(e) {
     let newName = e.currentTarget.dataset.newname
+    console.log(newName)
     this.setData({
       params: {
         newName: newName,

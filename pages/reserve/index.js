@@ -29,6 +29,9 @@ Page({
       }
     })
     console.log(oldTimes)
+    oldTimes.forEach(res=>{
+      res.checkShow = false
+    })
     let result = [];
     while (oldTimes.length > 0) {
       var tempSlice = oldTimes.splice(0, 16); // 从索引0开始，提取长度为sliceSize的元素并删除这些元素
@@ -214,7 +217,9 @@ Page({
   addTime(e) {
     // 选择日期
     const item = e.currentTarget.dataset.item
-    const index = e.currentTarget.dataset.parent
+		const index = e.currentTarget.dataset.parent
+		console.log(item)
+		console.log(index)
     this.getjobday(item.time, index)
   },
   getjobday(times, index) {
@@ -242,7 +247,7 @@ Page({
         })
         let newTime = []
         for (let i = 0; i <= this.data.arrayTime.length - 1; i++) {
-          for (let j = 1; j <= this.data.arrayTime[i].length - 1; j++) {
+          for (let j = 0; j <= this.data.arrayTime[i].length - 1; j++) {
             if (this.data.arrayTime[i][j].checkShow == true) {
               newTime.push(this.data.arrayTime[i][j].time)
             }

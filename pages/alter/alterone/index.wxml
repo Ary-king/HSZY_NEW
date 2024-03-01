@@ -11,10 +11,10 @@
       <view class="postJobForm_top">所属行业</view>
       <view class="pickDis">
         <view class="postJobForm_pickwit">
-          <picker style="font-size:36rpx;color: rgba(186,185,185,1);" id="major" name="major" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" range="{{indusData}}" value="{{industry_id}}">
+          <picker style="font-size:36rpx;color: rgba(186,185,185,1);" id="major" name="major" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" range="{{indusData}}" value="{{industryIndex}}">
             <view class="picker">
               <!-- {{majorData[multiIndex[0]].name}} -->
-              {{indusData[0][industry_id[0]]}}，{{indusData[1][industry_id[1]]}}
+              {{indusData[0][industryIndex[0]]}}，{{indusData[1][industryIndex[1]]}}
             </view>
           </picker>
         </view>

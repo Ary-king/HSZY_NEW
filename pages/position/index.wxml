@@ -33,7 +33,7 @@
       <view class="indexHot_cont_time">
         <text class="indexHot_cont_timeText" wx:for="{{item.open_groups}}" wx:for-item="iteMine" wx:key="index">{{iteMine}}</text>
         <text class="indexHot_cont_timeText">{{item.work_hours_start}}-{{item.work_hours_end}}</text>
-        <text class="indexHot_cont_timeText">1天起订</text>
+        <text class="indexHot_cont_timeText">{{item.day_min}}天起订</text>
       </view>
       <rich-text  class="indexHot_cont_Int"  nodes="<div style='overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1; -webkit-box-orient: vertical;word-break: break-all; '></font>{{item.desc}}</div>"></rich-text> 
       <view class="indexHot_cont_foot">
